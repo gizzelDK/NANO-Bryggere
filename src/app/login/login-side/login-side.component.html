@@ -1,1 +1,30 @@
-<p>login-side works!</p>
+<mat-card class="main" id="imgeUp">
+    <mat-card-title class="txt" style="margin-top: 100px;">
+      Velkommen til Login side
+    </mat-card-title>
+    <mat-card-content class="container">
+      <form [formGroup]="loginForm" class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput formControlName="brugernavn" [(ngModel)]="loginDetaljer.brugernavn" placeholder="Brugernavn"
+            class="input-control">
+          <!-- <mat-error *ngIf="email.errors?.['required']"> -->
+          <mat-error>
+            Vær Venlig at udfyld feltet med din brugernavn
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput formControlName="pw" [(ngModel)]="loginer.pw" placeholder="Password" class="input-control"
+            type="password">
+          <mat-error>
+            Vær Venlig at udfyld feltet med din password
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" (click)="onSubmitLogin()" class="login-btn">Login</button>
+        <div style="margin-top: 20px;">
+          <span><a routerLink="/login/registration" routerLinkActive="active">Registrer</a></span>
+          <!-- <span style="margin-left: 20px;"><a routerLink="/login/rediger-kodeord" routerLinkActive="active">Rediger Kodeord</a></span> -->
+          <span style="margin-left: 340px;"><a routerLink="/login/glemte-kodeord" routerLinkActive="active">Glemt Password</a></span>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
