@@ -24,12 +24,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { KatalogComponent } from './katalog/katalog.component';
+import { ProfilComponent } from './profil/profil.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
+import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 
 @NgModule({
   declarations: [
     ForsideComponent,
     CertifikatComponent,
-    KatalogComponent
+    KatalogComponent,
+    ProfilComponent,
+    NotFoundComponent,
+    SletDialogBoxComponent,
+    RedigerProfilDialogBoxComponent,
+    RedigerBryggeriDialogBoxComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +69,10 @@ import { KatalogComponent } from './katalog/katalog.component';
   ],
   exports: [
     ForsideComponent,
-    CertifikatComponent
+    CertifikatComponent,
+    NotFoundComponent,
+    ProfilComponent
+
   ]
 })
 export class MainModule { }

@@ -4,7 +4,7 @@ export enum RolleNavn{
     Moderator = 200,
     Administrator = 300
   }
-  
+
   export class Rolle{
     public id : number;
     public level:number;

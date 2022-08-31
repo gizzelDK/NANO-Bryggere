@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path:'' , component: LoginSideComponent},
   {path:'login' , loadChildren:() => import('./login/login.module').then(mod => mod.LoginModule)},
+  {path:'main' , loadChildren :() => import('./main/main.module').then(mod => mod.MainModule)}
 ];
 
 @NgModule({
