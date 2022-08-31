@@ -11,7 +11,7 @@ import { RegistrerComponent } from './login/registrer/registrer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrerComponent,
+
   ],
   imports: [
     BrowserModule,
