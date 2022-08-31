@@ -20,8 +20,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    LoginSideComponent
-  ],
+    LoginSideComponent,
+    RegistrerComponent,],
   imports: [
     CommonModule,
     LoginRoutingModule,
@@ -34,9 +34,10 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatStepperModule,
     MatIconModule,
-    MatSelectModule,
+    MatSelectModule
   ],
   exports:[
+    RegistrerComponent,
     LoginSideComponent
   ]
 })
