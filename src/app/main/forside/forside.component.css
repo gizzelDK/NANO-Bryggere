@@ -1,0 +1,120 @@
+#imgeUp{
+    background-image: url('/assets/images/Background-website-01.jpg');
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+  }
+  
+  h1{
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  div img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    margin-bottom: 20px;
+  }
+  
+  mat-grid-tile {
+    background: rgb(248, 250, 252);
+    width: 100%;
+  }
+  
+  mat-grid-tile mat-card {
+    height: 250px;
+    width: 350px;
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+  
+  mat-card-title {
+    font-weight:bolder;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: aliceblue;
+  }
+  
+  #beerImage{
+    background-image: url('/assets/images/beerlist.jpg');
+    height: 250px;
+    width: 250px;
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  #bryggeriImage{
+    background-image: url('/assets/images/bryggerilist.jpg');
+    height: 250px;
+    width: 250px;
+  }
+  
+  .centerBilled {
+    margin: auto;
+    padding: 4px;
+    text-align: center;
+  }
+  
+  .centers {
+    margin: auto;
+    /* padding: 10px; */
+    /* width: 50%; */
+    text-align: center;
+  }
+  
+  #eventsImage{
+    background-image: url('/assets/images/events.jpg');
+    height: 250px;
+    width: 250px;
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .cdk-virtual-scroll-data-source-example .example-viewport {
+    height:250px;
+    width: 1250px;
+    border: 1px solid rgb(216, 210, 210);
+  }
+  
+  .cdk-virtual-scroll-data-source-example .example-viewport .cdk-virtual-scroll-content-wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .cdk-virtual-scroll-data-source-example .example-item {
+    width: 250px;
+    height: auto;
+    margin-left: 20px;
+    border: 1px solid rgb(223, 217, 217);
+    /* writing-mode: vertical-lr; */
+  }
+  
+  .txtStyle{
+    font-style: italic;
+    display: flex;
+   justify-content: center;
+   text-align: center;
+  }
+  
+  .titelStyle{
+    font-style: italic;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  mat-grid-tile span{
+    margin-left: 30px;
+  }
