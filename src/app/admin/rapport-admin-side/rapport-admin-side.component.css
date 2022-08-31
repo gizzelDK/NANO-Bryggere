@@ -75,6 +75,13 @@
   text-align: center;
 }
 
+.txtHeader{
+  font-size: 15px;
+  font-style: oblique;
+  width: 20%;
+  text-align: center;
+}
+
 .txtbtn {
   font-size: 14px;
   color: black;
