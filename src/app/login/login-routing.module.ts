@@ -1,5 +1,5 @@
 // import { EditPasswordComponent } from './edit-password/edit-password.component';
-import { LoginSideComponent } from './login-side.component';
+import { LoginSideComponent } from './login-side/login-side.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { RegistrerComponent } from './registrer/registrer.component';

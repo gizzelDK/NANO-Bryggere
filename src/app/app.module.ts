@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrerComponent } from './login/registrer/registrer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegistrerComponent,
   ],
   imports: [
     BrowserModule,
