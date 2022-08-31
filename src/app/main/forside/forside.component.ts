@@ -1,7 +1,7 @@
 import { Component, OnInit ,ChangeDetectionStrategy , ViewEncapsulation} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Bryggeri} from 'src/app/Models/Bryggeri'
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 // import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
