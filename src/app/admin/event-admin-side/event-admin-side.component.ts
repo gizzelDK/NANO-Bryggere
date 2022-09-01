@@ -71,9 +71,9 @@ export class EventAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getEventParticipantsByUsername(this.searchkeyDeltagelse.toLowerCase(), this.endpointE).subscribe((data) => {
-        return this.events = data;
-      })
+      // this.restApi.getEventParticipantsByUsername(this.searchkeyDeltagelse.toLowerCase(), this.endpointE).subscribe((data) => {
+      //   return this.events = data;
+      // })
     }
   }
 

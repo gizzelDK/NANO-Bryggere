@@ -1,6 +1,7 @@
 import { KontaktOplysninger } from "./KontaktOplysninger";
 import { Rolle } from "./Rolle";
 import { Deltager } from './Deltager';
+import { Events } from "./Events";
 
 export enum CertifikatStatus{
   IkkeSendt = 1,
@@ -16,7 +17,7 @@ export class Bruger {
   public rolle: Rolle;
   public kontaktOplysningerId: number;
   public kontaktOplysninger: KontaktOplysninger;
-  //public events: Events;
+  public events: Events;
   public deltager: Deltager;
   public certifikatStatus: CertifikatStatus;
   public certifikatBilled: string;

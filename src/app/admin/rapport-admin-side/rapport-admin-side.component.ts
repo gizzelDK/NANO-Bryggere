@@ -82,9 +82,9 @@ export class RapportAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getRapportByType(this.searchkeyType, this.endpointR).subscribe((data) => {
-        return this.rapports = data;
-      });
+      // this.restApi.getRapportByType(this.searchkeyType, this.endpointR).subscribe((data) => {
+      //   return this.rapports = data;
+      // });
     }
   }
 

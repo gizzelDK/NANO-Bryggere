@@ -85,9 +85,9 @@ export class RolleAdminSideComponent implements OnInit {
         this.level = 200;
       if (this.searchkeyRolleNavn.toLowerCase() == 'administrator')
         this.level = 300;
-      this.restApi.getDataByLevel(this.level, this.endpointB).subscribe((data) => {
-        return this.bruger = data;
-      })
+      // this.restApi.getDataByLevel(this.level, this.endpointB).subscribe((data) => {
+      //   return this.bruger = data;
+      // })
     }
   }
 

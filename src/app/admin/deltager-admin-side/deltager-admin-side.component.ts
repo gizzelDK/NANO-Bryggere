@@ -52,9 +52,9 @@ export class DeltagerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getEventParticipantsByUsername(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
-        return this.deltager=res
-      })
+      // this.restApi.getEventParticipantsByUsername(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
+      //   return this.deltager=res
+      // })
     }
   }
 
