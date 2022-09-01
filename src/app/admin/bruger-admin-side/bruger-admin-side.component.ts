@@ -76,9 +76,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
-        return this.brugere = data;
-      })
+      // this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
+      //   return this.brugere = data;
+      // })
     }
   }
 
@@ -87,9 +87,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
-        return this.brugere = data;
-      })
+      // this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
+      //   return this.brugere = data;
+      // })
     }
   }
 
@@ -98,9 +98,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
-        return this.brugere = data;
-      })
+      // this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
+      //   return this.brugere = data;
+      // })
     }
   }
 

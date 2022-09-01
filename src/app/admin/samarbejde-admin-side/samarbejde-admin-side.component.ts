@@ -120,9 +120,9 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataByEnavn(this.searchkeySamarbejdeBryggeri, this.endpointS).subscribe((data) => {
-        return this.samarbejder = data;
-      })
+      // this.restApi.getDataByEnavn(this.searchkeySamarbejdeBryggeri, this.endpointS).subscribe((data) => {
+      //   return this.samarbejder = data;
+      // })
     }
   }
 }

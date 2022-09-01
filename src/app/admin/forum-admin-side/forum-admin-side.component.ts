@@ -82,9 +82,9 @@ export class ForumAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getUserByEventsTitle(this.searchkey, this.endpointF).subscribe(data => {
-        this.forums = data;
-      })
+      // this.restApi.getUserByEventsTitle(this.searchkey, this.endpointF).subscribe(data => {
+      //   this.forums = data;
+      // })
     }
   }
 

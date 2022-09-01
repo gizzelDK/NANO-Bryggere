@@ -63,9 +63,9 @@ export class CertifikatAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointK).subscribe(data => {
-        this.certifikatListe = data;
-      })
+      // this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointK).subscribe(data => {
+      //   this.certifikatListe = data;
+      // })
     }
   }
 
