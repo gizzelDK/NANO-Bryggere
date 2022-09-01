@@ -1,0 +1,84 @@
+#imgeUp{
+    background-image: url('/assets/images/Background-website-01.jpg');
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+  }
+  
+  .main{
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .example-tree-invisible {
+      display: none;
+  }
+  
+  .example-tree ul,
+  .example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+  
+  .example-tree .mat-nested-tree-node div[role=group] {
+    padding-left: 40px;
+  }
+  
+  .example-tree div[role=group] > .mat-tree-node {
+    padding-left: 40px;
+  }
+  
+  .btnNode{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+    font-weight: bolder;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin: 20px;
+  }
+  
+  .example-container {
+    width: 100%;
+    height: 100%;
+  }
+  .btnStyle{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(226, 226, 226);
+    margin-top: 25px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+    border:none;
+    cursor:pointer;
+  }
+  .sidebar{
+    width: 350px;
+    text-align: center;
+    margin-top: 20px;
+  
+  }
+  #headerStyle{
+    margin-top: 20px;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: bolder;
+  }
+  .txtStyle{
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

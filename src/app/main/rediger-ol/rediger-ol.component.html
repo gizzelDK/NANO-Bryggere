@@ -1,0 +1,102 @@
+<mat-card class="main" id="imgeUp">
+    <mat-card-content class="container">
+
+        <form [formGroup]="redigerForm" class="example-form" *ngIf="olListe">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.navn" formControlName="navn" placeholder="{{olListe.navn}}" class="input-control">
+                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.type" formControlName="type"
+                    placeholder="{{olListe.type}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.smag" formControlName="smag"
+                    placeholder="{{olListe.smag}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="olListe.procent" formControlName="procent"
+                    placeholder="{{olListe.procent}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="date" [(ngModel)]="olListe.argang" formControlName="argang" placeholder="{{olListe.argang}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.land" formControlName="land"
+                    placeholder="{{olListe.land}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="olListe.breweryId" formControlName="breweryId"
+                    placeholder="{{olListe.breweryId}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{olListe.bryggeprocess}}">
+                        <mat-option>Ingen</mat-option>
+                        <mat-option value="optionJa">Ja</mat-option>
+                        <mat-option value="optionNej">Nej</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        udfyld feltet
+                    </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.olBilled" formControlName="olBilled" placeholder="Øl Billed" class="input-control">
+                <input type="file" class="btnMainStyle" (change)="onSubmitOlBilled($event)">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olListe.beskrivelse" formControlName="beskrivelse"
+                    placeholder="{{olListe.beskrivelse}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="olListe.antal" formControlName="antal"
+                    placeholder="{{olListe.antal}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn"
+                style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn"
+                style="background: linear-gradient(#00ff37, #41fd70);">Rediger Øl</button>
+        </form>
+    </mat-card-content>
+</mat-card>
