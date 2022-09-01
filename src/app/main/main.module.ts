@@ -29,6 +29,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import { RapportSideComponent } from './rapport-side/rapport-side.component';
+import { OpretRapportDialogBoxComponent } from './opret-rapport-dialog-box/opret-rapport-dialog-box.component';
+import { OpdaterRapportDialogBoxComponent } from './opdater-rapport-dialog-box/opdater-rapport-dialog-box.component';
+import { OpretOlComponent } from './opret-ol/opret-ol.component';
+import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
+import { KopierOpskriftComponent } from './kopier-opskrift/kopier-opskrift.component';
+import { BryggerKatalogComponent } from './brygger-katalog/brygger-katalog.component';
+import { FolgBryggerComponent } from './folg-brygger/folg-brygger.component';
+import { FindBryggerComponent } from './find-brygger/find-brygger.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +48,16 @@ import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box
     NotFoundComponent,
     SletDialogBoxComponent,
     RedigerProfilDialogBoxComponent,
-    RedigerBryggeriDialogBoxComponent
+    RedigerBryggeriDialogBoxComponent,
+    RapportSideComponent,
+    OpretRapportDialogBoxComponent,
+    OpdaterRapportDialogBoxComponent,
+    OpretOlComponent,
+    RedigerOlComponent,
+    KopierOpskriftComponent,
+    BryggerKatalogComponent,
+    FolgBryggerComponent,
+    FindBryggerComponent
   ],
   imports: [
     CommonModule,
