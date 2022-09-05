@@ -9,39 +9,54 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-  @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: 'Bruger', rolleId: null, level: 100, kontaktOplysningerId: null,
-  fnavn: '', enavn: '', adresseLinje1: '', adresseLinje2: '', postNr: '',
-   by: '', email: '', telefonNr: '', certifikatStatus: 1};
+  @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: 0, level: 0, kontaktoplysningerId: null,
+  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '',
+   deleted:false, acceptedPolicy: false , certifikatId:null};
+//certifikatStatus: 1
 
    brugerFormGroup:any = new FormGroup({});
-   endpointK = '/KontaktOplysninger';
-   endpointB= '/Bruger';
-   endpointR= '/Rolle';
+   endpointK = '/Kontaktoplysningers';
+   endpointB= '/Brugers';
+   endpointR= '/Rolles';
 
-  constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    public restApi: RestApiService,
+    public router: Router) { }
 
   ngOnInit(): void {
     this.brugerFormGroup = this._formBuilder.group({
-      'kontaktOplysningerId': new FormControl(''),
+      'kontaktoplysningerId': new FormControl(''),
       'fnavn' : new FormControl('' , Validators.required),
       'enavn': new FormControl('' , Validators.required),
-      'adresseLinje1': new FormControl(''),
-      'adresseLinje2': new FormControl(''),
-      'postNr' : new FormControl(''),
+      'addresselinje1': new FormControl(''),
+      'addresselinje2': new FormControl(''),
+      'postnr' : new FormControl(''),
       'by': new FormControl(''),
       'email' : new FormControl('' , Validators.email ),
       'telefonNr': new FormControl(''),
       'brugernavn' : new FormControl(''),
       'pw': new FormControl(''),
       'rolleId': new FormControl(''),
-      //'rolleNavn': new FormControl(''),
+      'rolleNavn': new FormControl(''),
       'level': new FormControl(''),
+      'deleted': new FormControl(''),
+      'acceptedPolicy': new FormControl(''),
+      'certifikatId': new FormControl(''),
     });
   }
   onOpretBruger(){
-    this.nyBruger.certifikatStatus = 1;
+    console.log('test:',  this.nyBruger);
+    //this.nyBruger.certifikatStatus = 1;
+    this.nyBruger.acceptedPolicy=false;
+    this.nyBruger.deleted=false;
+    this.nyBruger.rolleNavn="Bruger";
+    this.nyBruger.level=100;
+    //this.nyBruger.certifikatId=1;
+    this.nyBruger.rolleId=2;
     this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
-       this.nyBruger.kontaktOplysningerId= dataC.id;
+      console.log('kontakt:', dataC);
+       this.nyBruger.kontaktoplysningerId= dataC.id;
    /*     this.nyBruger.rolleNavn='Bruger';
        this.nyBruger.level=100 + ""; */
  /*       if(this.nyBruger.rolleNavn == 'AnonymBruger')
@@ -52,13 +67,14 @@ export class RegistrerComponent implements OnInit {
        this.nyBruger.level=200 + "";
        if(this.nyBruger.rolleNavn == 'Administrator')
        this.nyBruger.level=300 + ""; */
-      this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
-       this.nyBruger.rolleId=dataR.id;
+      // this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
+      //  this.nyBruger.rolleId=dataR.id;
        this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
-         var userId = dataB.id;
+        console.log("bruger:", this.nyBruger);
+        // var userId = dataB.id;
          this.router.navigate(["../login/login"]);
         }) ;
-      })
+      //})
      } , err => {
         {alert('udfyldt alle felter')
        }

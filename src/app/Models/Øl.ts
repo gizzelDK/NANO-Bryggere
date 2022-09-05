@@ -1,6 +1,8 @@
 import { Bryggeri } from "./Bryggeri";
+import { Kommentar } from "./Kommentar";
+import { Opskrift } from "./Opskrift";
 import { Samarbejde } from "./Samarbejde";
-import { Tags } from "./Tags";
+import { Tag } from "./Tag";
 
 export class Øl {
     public id: number;
@@ -13,13 +15,14 @@ export class Øl {
     public olBilled: string;
     public bryggeriId: number;
     public bryggeri: Bryggeri;
-    public bryggeProcess: string;
-    public argang: Date;
+    public bryggeProcess: Opskrift;
+    public aargang: Date;
     public antal: number;
     public flaskeAntal: number;
     public tondeAntal: number;
-    public flaskeResevationAntal: number;
-    public samarbejdeId: number;
-    public samarbejde: Samarbejde;
-    public tags: Tags;
+    public flaskeResAntal: number;
+    //public samarbejdeId: number;
+    public samarbejder: Samarbejde;
+    public kommentarer:Kommentar;
+    public tags: Tag;
 }

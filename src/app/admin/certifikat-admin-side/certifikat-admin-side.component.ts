@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
+import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -54,7 +54,7 @@ export class CertifikatAdminSideComponent implements OnInit {
     //   })
     //   // const b = this.certifikatListe.filter((a: any) => {
     //   //   a.certifikatStatus === 2;
-    //   // })    
+    //   // })
     // });
   }
 
@@ -73,7 +73,7 @@ export class CertifikatAdminSideComponent implements OnInit {
   onBekraftCertifikat(id: any) {
     this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.certifikat = data;
-      
+
       this.certifikat.certifikatStatus = 3;
       this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
         this.ngOnInit();

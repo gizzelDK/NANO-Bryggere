@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Forum } from 'src/app/Models/Forum';
-import { Tags } from 'src/app/Models/Tags';
+import { Tags } from 'src/app/Models/Tag';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({

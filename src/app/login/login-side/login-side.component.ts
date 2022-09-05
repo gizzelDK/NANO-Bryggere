@@ -14,14 +14,15 @@ export class LoginSideComponent implements OnInit {
   listTest: any;
   // bruger: Bruger[];
   endpointL = '/Logins';
-  endpointK = '/KontaktOplysninger';
-  endpointB = '/Bruger';
+  endpointK = '/Kontaktoplysningers';
+  endpointB = '/Brugers';
 
   loginForm: any = new FormGroup({});
 
-  @Input() loginDetaljer = { brugernavn: '', loginTime: '', brugerId: null };
-  @Input() loginer = { pw: '' };
+  @Input() loginDetaljer = { brugernavn: '' , pw: '' };
+ // @Input() loginer = { pw: '' };
 
+  //brugerId: null
   constructor(
     public router: Router,
     public restApi: RestApiService,
@@ -30,7 +31,7 @@ export class LoginSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      brugerId: new FormControl(''),
+     // brugerId: new FormControl(''),
       brugernavn: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])
     });
@@ -40,7 +41,7 @@ export class LoginSideComponent implements OnInit {
     this.restApi.getDatas(this.endpointB).subscribe((res) => {
       const user = res.find((a: any) => {
         //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
-        return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginer.pw
+        return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginDetaljer.pw
         // })
       });
       if (user) {
@@ -54,7 +55,7 @@ export class LoginSideComponent implements OnInit {
           }
           // console.log(this.listTest);
           if (this.listTest) {
-            this.listTest.loginTime = new Date().toDateString();
+            //this.listTest.loginTime = new Date().toDateString();
             // console.log(this.loginDetaljer.loginTime);
             localStorage.setItem('kontaktOplysningerId', JSON.stringify(user.kontaktOplysningerId));
             localStorage.setItem('brugerId', JSON.stringify(user.id));
@@ -66,8 +67,8 @@ export class LoginSideComponent implements OnInit {
           }
           else
           {
-            this.loginDetaljer.loginTime = new Date().toDateString();
-            this.loginDetaljer.brugerId = user.id;
+            //this.loginDetaljer.loginTime = new Date().toDateString();
+            //this.loginDetaljer.brugerId = user.id;
             localStorage.setItem('kontaktOplysningerId', JSON.stringify(user.kontaktOplysningerId));
             localStorage.setItem('brugerId', JSON.stringify(user.id));
             localStorage.setItem('rolleId', JSON.stringify(user.rolleId));

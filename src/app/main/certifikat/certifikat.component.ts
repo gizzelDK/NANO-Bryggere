@@ -2,8 +2,10 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
 import { Bruger } from 'src/app/Models/Bruger';
+import { Certifikat } from 'src/app/Models/Certifikat';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -14,8 +16,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class CertifikatComponent implements OnInit {
   endpointB = '/Bruger';
   endpointK = '/KontaktOplysninger';
+  endpointC = '/Certifikat';
+  certifikat: Certifikat;
   bruger: Bruger;
-  kontakt: KontaktOplysninger;
+  kontakt: Kontaktoplysninger;
   brugerList: Bruger[];
   certifikatId: number;
   brugerId: number;
@@ -31,7 +35,8 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onHentBruger();
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    //this.onHentBruger();
   }
   onHentBruger() {
     if (this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
@@ -50,8 +55,10 @@ export class CertifikatComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.url = e.target.result;
-        this.bruger.certifikatBilled = e.target.result;
-        this.bruger.certifikatStatus = 2;
+/*         this.bruger.certifikatBilled = e.target.result;
+        this.bruger.certifikatStatus = 2; */
+        this.certifikat.certifikatBilled = e.target.result;
+        this.certifikat.cStatus = 2;
         console.log(this.bruger);
       }
     }
