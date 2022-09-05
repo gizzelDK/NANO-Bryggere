@@ -1,6 +1,6 @@
 import { Bruger } from "./Bruger";
 
-export enum TypeNavn{
+export enum RapportType{
   Andet = 0,
   Fejl = 1,
   Anmeld = 2,
@@ -14,6 +14,6 @@ export class Rapport{
   public bruger: Bruger
   public titel: string;
   public besked: string;
-  public typeNavn: TypeNavn;
+  public rType: RapportType;
   public godtaget: boolean;
 }

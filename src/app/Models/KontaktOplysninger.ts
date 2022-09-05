@@ -1,14 +1,14 @@
 import { Bryggeri } from "./Bryggeri";
-import { Bruger } from "./Bruger";
 
-export class KontaktOplysninger {
+export class Kontaktoplysninger {
   public id: number;
   public enavn : string;
   public fnavn: string;
-  public adresseLinje1: string;
-  public adresseLinje2: string;
-  public postNr: number;
+  public addresselinje1: string;
+  public addresselinje2: string;
+  public postnr: number;
   public by: string;
   public email: string;
   public telefonNr: string;
+  public bryggeri:Bryggeri;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
+import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -25,7 +25,7 @@ export class OlSideComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute
   ) { }
@@ -56,7 +56,7 @@ export class OlSideComponent implements OnInit {
       this.ol = data;
     })
   }
-  
+
   onTilbage() {
     localStorage.removeItem('olKontaktOplysningerId');
     localStorage.removeItem('olBryggeriId');

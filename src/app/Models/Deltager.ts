@@ -1,11 +1,11 @@
 import { Bruger } from "./Bruger";
-import { Events } from "./Events";
+import { Event } from "./Event";
 
 export class Deltager{
   public id: number;
   public brugerId: number;
   public eventId: number;
   public bruger : Bruger;
-  public events: Events;
+  public events: Event;
   public erDeltagene : boolean;
 }

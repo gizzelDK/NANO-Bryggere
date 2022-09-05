@@ -2,7 +2,7 @@ import { Component, OnInit ,ChangeDetectionStrategy , ViewEncapsulation} from '@
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bryggeri} from 'src/app/Models/Bryggeri'
-import { Events } from 'src/app/Models/Events';
+import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 // import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
 // import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
@@ -17,10 +17,10 @@ import { Øl } from 'src/app/Models/Øl';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ForsideComponent implements OnInit {
-  events: Events[];
+  events: Event[];
   bryggeriListe: Bryggeri[];
   olListe: Øl [];
-  event = new Events;
+  event = new Event;
   eventListe : any = {};
   endpointB='/Bryggerier';
   endpointBr = '/Øller';
@@ -47,7 +47,7 @@ export class ForsideComponent implements OnInit {
       this.bryggeriListe = data;
     })
   }
-  
+
   onHentOl(){
     return this.restApi.getDatas(this.endpointBr).subscribe((data) => {
       this.olListe = data;

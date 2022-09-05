@@ -1,7 +1,8 @@
+import { Bruger } from "./Bruger";
 import { Deltager } from "./Deltager";
-import { Tags } from "./Tags";
+import { Tag } from "./Tag";
 
-export class Events{
+export class Event{
   public id : number;
   public titel: string;
   public beskrivelse:string;
@@ -9,8 +10,8 @@ export class Events{
   public slutDato: Date;
   public lokation:string;
   public eventBilled:string;
-  public tags:Tags;
-  public deltagelse: Deltager;
-  //public deltagere : Bruger;
+  public tags:Tag;
+  //public deltagelse: Deltager;
+  public deltagere : Bruger;
 
 }

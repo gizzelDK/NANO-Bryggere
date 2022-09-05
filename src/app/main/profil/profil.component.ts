@@ -85,7 +85,9 @@ export class ProfilComponent implements OnInit {
 
   onTjekCertifikat() {
     // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    if (this.brugerListe.certifikatStatus == 3) {
+    //skal kigges igen
+    /////if (this.brugerListe.certifikatStatus == 3) {
+    if (this.brugerListe) {
       // this.restApi.getDatas(this.endpointB).subscribe((bryggeri) => {
       //   this.bryggeriListe = bryggeri.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
       // if (typeof(this.bryggeriId) !== 'undefined' || typeof(this.bryggeriId !== '{}')){
@@ -208,8 +210,9 @@ export class ProfilComponent implements OnInit {
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
-          this.brugerListe.certifikatStatus = 1;
-          this.brugerListe.certifikatBilled = "";
+          //skal kigges igen
+          // this.brugerListe.certifikatStatus = 1;
+          // this.brugerListe.certifikatBilled = "";
           this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
             localStorage.removeItem('bryggeriId');
             console.log(data);
