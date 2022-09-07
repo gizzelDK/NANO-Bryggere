@@ -18,9 +18,9 @@ export class ProfilComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
-  endpointK = '/KontaktOplysninger';
+  endpointK = '/Kontaktoplysningers';
   endpointB = '/Bryggerier';
-  endpointBru = '/Bruger';
+  endpointBru = '/Brugers';
   endpointR = '/Rolle';
 
   kontaktOplysningsListe: any;
@@ -52,33 +52,35 @@ export class ProfilComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
     this.onHentBruger();
+    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
+
   }
 
   onHentBruger() {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
+      localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((kontaktData) => {
         this.kontaktOplysningsListe = kontaktData;
-        this.restApi.getData(this.rolleId, this.endpointR).subscribe((rolleData) => {
-          this.rolleListe = rolleData;
-          if (this.rolleListe.rolleNavn == 300) {
-            this.rolleNavn = 'Administrator'
-          }
-          if (this.rolleListe.rolleNavn == 200) {
-            this.rolleNavn = 'Moderator'
-          }
-          if (this.rolleListe.rolleNavn == 100) {
-            this.rolleNavn = 'Bruger'
-          }
-          if (this.rolleListe.rolleNavn == 0) {
-            this.rolleNavn = 'Anonymbruger'
-          }
-          this.onTjekCertifikat();
-        })
+        // this.restApi.getData(this.rolleId, this.endpointR).subscribe((rolleData) => {
+        //   this.rolleListe = rolleData;
+        //   if (this.rolleListe.rolleNavn == 300) {
+        //     this.rolleNavn = 'Administrator'
+        //   }
+        //   if (this.rolleListe.rolleNavn == 200) {
+        //     this.rolleNavn = 'Moderator'
+        //   }
+        //   if (this.rolleListe.rolleNavn == 100) {
+        //     this.rolleNavn = 'Bruger'
+        //   }
+        //   if (this.rolleListe.rolleNavn == 0) {
+        //     this.rolleNavn = 'Anonymbruger'
+        //   }
+        //   this.onTjekCertifikat();
+        // })
       })
     })
   };
