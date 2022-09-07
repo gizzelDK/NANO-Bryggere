@@ -1,13 +1,9 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-// import { tap, map } from 'rxjs/operators';
-// import { Rolle } from '../Models/Rolle';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { RestApiService } from './rest-api.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Clearance } from '../Models/Clearance';
-// import { isNull } from '@angular/compiler/src/output/output_ast';
-// import { DocTypeToken } from '@angular/compiler/esm2020/src/ml_parser/token';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +34,7 @@ export class LoginService  {
   login(username: string, pw: string){
     localStorage.clear()
     return this.apiservice.createData({ "brugernavn": username, "pw": pw },'/logins/').subscribe((response) =>{
+      console.log('login response', response)
       localStorage.setItem(this.TOKEN_NAME, response.bearer)
       var dt =this.getTokenDecoded(response.bearer);
       this._clearance$.id = dt.Id
