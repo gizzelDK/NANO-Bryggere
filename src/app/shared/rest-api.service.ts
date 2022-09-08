@@ -14,7 +14,8 @@ export class RestApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    })
+    }),
+    'withCredentials': true
   }
 
   //Dynamisk api forbindelse. metoden bliver kaldt indefra den valgte ts.

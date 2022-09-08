@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Events } from 'src/app/Models/Event';
+import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 // import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';
 
@@ -13,9 +13,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class EventkalenderSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  events: Events[];
+  events: Event[];
   endpointE = '/Events';
-  endpointD = '/Deltager';
+  endpointD = '/Deltagers';
   searchkey: string;
   deltagene: boolean = false;
   joinning: boolean

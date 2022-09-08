@@ -19,9 +19,9 @@ export class ProfilComponent implements OnInit {
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   endpointK = '/Kontaktoplysningers';
-  endpointB = '/Bryggerier';
+  endpointB = '/Bryggeris';
   endpointBru = '/Brugers';
-  endpointR = '/Rolle';
+  endpointR = '/Rolles';
 
   kontaktOplysningsListe: any;
   bryggeriLogo: any;
@@ -36,7 +36,7 @@ export class ProfilComponent implements OnInit {
   visB: boolean;
   visFillerOB = false;
   visFillerB = false;
-  visFillerP = false;
+  visFillerP = true;
   brugerListe: Bruger;
   url: string;
 
@@ -60,28 +60,11 @@ export class ProfilComponent implements OnInit {
   }
 
   onHentBruger() {
+    console.log('BrugerId .................:', this.brugerId)
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
+      console.log('BrugerId .................:', this.brugerListe)
       localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
-      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((kontaktData) => {
-        this.kontaktOplysningsListe = kontaktData;
-        // this.restApi.getData(this.rolleId, this.endpointR).subscribe((rolleData) => {
-        //   this.rolleListe = rolleData;
-        //   if (this.rolleListe.rolleNavn == 300) {
-        //     this.rolleNavn = 'Administrator'
-        //   }
-        //   if (this.rolleListe.rolleNavn == 200) {
-        //     this.rolleNavn = 'Moderator'
-        //   }
-        //   if (this.rolleListe.rolleNavn == 100) {
-        //     this.rolleNavn = 'Bruger'
-        //   }
-        //   if (this.rolleListe.rolleNavn == 0) {
-        //     this.rolleNavn = 'Anonymbruger'
-        //   }
-        //   this.onTjekCertifikat();
-        // })
-      })
     })
   };
 

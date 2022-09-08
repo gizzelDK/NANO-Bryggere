@@ -18,9 +18,9 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
   bryggeriN1: any;
   bryggeriN2: any;
   bryg: any;
-  endpointSA = '/SamarbejdeAnmodning';
-  endpointS = '/Samarbejder';
-  endpointB = '/Bryggerier';
+  endpointSA = '/SamarbejdeAnmodnings';
+  endpointS = '/Samarbejdes';
+  endpointB = '/Bryggeris';
   samarbejde: any;
   samarbejdeAnmodningsListe: any;
   samarbejdeAnmodning: any;

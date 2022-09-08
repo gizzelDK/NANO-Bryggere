@@ -20,9 +20,9 @@ export class BryggeriAdminSideComponent implements OnInit {
   bryggeritest: Bryggeri;
   brugertest: any;
   bruger: Bruger;
-  endpointBru = '/Bruger';
-  endpointB = '/Bryggerier';
-  endpointS = '/Samarbejder';
+  endpointBru = '/Brugers';
+  endpointB = '/Bryggeris';
+  endpointS = '/Samarbejdes';
   searchkeyBryggeriNavn: string;
   searchkeyBryggeriSamarbejde: string;
   id = this.actRoute.snapshot.params['id'];
@@ -110,11 +110,11 @@ export class BryggeriAdminSideComponent implements OnInit {
       this.restApi.getDatas(this.endpointBru).subscribe(data => {
         this.brugertest = data;
         for (let i = 0; i < this.brugertest.length; i++) {
-          if (this.brugertest[i].kontaktOplysningerId == this.bryggeritest.kontaktOplysningerId) {
+          if (this.brugertest[i].kontaktOplysningerId == this.bryggeritest.kontaktoplysningerId) {
             this.bruger = this.brugertest[i];
-            this.bruger.certifikatStatus = 1;
-            this.bruger.certifikatBilled = "";
-            localStorage.setItem("brugerTest", this.bruger.kontaktOplysningerId.toString());
+            // this.bruger.certifikat = 1;
+            // this.bruger.certifikatBilled = "";
+            localStorage.setItem("brugerTest", this.bruger.kontaktoplysningerId.toString());
           }
         }
         this.restApi.updateData(localStorage.getItem("brugerTest"), this.endpointBru, this.bruger).subscribe(data => {

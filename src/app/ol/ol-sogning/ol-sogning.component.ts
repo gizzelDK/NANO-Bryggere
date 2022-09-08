@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -15,15 +15,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlSogningComponent implements OnInit {
   ol: Øl;
   oller: Øl[];
-  kontaktOplysning: KontaktOplysninger;
+  kontaktOplysning: Kontaktoplysninger;
   samarbejde: Samarbejde
   bryggeri: any;
   bryggerier: Bryggeri[];
   selected = ''
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
-  endpointS = '/Samarbejder';
-  endpointK = '/KontaktOplysninger';
+  endpointO = '/Øl';
+  endpointB = '/Bryggeris';
+  endpointS = '/Samarbejdes';
+  endpointK = '/KontaktOplysningers';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
@@ -80,8 +80,8 @@ export class OlSogningComponent implements OnInit {
           });
         });
       }
-      if(this.ol.samarbejdeId){
-        this.restApi.getData(this.ol.samarbejdeId, this.endpointS).subscribe(samarbejde => {
+      if(this.ol.samarbejder.id){
+        this.restApi.getData(this.ol.samarbejder.id, this.endpointS).subscribe(samarbejde => {
           this.samarbejde = samarbejde;
           this.restApi.getData(this.samarbejde.id, this.endpointS).subscribe(samarbejdeData => {
             this.samarbejde = samarbejdeData;

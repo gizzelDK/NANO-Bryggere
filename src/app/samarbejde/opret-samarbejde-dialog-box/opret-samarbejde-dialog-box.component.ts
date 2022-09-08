@@ -14,10 +14,10 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
   @Input() nySamarbejde = { bryggeriId1: 0, bryggeriId2: 0, brygger1Svar: true }
   opretForm: any = new FormGroup({});
   bryggeriId: number;
-  endpointSA = '/SamarbejdeAnmodning';
-  endpointS = '/Samarbejder';
-  endpointB = '/Bryggerier';
-  endpointO = '/Øller';
+  endpointSA = '/SamarbejdeAnmodnings';
+  endpointS = '/Samarbejdes';
+  endpointB = '/Bryggeris';
+  endpointO = '/Øl';
   bryggeriList: any;
   samarbejdeList: any;
   listTest: any;

@@ -14,8 +14,8 @@ export class RolleAdminSideComponent implements OnInit {
   searchkeyRolleNavn: string;
   searchkeyBrugernavn: string;
   clickButton: boolean = true;
-  endpointR = '/Rolle';
-  endpointB = '/Bruger';
+  endpointR = '/Rolles';
+  endpointB = '/Brugers';
   id = this.actRoute.snapshot.params['id'];
   bruger: Bruger[];
   rolleId: number;

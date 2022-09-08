@@ -5,6 +5,7 @@ import { ForsideComponent } from './forside/forside.component';
 import { KatalogComponent } from './katalog/katalog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfilComponent } from './profil/profil.component';
+import { RapportSideComponent } from './rapport-side/rapport-side.component';
 
 const routes: Routes = [
 {path:'', component:ForsideComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
 // {path:'samarbejd-opdater/:id', component:SamarbejdeRedigerComponent},
 // {path:'samarbejds-opretning', component:SamarbejdeOprettelseComponent},
 // {path:'samarbejde-øl-lager/:id', component:SamarbejdeOlLagerComponent},
-// {path:'rapporter', component:RapportSideComponent},
+{path:'rapporter', component:RapportSideComponent},
 {path:'**', component: NotFoundComponent}];
 
 @NgModule({

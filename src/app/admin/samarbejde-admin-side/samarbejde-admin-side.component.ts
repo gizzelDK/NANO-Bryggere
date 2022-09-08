@@ -26,8 +26,8 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   bryggeri1: Bryggeri;
   bryggeri2: Bryggeri;
   bryggeriId: number;
-  endpointS = '/Samarbejder';
-  endpointB = '/Bryggerier';
+  endpointS = '/Samarbejdes';
+  endpointB = '/Bryggeris';
 
   constructor(
     public dialog: MatDialog,

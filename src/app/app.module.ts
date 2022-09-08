@@ -21,7 +21,8 @@ import { AuthInterceptorProvider } from './shared/token-interceptor.service';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter:  () => localStorage.getItem('bearer')
+        tokenGetter:  () => localStorage.getItem('bearer'),
+        allowedDomains: ["https://localhost:7252"],
       }
     })
   ],

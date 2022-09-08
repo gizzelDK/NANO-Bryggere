@@ -12,7 +12,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OpdaterForumDialogBoxComponent implements OnInit {
   redigerForm: FormGroup = new FormGroup({});
   redigerForum:any;
-  endpointF = '/Forumer';
+  endpointF = '/Fora';
   forumId:number;
 
   constructor(

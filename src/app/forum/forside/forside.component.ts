@@ -27,10 +27,10 @@ export class ForsideComponent implements OnInit {
   postsId: any;
   brugerListe: any;
   postListe: any
-  endpointF = '/Forumer';
+  endpointF = '/Fora';
   endpointP = '/Posts';
-  endpointB = '/Bruger';
-  endpointR = '/Rolle';
+  endpointB = '/Brugers';
+  endpointR = '/Rolles';
   searchkey: string;
   showForum = false;
   brugerId: number;

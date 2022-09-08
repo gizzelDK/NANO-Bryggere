@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlAdminSideComponent implements OnInit {
   oller: Øl[];
   ol: Øl;
-  endpointB = '/Øller';
+  endpointB = '/Øl';
   data = sessionStorage.getItem('id');
   searchkeyOlNavn: string;
 

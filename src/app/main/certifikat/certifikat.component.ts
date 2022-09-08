@@ -14,9 +14,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  endpointB = '/Bruger';
-  endpointK = '/KontaktOplysninger';
-  endpointC = '/Certifikat';
+  endpointB = '/Brugers';
+  endpointK = '/KontaktOplysningers';
+  endpointC = '/Certifikats';
   certifikat: Certifikat;
   bruger: Bruger;
   kontakt: Kontaktoplysninger;

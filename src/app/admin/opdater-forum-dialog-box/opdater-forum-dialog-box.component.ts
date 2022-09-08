@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Forum } from 'src/app/Models/Forum';
-import { Tags } from 'src/app/Models/Tag';
+import { Tag } from 'src/app/Models/Tag';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OpdaterForumDialogBoxComponent implements OnInit {
   opdaterForm: FormGroup = new FormGroup({});
   forumListe: any;
-  endpointF = '/Forumer';
+  endpointF = '/Fora';
   forumId: number;
 
   constructor(

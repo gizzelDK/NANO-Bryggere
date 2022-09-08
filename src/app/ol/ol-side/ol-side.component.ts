@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -12,12 +12,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-side.component.css']
 })
 export class OlSideComponent implements OnInit {
-  kontaktOplysninger: KontaktOplysninger;
+  kontaktOplysninger: Kontaktoplysninger;
   ol: Øl;
   bryggeri: any;
-  endpointK = '/KontaktOplysninger';
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
+  endpointK = '/Kontaktoplysningers';
+  endpointO = '/Øl';
+  endpointB = '/Bryggeris';
   bryggeriId: Number;
   olId: number;
   kontaktOplysningerId: number;

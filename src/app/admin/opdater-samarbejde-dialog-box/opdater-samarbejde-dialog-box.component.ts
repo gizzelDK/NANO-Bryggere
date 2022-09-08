@@ -14,8 +14,8 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
   samarbejdeListe:any;
   bryggeriListe:any;
   samarbejdeId : number;
-  endpointS= '/Samarbejder';
-  endpontsB= '/Bryggerier'
+  endpointS= '/Samarbejdes';
+  endpontsB= '/Bryggeris'
   bryggeriNavn = new Array();
 
   constructor(

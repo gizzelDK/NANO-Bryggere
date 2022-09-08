@@ -14,9 +14,9 @@ export class DeltagerAdminSideComponent implements OnInit {
   deltagelserListB:any;
   deltager:any;
   deltagelserListE:any;
-  endpointD='/Deltager';
+  endpointD='/Deltagers';
   endpointE = '/Events';
-  endpointB='/Bruger';
+  endpointB='/Brugers';
   searchkeyDeltager:string;
 
   constructor(

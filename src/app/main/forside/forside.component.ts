@@ -22,8 +22,8 @@ export class ForsideComponent implements OnInit {
   olListe: Øl [];
   event = new Event;
   eventListe : any = {};
-  endpointB='/Bryggerier';
-  endpointBr = '/Øller';
+  endpointB='/Bryggeris';
+  endpointBr = '/Øl';
   endpointE = '/Events';
 
   constructor(
