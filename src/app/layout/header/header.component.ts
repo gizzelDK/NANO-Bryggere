@@ -14,8 +14,8 @@ export class HeaderComponent implements OnInit {
   rolleId: number;
   bryggeriId: number;
   // brugerId: number;
-  endpointR = '/Rolle';
-  endpointB = '/Bryggerier';
+  endpointR = '/Rolles';
+  endpointB = '/Bryggeris';
   constructor(
     public restApi: RestApiService,
     private router: Router,

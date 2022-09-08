@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -12,16 +12,16 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-side-samarbejde.component.css']
 })
 export class OlSideSamarbejdeComponent implements OnInit {
-  kontaktOplysninger1: KontaktOplysninger;
-  kontaktOplysninger2: KontaktOplysninger;
+  kontaktOplysninger1: Kontaktoplysninger;
+  kontaktOplysninger2: Kontaktoplysninger;
   bryggeri1: Bryggeri;
   bryggeri2: Bryggeri;
   ol: Øl;
   bryggeri: Bryggeri;
-  endpointK = '/KontaktOplysninger';
-  endpointO = '/Øller';
-  endpointS = '/Samarbejder';
-  endpointB = '/Bryggerier';
+  endpointK = '/Kontaktoplysninger';
+  endpointO = '/Øl';
+  endpointS = '/Samarbejdes';
+  endpointB = '/Bryggeris';
   bryggeriId: Number;
   olId: number;
   samarbejdeId: number;

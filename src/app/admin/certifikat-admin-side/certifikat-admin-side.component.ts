@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -13,13 +13,13 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat-admin-side.component.css']
 })
 export class CertifikatAdminSideComponent implements OnInit {
-  kontaktOplysningsListe: KontaktOplysninger[]; //oplysninger
-  kontaktOplysninger: KontaktOplysninger;
+  kontaktOplysningsListe: Kontaktoplysninger[]; //oplysninger
+  kontaktOplysninger: Kontaktoplysninger;
   certifikatListe: any;
   certifikat: Bruger; //oplysninger
   kontaktOplysningerId: number;
-  endpointK = '/KontaktOplysninger';
-  endpointB = '/Bruger';
+  endpointK = '/KontaktOplysningers';
+  endpointB = '/Brugers';
   clickButton: boolean = true;
   searchkey: string;
   // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
@@ -74,7 +74,7 @@ export class CertifikatAdminSideComponent implements OnInit {
     this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.certifikat = data;
 
-      this.certifikat.certifikatStatus = 3;
+      // this.certifikat.certifikatStatus = 3;
       this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
@@ -85,8 +85,8 @@ export class CertifikatAdminSideComponent implements OnInit {
   onBenagtCertifikat(id: any) {
     this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.certifikat = data;
-      this.certifikat.certifikatStatus = 1;
-      this.certifikat.certifikatBilled = "";
+      // this.certifikat.certifikatStatus = 1;
+      // this.certifikat.certifikatBilled = "";
       this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })

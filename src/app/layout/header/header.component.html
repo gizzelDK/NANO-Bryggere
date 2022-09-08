@@ -46,7 +46,7 @@
       </mat-menu>
 
       <mat-menu #forum="matMenu">
-        <button mat-menu-item [routerLink]="['/forum/forum']">
+        <button mat-menu-item [routerLink]="['/forum/forside']">
           <span><a>Forum</a></span>
         </button>
        <!--  <button mat-menu-item [routerLink]="['/forum/forum-post']">
@@ -58,26 +58,26 @@
       </mat-menu>
 
       <mat-menu #event="matMenu">
-        <button mat-menu-item [routerLink]="['/events/mine-events']">
+        <button mat-menu-item [routerLink]="['/event/mine-events']">
           <span><a>Mine Events</a></span>
         </button>
-        <button mat-menu-item [routerLink]="['/events/events']">
+        <button mat-menu-item [routerLink]="['/event/events']">
           <span><a>Søg Events</a></span>
         </button>
       </mat-menu>
 
       <mat-menu #ol="matMenu">
         <!-- <button mat-menu-item [routerLink]="['/main/katalog']"> -->
-          <button mat-menu-item [routerLink]="['/øl/øl-søgning']">
+          <button mat-menu-item [routerLink]="['/ol/ol-sogning']">
             <span><a>Find Øl</a></span>
           </button>
         <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/main/katalog']">
           <span><a>Katalog</a></span>
         </button>
-        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/øl/øl-lommeregner']">
+        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/ol/ol-lommeregner']">
           <span><a>Lommeregner</a></span>
         </button>
-        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/øl/øl-opskrift']">
+        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/ol/ol-opskrift']">
           <span><a>Opskrift</a></span>
         </button>
       </mat-menu>

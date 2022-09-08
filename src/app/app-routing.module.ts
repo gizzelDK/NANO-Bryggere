@@ -7,7 +7,12 @@ import { HasRoleGuard } from './shared/has-role.guard';
 const routes: Routes = [
   {path:'' , component: LoginSideComponent},
   {path:'login' , loadChildren:() => import('./login/login.module').then(mod => mod.LoginModule)},
-  {path:'main' , loadChildren :() => import('./main/main.module').then(mod => mod.MainModule),
+  {path:'main' , loadChildren :() => import('./main/main.module').then(mod => mod.MainModule)},
+  {path:'ol' , loadChildren :() => import('./ol/ol.module').then(mod => mod.OlModule)},
+  {path:'forum' , loadChildren :() => import('./forum/forum.module').then(mod => mod.ForumModule)},
+  {path:'samarbejde' , loadChildren :() => import('./samarbejde/samarbejde.module').then(mod => mod.SamarbejdeModule)},
+  {path:'forum' , loadChildren :() => import('./admin/admin.module').then(mod => mod.AdminModule)},
+  {path:'event' , loadChildren :() => import('./event/event.module').then(mod => mod.EventModule),
     canActivate: [IsAuthenticatedGuard, HasRoleGuard],
     data:{
       // clearance: 'Bruger Administrator',

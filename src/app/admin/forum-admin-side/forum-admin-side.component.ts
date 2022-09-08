@@ -20,9 +20,9 @@ export class ForumAdminSideComponent implements OnInit {
   // dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
   forums: Forum[];
   forumListe: any;
-  endpointF = '/Forumer';
+  endpointF = '/Fora';
   endpointP = '/Posts';
-  endpointR = '/Rolle';
+  endpointR = '/Rolles';
   clickButton:boolean=true;
   posts:any;
   postListe: any;

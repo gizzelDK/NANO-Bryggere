@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Events } from 'src/app/Models/Event';
+import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -12,10 +12,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class MineEventsComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  events: Events[];
+  events: Event[];
   eventId: number;
   endpointE = '/Events';
-  endpointD = '/Deltager';
+  endpointD = '/Deltagers';
   searchkey: string;
   deltager: boolean;
   deltagerListe:any;

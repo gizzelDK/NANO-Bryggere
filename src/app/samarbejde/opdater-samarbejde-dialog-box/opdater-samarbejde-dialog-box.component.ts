@@ -13,7 +13,7 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
   selected = '';
   samarbejdeId :number;
   opdaterForm: FormGroup = new FormGroup({});
-  endpointS = '/Samarbejder';
+  endpointS = '/Samarbejdes';
    samarbejdeListe:any;
 
   constructor(

@@ -14,7 +14,7 @@ export class LoginService  {
   private _clearance$ = new Clearance()
   isLoggedIn$ = this._isLoggedIn$
   clearance$ = this._clearance$
-  endpointB = '/Brugere';
+  endpointB = '/Brugers';
 
   get token(): any{
     return localStorage.getItem(this.TOKEN_NAME)

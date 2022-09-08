@@ -13,7 +13,7 @@ export class OpretOlComponent implements OnInit {
   @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, olBilled: '', beskrivelse:'', antal: '', argang: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
   opretForm : FormGroup;
-  endpointB = '/Øller';
+  endpointB = '/Øl';
   selected = '';
 
   constructor(

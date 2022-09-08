@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Tags } from 'src/app/Models/Tag';
+import { Tag } from 'src/app/Models/Tag';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { OpdaterTagDialogBoxComponent } from '../opdater-tag-dialog-box/opdater-tag-dialog-box.component';
 import { OpretTagDialogBoxComponent } from '../opret-tag-dialog-box/opret-tag-dialog-box.component';
@@ -18,7 +18,7 @@ export class TagAdminSideComponent implements OnInit {
   clickButton: boolean = true;
   searchkeyTag: string;
   tagListe: any;
-  tags: Tags[];
+  tags: Tag[];
   endpointT = '/Tags';
 
   constructor(

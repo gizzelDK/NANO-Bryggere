@@ -12,7 +12,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class LoginAdminSideComponent implements OnInit {
   login: Login[];
   endpointL = '/Logins';
-  endpointB = '/Bruger';
+  endpointB = '/Brugers';
   clickButton: boolean = true;
   id = this.actRoute.snapshot.params['id'];
   loginListe: any;

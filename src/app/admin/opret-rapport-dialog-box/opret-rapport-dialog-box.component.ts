@@ -13,7 +13,7 @@ export class OpretRapportDialogBoxComponent implements OnInit {
   @Input() forumOprettelse = {titel: '', besked: '', brugerId: 0};
 
   CreateForm: any = new FormGroup({});
-  endpointF = '/Forumer';
+  endpointF = '/Fora';
   eventsList:any;
   eventBilled:any;
   brugerId:any;

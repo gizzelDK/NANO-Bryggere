@@ -19,7 +19,7 @@ export class RapportAdminSideComponent implements OnInit {
   rapport: any;
   bruger = new Bruger();
   testliste: any;
-  endpointB = '/Bruger';
+  endpointB = '/Brugers';
   endpointR = '/Rapports';
   searchkeyBrugernavn: string;
   searchkeyType: string;

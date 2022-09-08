@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class KatalogComponent implements OnInit {
   olListe: Øl[];
   ol: Øl;
-  endpointO = '/Øller';
+  endpointO = '/Øl';
   searchkey: string;
   bryggeriId: number;
   bryggeriListe: any;

@@ -13,7 +13,7 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 export class SamarbejdeVisningComponent implements OnInit {
   ol: Øl;
   olId: number;
-  endpointO = '/Øller';
+  endpointO = '/Øl';
 
   constructor(
     public dialog: MatDialog,

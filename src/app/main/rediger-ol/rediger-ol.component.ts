@@ -12,7 +12,7 @@ export class RedigerOlComponent implements OnInit {
   selected = '';
   olId = this.actRoute.snapshot.params['id'];
   redigerForm: FormGroup;
-  endpoints = '/Øller';
+  endpoints = '/Øl';
   olListe: any;
   argang: Date;
 

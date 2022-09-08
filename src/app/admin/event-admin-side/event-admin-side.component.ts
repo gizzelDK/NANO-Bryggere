@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute, Event, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Events } from 'src/app/Models/Event';
+import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 // import { OpretteEventsDialogBoxComponent } from '../oprette-events-dialog-box/oprette-events-dialog-box.component';
 // import { UpdateEventsDialogBoxComponent } from '../update-events-dialog-box/update-events-dialog-box.component';
@@ -20,10 +20,10 @@ export class EventAdminSideComponent implements OnInit {
   searchkeyDeltagelse: string;
   clickButton: boolean = true;
   eventListe: any;
-  events: Events[];
+  events: Event[];
   //event = new Events();
   endpointE = '/Events';
-  endpointD = '/Deltager';
+  endpointD = '/Deltagers';
   id = this.actRoute.snapshot.params['id'];
   deltagelseListe: any;
   constructor(

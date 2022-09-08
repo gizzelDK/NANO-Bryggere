@@ -34,9 +34,9 @@ export class SamarbejdeSideComponent implements OnInit {
   samarbejde: Samarbejde
   samarbejder: Samarbejde[];
   samarbejdeId: number;
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
-  endpointS = '/Samarbejder';
+  endpointO = '/Øl';
+  endpointB = '/Bryggeris';
+  endpointS = '/Samarbejdes';
   searchkey: string;
   olId: number;
   bryggeri: Bryggeri;

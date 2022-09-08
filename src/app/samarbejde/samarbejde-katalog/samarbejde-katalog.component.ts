@@ -22,8 +22,8 @@ export class SamarbejdeKatalogComponent implements OnInit {
   samarbejde: Samarbejde;
   oller: any;
   olId: number;
-  endpointO = '/Øller';
-  endpointS = '/Samarbejder';
+  endpointO = '/Øl';
+  endpointS = '/Samarbejdes';
   olBilled: any;
   samarbejdeId: number;
 

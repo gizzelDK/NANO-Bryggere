@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { KontaktOplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 // import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 
 @Component({
@@ -17,9 +17,9 @@ export class BrugerAdminSideComponent implements OnInit {
   // dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   brugere: Bruger[];
   bruger = new Bruger();
-  endpointB = '/Bruger'; //endpointB
+  endpointB = '/Brugers'; //endpointB
   endpointL = '/Logins'; //endpointL
-  endpointK = '/KontaktOplysninger'; //endpointK
+  endpointK = '/KontaktOplysningers'; //endpointK
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn: string;
   searchkeyEmail: string;
@@ -31,7 +31,7 @@ export class BrugerAdminSideComponent implements OnInit {
   kontaktOplysningerId: number; //kontaktoplysningerId
   clickButton: boolean = true;
   kontaktOplysningsListe: any; //kontaktoplysningerList
-  oplysningsListe: KontaktOplysninger[]; //kontakt
+  oplysningsListe: Kontaktoplysninger[]; //kontakt
 
   constructor(
     public dialog: MatDialog,
