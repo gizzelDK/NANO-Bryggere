@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OlRoutingModule } from './ol-routing.module';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
@@ -14,7 +12,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-
 import { OlSideComponent } from './ol-side/ol-side.component';
 import { OlSideSamarbejdeComponent } from './ol-side-samarbejde/ol-side-samarbejde.component';
 import { OlSogningComponent } from './ol-sogning/ol-sogning.component';

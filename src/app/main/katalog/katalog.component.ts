@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 // import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
 @Component({
@@ -45,7 +46,7 @@ export class KatalogComponent implements OnInit {
 
   onOlLager(id: any) {
     localStorage.setItem('lagerId', JSON.stringify(id));
-    this.router.navigate(['../øl/øl-lager/', id]);
+    this.router.navigate(['../ol/ol-lager/', id]);
   };
 
   onOpretOl() {
@@ -53,14 +54,14 @@ export class KatalogComponent implements OnInit {
   };
 
   onSletOl(id: any) {
-    // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result == true) {
-    //     this.restApi.deleteData(id, this.endpointO).subscribe(data => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // });
+     let dialogRef = this.dialog.open(SletDialogBoxComponent);
+     dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+        this.restApi.deleteData(id, this.endpointO).subscribe(data => {
+          this.ngOnInit();
+        })
+       }
+     });
   };
 
   onFindOl() {

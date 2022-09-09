@@ -27,12 +27,12 @@ export class OlLagerComponent implements OnInit {
       antal: new FormControl('', Validators.required),
       flaskeAntal: new FormControl('', Validators.required),
       tondeAntal: new FormControl('', Validators.required),
-      flaskeResevationAntal: new FormControl('', Validators.required)
+      flaskeResAntal: new FormControl('', Validators.required)
     });
     this.onHentOl();
   }
-  
-  onHentOl(){  
+
+  onHentOl(){
     return this.restApi.getData(this.olId, this.endpointO).subscribe((beerInfo: {}) => {
       this.olListe = beerInfo;
     });

@@ -176,7 +176,9 @@ export class ProfilComponent implements OnInit {
       }
     });
   }
-
+  onSkiftPassword(){
+    this.router.navigate(['/main/skiftpassword']);
+  }
 
   //skal kigges sammen med backend gruppe
   onSletProfil() {

@@ -8,6 +8,7 @@ import { KatalogComponent } from './katalog/katalog.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RapportSideComponent } from './rapport-side/rapport-side.component';
+import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component';
 
 const routes: Routes = [
 {path:'', component:ForsideComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
 // {path:'event', component:EventSideComponent},
 {path:'certifikat', component:CertifikatComponent},
 {path:'profil', component:ProfilComponent},
+{path:'skiftpassword', component:SkiftpasswordComponent},
 // {path:'slet-profil', component:SletProfilComponent},
 {path:'opdater-øl/:id', component:RedigerOlComponent},
 {path:'opret-øl', component:OpretOlComponent},

@@ -80,6 +80,6 @@ export class OlSideSamarbejdeComponent implements OnInit {
 
   onTilbage() {
     localStorage.removeItem('olKontaktOplysningerId');
-    this.router.navigate(['../øl/øl-søgning']);
+    this.router.navigate(['../ol/ol-søgning']);
   };
 }

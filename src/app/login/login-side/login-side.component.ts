@@ -37,15 +37,18 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
-  onSubmitLogin(){
-    if(this.loginForm.invalid){
-      return;
+   onSubmitLogin(){
+    if(!this.loginForm.invalid){
+       this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
+    //  console.log('test1....' , this.loginService.isLoggedIn$);
+        if(this.loginService.isLoggedIn$.value == true){
+        this.router.navigate(['../main/profil']);
+     }
     }
-
-    this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
-
-    this.router.navigate(['../main/profil']);
+    else{
+      alert('username or password is empty');
     }
+  }
 
   onSubmitRegistre() {
     this.router.navigate(['../login/registrer']);
