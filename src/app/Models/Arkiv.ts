@@ -1,5 +1,5 @@
 import { Bruger } from "./Bruger";
-import { Kontaktoplysninger } from "./KontaktOplysninger";
+import { Kontaktoplysninger } from "./Kontaktoplysninger";
 
 export class Arkiv{
   public id: number;
