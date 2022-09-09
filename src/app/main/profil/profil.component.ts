@@ -27,7 +27,7 @@ export class ProfilComponent implements OnInit {
   bryggeriLogo: any;
   rolleListe: any;
   bryggeriListe: any;
-  kontaktOplysningerId: number;
+  kontaktoplysningerId: number;
   bryggeriId: number;
   brugerId: number;
   rolleId: number;
@@ -40,7 +40,7 @@ export class ProfilComponent implements OnInit {
   brugerListe: Bruger;
   url: string;
 
-  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktOplysningerId: 0 };
+  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   bryggeriOprettelsesForm: any = new FormGroup({});
 
   constructor(
@@ -54,7 +54,8 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
-    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
+   // localStorage.removeItem('bryggeriId');
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.onHentBruger();
     this.onHentBryggeri();
     this.visOB = false;
@@ -72,7 +73,7 @@ export class ProfilComponent implements OnInit {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
       console.log('Bruger .................:', this.brugerListe)
-      localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
+      localStorage.setItem('kontaktoplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
       //this.onTjekCertifikat();
     })
 
@@ -102,7 +103,7 @@ export class ProfilComponent implements OnInit {
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
       console.log('brygeri....',  data);
-        this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.kontaktOplysningerId);
+        this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.kontaktoplysningerId);
         console.log('brygerilist....',  this.bryggeriListe);
       if (this.bryggeriListe !== undefined) {
         localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
@@ -127,7 +128,7 @@ export class ProfilComponent implements OnInit {
 
   onOpretBryggeri() {
     if (this.nytBryggeri.navn != '') {
-      this.nytBryggeri.kontaktOplysningerId = this.kontaktOplysningerId;
+      this.nytBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
       this.nytBryggeri.bryggeriLogo = JSON.parse(localStorage.getItem('bryggeriLogo') || '{}');
       this.restApi.createData(this.nytBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
@@ -143,6 +144,7 @@ export class ProfilComponent implements OnInit {
   }
 
   onOpdaterProfil() {
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -151,7 +153,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
       if (result) {
         this.kontaktOplysningsListe = result;
-        this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
+        this.restApi.updateData(this.kontaktoplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
           this.ngOnInit();
         })
       }
@@ -184,7 +186,7 @@ export class ProfilComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
-        this.restApi.deleteData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
           this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
             if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
               this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) => {
@@ -200,6 +202,8 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+
+//skal kigges igen
   onSletBryggeri() {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
@@ -209,14 +213,16 @@ export class ProfilComponent implements OnInit {
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
+         // localStorage.removeItem('bryggeriId');
           //skal kigges igen
-           this.brugerListe.certifikat.cStatus = 1;
-          this.brugerListe.certifikat.certifikatBilled = '';
-          this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
-            localStorage.removeItem('bryggeriId');
+          // this.brugerListe.certifikat.cStatus = 1;
+        //  this.brugerListe.certifikat.certifikatBilled = '';
+//this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
             console.log(data);
+            localStorage.removeItem('bryggeriId');
             this.ngOnInit();
-          })
+
+         // })
           // this.snackBar.open("Bryggeri oplysninger slettet med succes");
           // }, err => {
           //   this.snackBar.open("Øl skal slettes først");

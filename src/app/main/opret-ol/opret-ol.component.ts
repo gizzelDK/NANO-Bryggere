@@ -10,10 +10,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./opret-ol.component.css']
 })
 export class OpretOlComponent implements OnInit {
-  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, olBilled: '', beskrivelse:'', antal: '', argang: '' };
+  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, olBillede: '', beskrivelse:'', antal: '', aargang: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
   opretForm : FormGroup;
-  endpointB = '/Øl';
+  endpointO = '/Øl';
   selected = '';
 
   constructor(
@@ -29,10 +29,10 @@ export class OpretOlComponent implements OnInit {
       smag: new FormControl('', Validators.required),
       procent: new FormControl('', Validators.required),
       bryggeriId: new FormControl('', Validators.required),
-      argang: new FormControl('', Validators.required),
+      aargang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
-      olBilled: new FormControl('', Validators.required),
+      olBillede: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
       antal: new FormControl('', Validators.required)
     });
@@ -44,7 +44,7 @@ export class OpretOlComponent implements OnInit {
 onSubmitOlBilled(event: any) {
 if (event.target.files && event.target.files[0]) {
   const reader = new FileReader();
-  reader.onload = (e:any) => this.olOprettelse.olBilled = e.target.result;
+  reader.onload = (e:any) => this.olOprettelse.olBillede = e.target.result;
   reader.readAsDataURL(event.target.files[0])
   // var reader = new FileReader();
   // reader.readAsDataURL(event.target.files[0]);
@@ -54,12 +54,14 @@ if (event.target.files && event.target.files[0]) {
   // }
 }
 else{
-  this.olOprettelse.olBilled = '';
+  this.olOprettelse.olBillede = '';
 }
 };
 onSubmitOl() {
 this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-this.restApi.createData(this.olOprettelse, this.endpointB).subscribe((data) => {
+console.log('ol.', this.olOprettelse);
+this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((data) => {
+
   localStorage.setItem('olId', JSON.stringify(data.id));
   this.router.navigate(['../main/katalog']);
 });

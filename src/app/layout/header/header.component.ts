@@ -51,17 +51,18 @@ export class HeaderComponent implements OnInit {
       this.erBrygger = false;
     }
   }
-
+//admin rettigheder
   onHentRolle(){
     if(this.rolleId = JSON.parse(localStorage.getItem('rolleId') || 'null')){
       this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) =>{
-        if(data.level == 300){
+        if(data.level == 30){
           this.erAdmin = true;
           console.log("Administrator");
         }
         else{
           this.erAdmin = false;
-          console.log("Er ikke administrator");
+          //login
+          console.log("Administrator rettigheder mangler");
         }
       })
     }
