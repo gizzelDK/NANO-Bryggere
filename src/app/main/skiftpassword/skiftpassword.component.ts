@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Bruger } from 'src/app/Models/Bruger';
+import { PwDto } from 'src/app/Models/pwDto';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,32 +11,30 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class SkiftpasswordComponent implements OnInit {
   brugerId: number;
-  endpointBru = '/Brugers';
-  id:number;
+  endpointBru = '/Brugers/pw';
   redigerPWForm:FormGroup;
-  brugerList:Bruger;
-@Input() chPW ={OldPW:'' ,NewPW:'' , brugerId:0  }
+  pwDto: PwDto = new PwDto();
+@Input() chPW ={OldPw:'' ,NewPw:''}
 
   constructor( public restApi: RestApiService,
-    private router: Router,) { }
-
+               private router: Router,) { }
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.redigerPWForm= new FormGroup({
-      OldPW: new FormControl('', [Validators.required]),
-      NewPW: new FormControl('', [Validators.required])
-
+      OldPw: new FormControl('', [Validators.required]),
+      NewPw: new FormControl('', [Validators.required])
     })
   }
 
   onChangePw(){
-    this.brugerList.id = this.brugerId;
-   // this.chPW.brugerId=this.brugerId;
-    this.restApi.updateData(this.brugerList,this.endpointBru , this.chPW).subscribe((result) =>{
+    this.pwDto.oldPw = this.chPW.OldPw;
+    this.pwDto.newPw = this.chPW.NewPw;
+    console.log('the new pw: ' + this.pwDto )
+    this.restApi.updateData(this.brugerId, this.endpointBru ,this.pwDto).subscribe((result) =>{
+      console.log(result)
       this.router.navigate(['/main/profil']);
     })
-
   }
 
 }
