@@ -3,6 +3,7 @@ import { Bruger } from "./Bruger";
 import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Samarbejde } from "./Samarbejde";
 import { Tag } from "./Tag";
+import { Øl } from "./Øl";
 
 export class Bryggeri{
   public id: number;
@@ -17,4 +18,5 @@ export class Bryggeri{
   public followers : Bruger;
   public deleted:boolean;
   public deleteTime:Time;
+  public ol:Øl;
 }

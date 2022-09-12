@@ -31,6 +31,7 @@ export class LoginSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.clear();
     this.loginForm = new FormGroup({
       brugernavn: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])

@@ -40,7 +40,7 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onHentOl();
+   // this.onHentOl();
   }
 
   onHentOl() {

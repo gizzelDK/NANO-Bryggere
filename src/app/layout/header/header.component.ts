@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class HeaderComponent implements OnInit {
   showFiller = false;
   erAdmin: boolean;
-  erBrygger: boolean;
+  erBrygger: boolean=true;
   rolleId: number;
   bryggeriId: number;
   // brugerId: number;
@@ -23,8 +23,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.onHentRolle();
-    this.onHentBryggeri();
+    //this.onHentBryggeri();
   }
+
+  //skal kigges hvis vi har ikke bruge det , husk at slette
   onHentBryggeri(){
     // this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     // this.restApi.getDatas(this.endpointB).subscribe((data) =>{

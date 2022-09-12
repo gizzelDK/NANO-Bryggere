@@ -12,13 +12,18 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
   styleUrls: ['./katalog.component.css']
 })
 export class KatalogComponent implements OnInit {
-  olListe: Øl[];
-  ol: Øl;
+  olListe:any[]=[];
+  ol:any;
   endpointO = '/Øl';
   searchkey: string;
   bryggeriId: number;
   bryggeriListe: any;
   argang: Date;
+  olId:number;
+  id = this.actRoute.snapshot.params['id'];
+  clickButton: boolean = true;
+
+
 
   constructor(
     public dialog: MatDialog,
@@ -28,16 +33,34 @@ export class KatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onHentOl()
+   // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+   // this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+   // console.log('olId....', this.olId);
+   this.onHentOl();
   }
   onHentOl() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+
+     // console.log('BrId...', this.bryggeriId);
+
       this.restApi.getDatas(this.endpointO).subscribe((data) => {
-        this.olListe = data.filter((res: any) => {
+        this.olListe=data;
+        console.log('olInfo...', this.olListe);
+
+  /*       this.olListe = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId;
-        });
+        }); */
       })
-    }
+
+  }
+
+  onViseOl(id:any){
+    this.clickButton = false;
+    console.log('id.....', id);
+    return this.restApi.getData(this.id, this.endpointO).subscribe((data) =>{
+      this.olListe=data;
+      console.log('olDetajler....', this.ol);
+    })
+
   }
 
   onOpdaterOl(id: any) {
@@ -64,14 +87,18 @@ export class KatalogComponent implements OnInit {
      });
   };
 
+
+
   onFindOl() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }
     else {
-      this.olListe = this.olListe.filter(res => {
+
+      //kigges igen
+/*       this.olListe = this.olListe.filter(res => {
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
-      })
+      }) */
     }
   }
 }

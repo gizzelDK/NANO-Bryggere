@@ -56,12 +56,18 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    console.log('brugerId .................:', this.brugerId);
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
    // localStorage.removeItem('bryggeriId');
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    console.log('kontaktoplysningerId .................:', this.kontaktoplysningerId);
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log('bryggeriId .................:', this.bryggeriId);
     this.onHentBruger();
-    this.onHentBryggeri();
+    if(this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || 'null')){
+      this.onHentBryggeri();
+    }
+
     //oprette Bryggeri
     this.visOB = false;
     //vise bryggri
@@ -78,6 +84,7 @@ export class ProfilComponent implements OnInit {
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+
   }
 
    onHentBruger() {
@@ -88,11 +95,12 @@ export class ProfilComponent implements OnInit {
       localStorage.setItem('kontaktoplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
       this.kontaktOplysningsListe= this.brugerListe.kontaktoplysninger;
       console.log('bryggeri' , this.kontaktOplysningsListe.bryggeri);
+    //  if(this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || 'null')){
       this.bryggeriId=this.kontaktOplysningsListe.bryggeri.id;
       console.log('testkontaktoplysninger..', this.kontaktOplysningsListe.bryggeri);
-
       localStorage.setItem('bryggeriId', JSON.stringify(this.kontaktOplysningsListe.bryggeri.id));
       console.log('IdB', this.kontaktOplysningsListe.bryggeri.id);
+    //  }
  /*      if(localStorage.getItem('bryggeriId') !== null){
 
       } */
@@ -139,10 +147,10 @@ export class ProfilComponent implements OnInit {
   } */
 
   onHentBryggeri(){
-
    // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-
-    console.log('IdB2', this.bryggeriId);
+   // console.log('IdB2', this.bryggeriId);
+   // if(this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || 'null')){
+      console.log('brygId....', this.bryggeriId);
       return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) =>{
         console.log('info2....' , data);
         this.bryggeriListe=data;
@@ -150,14 +158,16 @@ export class ProfilComponent implements OnInit {
         if (this.bryggeriListe !== undefined){
           this.bryggeriListe=data;
           localStorage.setItem('bryggeriId', JSON.stringify(this.brugerListe.id));
+          this.url = this.bryggeriListe.bryggeriLogo;
           console.log('info1....' , this.brugerListe.id);
         this.visOB = true;
         this.visB = false;
        // console.log('info111....' , this.bryggeriListe);
-
         }
         return  this.bryggeriListe;
       })
+ //   }
+ //   return
 
     }
 
@@ -174,6 +184,7 @@ export class ProfilComponent implements OnInit {
   };
 
   onOpretBryggeri() {
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     console.log('formBBB', this.nytBryggeri);
     if (this.nytBryggeri.navn != '') {
       this.nytBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;

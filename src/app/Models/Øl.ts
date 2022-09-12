@@ -25,4 +25,5 @@ export class Øl {
     public samarbejder: Samarbejde;
     public kommentarer:Kommentar;
     public tags: Tag;
+    
 }
