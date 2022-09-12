@@ -1,3 +1,5 @@
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -23,7 +25,7 @@ export class ProfilComponent implements OnInit {
   endpointBru = '/Brugers';
   endpointR = '/Rolles';
 
-  kontaktOplysningsListe: any;
+  kontaktOplysningsListe: Kontaktoplysninger;
   bryggeriLogo: any;
   rolleListe: any;
   bryggeriListe: any;
@@ -40,7 +42,8 @@ export class ProfilComponent implements OnInit {
   brugerListe: Bruger;
   url: string;
 
-  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
+  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 , deleted:false};
+
   bryggeriOprettelsesForm: any = new FormGroup({});
 
   constructor(
@@ -56,24 +59,44 @@ export class ProfilComponent implements OnInit {
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
    // localStorage.removeItem('bryggeriId');
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.onHentBruger();
     this.onHentBryggeri();
+    //oprette Bryggeri
     this.visOB = false;
-    this.visB = true;
+    //vise bryggri
+    this.visB = false;
     this.bryggeriOprettelsesForm = this._formBuilder.group({
       'bryggeriLogo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
       'beskrivelse': new FormControl(''),
-      'kontaktOplysningerId': new FormControl('')
-    });
+      'kontaktOplysningerId': new FormControl(''),
+      'deleted':new FormGroup('')
 
+    });
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
   }
 
    onHentBruger() {
+
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
       console.log('Bruger .................:', this.brugerListe)
       localStorage.setItem('kontaktoplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
+      this.kontaktOplysningsListe= this.brugerListe.kontaktoplysninger;
+      console.log('bryggeri' , this.kontaktOplysningsListe.bryggeri);
+      this.bryggeriId=this.kontaktOplysningsListe.bryggeri.id;
+      console.log('testkontaktoplysninger..', this.kontaktOplysningsListe.bryggeri);
+
+      localStorage.setItem('bryggeriId', JSON.stringify(this.kontaktOplysningsListe.bryggeri.id));
+      console.log('IdB', this.kontaktOplysningsListe.bryggeri.id);
+ /*      if(localStorage.getItem('bryggeriId') !== null){
+
+      } */
+
       //this.onTjekCertifikat();
     })
 
@@ -100,7 +123,7 @@ export class ProfilComponent implements OnInit {
     }
   }
 
-  onHentBryggeri() {
+/*   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
       console.log('brygeri....',  data);
         this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.kontaktoplysningerId);
@@ -113,7 +136,31 @@ export class ProfilComponent implements OnInit {
         this.visB = false;
       }
     })
-  }
+  } */
+
+  onHentBryggeri(){
+
+   // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+
+    console.log('IdB2', this.bryggeriId);
+      return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) =>{
+        console.log('info2....' , data);
+        this.bryggeriListe=data;
+
+        if (this.bryggeriListe !== undefined){
+          this.bryggeriListe=data;
+          localStorage.setItem('bryggeriId', JSON.stringify(this.brugerListe.id));
+          console.log('info1....' , this.brugerListe.id);
+        this.visOB = true;
+        this.visB = false;
+       // console.log('info111....' , this.bryggeriListe);
+
+        }
+        return  this.bryggeriListe;
+      })
+
+    }
+
 
   onSubmitProfilBilled(event: any) {
     if (event.target.files) {
@@ -127,11 +174,14 @@ export class ProfilComponent implements OnInit {
   };
 
   onOpretBryggeri() {
+    console.log('formBBB', this.nytBryggeri);
     if (this.nytBryggeri.navn != '') {
       this.nytBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
       this.nytBryggeri.bryggeriLogo = JSON.parse(localStorage.getItem('bryggeriLogo') || '{}');
+      this.nytBryggeri.deleted=false;
       this.restApi.createData(this.nytBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
+        console.log('bId.......', data.id);
         if (data) {
           this.visOB = true;
           this.visB = false;
@@ -176,6 +226,7 @@ export class ProfilComponent implements OnInit {
       }
     });
   }
+
   onSkiftPassword(){
     this.router.navigate(['/main/skiftpassword']);
   }

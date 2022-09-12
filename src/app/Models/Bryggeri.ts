@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 import { Bruger } from "./Bruger";
 import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Samarbejde } from "./Samarbejde";
@@ -14,4 +15,6 @@ export class Bryggeri{
   public samarbejde: Samarbejde;
   public tags:Tag;
   public followers : Bruger;
+  public deleted:boolean;
+  public deleteTime:Time;
 }

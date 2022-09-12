@@ -10,9 +10,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RegistrerComponent implements OnInit {
   @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: 0, level: 0, kontaktoplysningerId: null,
-  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '', cStatus:0
+  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: ''
 };
-
+//, cStatus:0
 
    brugerFormGroup:any = new FormGroup({});
    endpointK = '/Kontaktoplysningers';
@@ -47,7 +47,7 @@ export class RegistrerComponent implements OnInit {
     console.log('test:',  this.nyBruger);
     this.nyBruger.rolleNavn="Bruger";
     this.nyBruger.level=100;
-    this.nyBruger.cStatus=1;
+   // this.nyBruger.cStatus=1;
     this.nyBruger.rolleId=2;
     this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
       console.log('kontakt:', dataC);
@@ -55,9 +55,9 @@ export class RegistrerComponent implements OnInit {
        this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
          this.router.navigate(["../login/login"]);
         }) ;
-        this.restApi.createData(this.nyBruger, this.endpointC).subscribe((dataC) => {
+/*         this.restApi.createData(this.nyBruger, this.endpointC).subscribe((dataC) => {
           console.log('cer....' ,this.nyBruger )
-        })
+        }) */
      } , err => {
         {alert('udfyldt alle felter')
        }
