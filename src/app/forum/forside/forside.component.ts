@@ -6,8 +6,8 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-// import { UpdateForumDialogBoxComponent } from '../update-forum-dialog-box/update-forum-dialog-box.component';
-// import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-post-dialog-box.component';
+import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
+import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-forum-dialog-box.component';
 
 @Component({
   selector: 'app-forside',
@@ -17,6 +17,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class ForsideComponent implements OnInit {
   @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0 };
   @Input() postSvar = { titel: '', indhold: '', brugerId: 0, forumId: 0, postId: 0 };
+  dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
+  dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
   // dialogRefOpdaterPost: MatDialogRef<UpdatePostDialogBoxComponent>;
   // dialogRefOpdaterForum: MatDialogRef<UpdateForumDialogBoxComponent>;
   opretForm: any = new FormGroup({});
@@ -204,7 +206,15 @@ export class ForsideComponent implements OnInit {
   }
 
   onOpretForum() {
-    this.router.navigate(['../forum/opret-forum']);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    dialogConfig.height = "70%";
+    this.dialogRefOpretForum = this.dialog.open(OpretForumDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretForum.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
   };
 
   onSletPost(id: any) {

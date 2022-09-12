@@ -78,31 +78,31 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
   ///2. Check for eget bryggeri
 
   onCheckSamarbejdeAnmodning() {
-    return this.restApi.getDatas(this.endpointSA).subscribe(dataSA => {
-      this.samarbejdeList = dataSA;
-      if (this.samarbejdeList) {
-        for (let sa = 0; sa < dataSA.length; sa++) {
-          const listDrop = { bryggeriId1: this.samarbejdeList[sa].bryggeriId1, bryggeriId2: this.samarbejdeList[sa].bryggeriId2, samarbejdeId: this.samarbejdeList[sa].id }
-          if (listDrop.bryggeriId1 == this.bryggeriId || listDrop.bryggeriId2 == this.bryggeriId) {
-            this.listTest = listDrop;
-          }
-        }
-      }
-    })
+    // return this.restApi.getDatas(this.endpointSA).subscribe(dataSA => {
+    //   this.samarbejdeList = dataSA;
+    //   if (this.samarbejdeList) {
+    //     for (let sa = 0; sa < dataSA.length; sa++) {
+    //       const listDrop = { bryggeriId1: this.samarbejdeList[sa].bryggeriId1, bryggeriId2: this.samarbejdeList[sa].bryggeriId2, samarbejdeId: this.samarbejdeList[sa].id }
+    //       if (listDrop.bryggeriId1 == this.bryggeriId || listDrop.bryggeriId2 == this.bryggeriId) {
+    //         this.listTest = listDrop;
+    //       }
+    //     }
+    //   }
+    // })
   }
 
   onCheckSamarbejde() {
-    return this.restApi.getDatas(this.endpointS).subscribe(dataS => {
-      this.samarbejdeList = dataS;
-      if (this.samarbejdeList) {
-        for (let sa = 0; sa < dataS.length; sa++) {
-          const listDrop = { bryggeriId1: this.samarbejdeList[sa].bryggeriId1, bryggeriId2: this.samarbejdeList[sa].bryggeriId2, samarbejdeId: this.samarbejdeList[sa].id }
-          if (listDrop.bryggeriId1 == this.bryggeriId || listDrop.bryggeriId2 == this.bryggeriId) {
-            this.listTest2 = listDrop;
-          }
-        }
-      }
-    })
+    // return this.restApi.getDatas(this.endpointS).subscribe(dataS => {
+    //   this.samarbejdeList = dataS;
+    //   if (this.samarbejdeList) {
+    //     for (let sa = 0; sa < dataS.length; sa++) {
+    //       const listDrop = { bryggeriId1: this.samarbejdeList[sa].bryggeriId1, bryggeriId2: this.samarbejdeList[sa].bryggeriId2, samarbejdeId: this.samarbejdeList[sa].id }
+    //       if (listDrop.bryggeriId1 == this.bryggeriId || listDrop.bryggeriId2 == this.bryggeriId) {
+    //         this.listTest2 = listDrop;
+    //       }
+    //     }
+    //   }
+    // })
   }
 
   onHentAnmodninger() {
@@ -120,24 +120,24 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
             console.log("ListTest Check", this.listTest, "ListTest2 Check", this.listTest2);
             if (dropdownInfo.bryggeriId2 != this.listTest2.bryggeriId1 && dropdownInfo.bryggeriId2 != this.listTest2.bryggeriId2 || dropdownInfo.bryggeriId2 != this.listTest.bryggeriId1 && dropdownInfo.bryggeriId2 != this.listTest.bryggeriId2) {
               this.bryggeriNavn.push(dropdownInfo);
-              console.log("Test DropdownInfo", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
+              console.log("Brygger------samarbejde, anmodning", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
             }
           }
           else {
             if (this.listTest) {
               if (dropdownInfo.bryggeriId2 != this.listTest.bryggeriId1 && dropdownInfo.bryggeriId2 != this.listTest.bryggeriId2) {
-                console.log("ListTest DropdownInfo", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
+                console.log("brygger------anmodning", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
                 this.bryggeriNavn.push(dropdownInfo);
               }
             }
             else if(this.listTest2) {
             if (dropdownInfo.bryggeriId2 != this.listTest2.bryggeriId1 && dropdownInfo.bryggeriId2 != this.listTest2.bryggeriId2) {
-                console.log("ListTest2 DropdownInfo", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
+                console.log("Brygger------samarbejde", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
                 this.bryggeriNavn.push(dropdownInfo);
               }
             }
             else{
-              console.log("ListTest2 DropdownInfo", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
+              console.log("Brygger-------Ingen anmodning, Ingen samarbejde", dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
                 this.bryggeriNavn.push(dropdownInfo);
             }
           }
@@ -148,7 +148,7 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
 
   onAnuller() {
     this.opretForm.reset();
-    this.router.navigate(['/main/samarbejds-side'])
+    this.router.navigate(['/samarbejde/samarbejds-side'])
   }
 
   onSubmitSamarbejde() {

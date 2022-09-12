@@ -82,7 +82,7 @@ export class SamarbejdeSideComponent implements OnInit {
   }
 
   onOpdaterOl(id: any) {
-    this.router.navigate(['../main/samarbejd-opdater/', id]);
+    this.router.navigate(['../samarbejde/opdater-samarbejde/', id]);
   };
 
   VisSamarbejde(){

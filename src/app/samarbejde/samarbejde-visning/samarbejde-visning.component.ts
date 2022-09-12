@@ -28,21 +28,21 @@ export class SamarbejdeVisningComponent implements OnInit {
 
   onHentSamarbejde() {
     if (this.olId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
-        this.restApi.getData(this.olId, this.endpointO).subscribe(data => {
-        this.ol = data;
-      })
+      //   this.restApi.getData(this.olId, this.endpointO).subscribe(data => {
+      //   this.ol = data;
+      // })
     }
   }
 
   onOpdaterOl(id: any) {
-    this.router.navigate(['../main/samarbejderediger/', id]);
+    this.router.navigate(['../samarbejde/opdater-samarbejde/', id]);
   };
 
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
-        this.router.navigate(['../admin/admin/']);
+        this.router.navigate(['../samarbejde/samarbejde-side/']);
       }
     });
   };
