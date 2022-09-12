@@ -4,15 +4,14 @@
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontakt Oplysninger</button>
-      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visB">Vis Bryggeri
-        Oplysninger</button>
+      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visB">Vis Bryggeri Oplysninger</button>
       <button class="btnStyle" (click)="visFillerOB= !visFillerOB" [disabled]="this.visOB">Opret Bryggeri</button>
-      <button class="btnStyle" (click)="onSletProfil()">Slet Bruger</button>
-      <!-- <button class="btnStyle"  (click)="logud()" >LogUd</button> -->
+      <!-- <button class="btnStyle" (click)="onSletProfil()">Slet Bruger</button> -->
+       <button class="btnStyle"  (click)="logud()" >LogUd</button>
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="brugerListe" style="width: 100%;">
-    <mat-card *ngIf="visFillerP" style="width: 30%;" class="centers">
+    <mat-card *ngIf="visFillerP" style="width: 40%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel hideToggle="true">
@@ -24,55 +23,56 @@
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Fornavn:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Fornavn:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.fnavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Efternavn:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Efternavn:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.enavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Addresselinje1:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Addresselinje1:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.addresselinje1}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Addresselinje2:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Addresselinje2:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.addresselinje2}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Telefonnr:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Telefonnr:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.telefonNr}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Email:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Email:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.email}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Postnr:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Postnr:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.postnr}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">By:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">By:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.by}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Brugernavn:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Brugernavn:</span>
                 <span class="txtStyle">{{brugerListe.brugernavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 80%;">
-                <span style="font-weight: bold; margin-right: 20px; color: black;">Rolle:</span>
+              <mat-card class="containStyle centers" style="width: 100%;">
+                <span style="font-weight: bold; margin: 30px; color: black;">Rolle:</span>
                 <span class="txtStyle">{{brugerListe.rolle.rolleNavn}}</span>
               </mat-card>
               <mat-action-row>
-                <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger
-                  Profil</button>
+                <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger Profil</button>
+                <button mat-button color="primary" (click)="onSkiftPassword()" class="btnMainStyle">Skift Password</button>
+                <button mat-button color="primary" (click)="onSletProfil()" class="btnMainStyle">Slet Profil</button>
               </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="visFillerB" style="width: 30%;" class="centers">
+    <mat-card *ngIf="visFillerB" style="width: 40%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi *ngIf="bryggeriListe">
           <mat-expansion-panel hideToggle="true">
@@ -88,29 +88,28 @@
               <span>Id:</span>
               <span class="txtStyle">{{bryggeri.Id}}</span>
             </mat-card> -->
-            <mat-card class="containStyle centers" style="width: 80%;">
+            <mat-card class="containStyle centers" style="width: 100%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Logo:</span>
               <span class="txtStyle"><img [src]="this.bryggeriListe.bryggeriLogo" alt=""
                   style="width: 20%; height: 20%;"></span>
             </mat-card>
-            <mat-card class="containStyle centers"  style="width: 80%;">
+            <mat-card class="containStyle centers"  style="width: 100%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Navn:</span>
               <span class="txtStyle">{{bryggeriListe.navn}}</span>
             </mat-card>
-            <mat-card class="containStyle centers"  style="width: 80%;">
+            <mat-card class="containStyle centers"  style="width: 100%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Beskrivelse:</span>
               <span class="txtStyle">{{bryggeriListe.beskrivelse}}</span>
             </mat-card>
             <mat-action-row>
+              <button mat-button color="primary" (click)="onOpdaterBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
               <button mat-button color="primary" (click)="onSletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="onOpdaterBryggeri()" class="btnMainStyle">Rediger
-                Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="visFillerOB" style="width: 50%;" class="centers">
+    <mat-card *ngIf="visFillerOB" style="width: 40%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
@@ -122,7 +121,7 @@
                 <mat-icon>work</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle">
+            <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle centers" style="width: 80%;">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
                 <input matInput placeholder="Billed" formControlName="bryggeriLogo"

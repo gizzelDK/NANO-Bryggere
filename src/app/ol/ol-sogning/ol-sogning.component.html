@@ -17,7 +17,7 @@
                         <span>{{ol.navn}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers cards" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onShowOl(ol.id)">Vis øl info</button>
+                        <!-- <button mat-button class="btnMainStyle" (click)="onShowOl(ol.id)">Vis øl info</button> -->
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
@@ -38,7 +38,7 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p class="titelStyle">Øl billed:</p>
-                    <img [src]="ol.olBilled" alt="" style="width: 80%; height: 80%;">
+                    <img [src]="ol.olBillede" alt="" style="width: 80%; height: 80%;">
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

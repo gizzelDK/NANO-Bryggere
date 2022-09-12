@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class ProfilComponent implements OnInit {
   bryggeriLogo: any;
   rolleListe: any;
   bryggeriListe: any;
-  kontaktOplysningerId: number;
+  kontaktoplysningerId: number;
   bryggeriId: number;
   brugerId: number;
   rolleId: number;
@@ -40,7 +40,7 @@ export class ProfilComponent implements OnInit {
   brugerListe: Bruger;
   url: string;
 
-  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktOplysningerId: 0 };
+  @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   bryggeriOprettelsesForm: any = new FormGroup({});
 
   constructor(
@@ -54,24 +54,34 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
+   // localStorage.removeItem('bryggeriId');
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.onHentBruger();
-    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
+    this.onHentBryggeri();
+    this.visOB = false;
+    this.visB = true;
+    this.bryggeriOprettelsesForm = this._formBuilder.group({
+      'bryggeriLogo': new FormControl(''),
+      'navn': new FormControl('', Validators.required),
+      'beskrivelse': new FormControl(''),
+      'kontaktOplysningerId': new FormControl('')
+    });
 
   }
 
-  onHentBruger() {
-    console.log('BrugerId .................:', this.brugerId)
+   onHentBruger() {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
-      console.log('BrugerId .................:', this.brugerListe)
-      localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
+      console.log('Bruger .................:', this.brugerListe)
+      localStorage.setItem('kontaktoplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
+      //this.onTjekCertifikat();
     })
+
   };
 
   onTjekCertifikat() {
-    // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     //skal kigges igen
-    /////if (this.brugerListe.certifikatStatus == 3) {
+   // if (this.brugerListe.certifikat.cStatus == 3) {
     if (this.brugerListe) {
       // this.restApi.getDatas(this.endpointB).subscribe((bryggeri) => {
       //   this.bryggeriListe = bryggeri.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
@@ -83,7 +93,7 @@ export class ProfilComponent implements OnInit {
       else {
         this.visOB = false;
       }
-      // })
+     //  }
     }
     else {
       this.visOB = true;
@@ -92,12 +102,15 @@ export class ProfilComponent implements OnInit {
 
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
-      this.bryggeriListe = data.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
+      console.log('brygeri....',  data);
+        this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.kontaktoplysningerId);
+        console.log('brygerilist....',  this.bryggeriListe);
       if (this.bryggeriListe !== undefined) {
         localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
         this.url = this.bryggeriListe.bryggeriLogo;
-        // this.visOB = true;
-        // this.visB = false;
+
+         this.visOB = true;
+        this.visB = false;
       }
     })
   }
@@ -115,7 +128,7 @@ export class ProfilComponent implements OnInit {
 
   onOpretBryggeri() {
     if (this.nytBryggeri.navn != '') {
-      this.nytBryggeri.kontaktOplysningerId = this.kontaktOplysningerId;
+      this.nytBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
       this.nytBryggeri.bryggeriLogo = JSON.parse(localStorage.getItem('bryggeriLogo') || '{}');
       this.restApi.createData(this.nytBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
@@ -131,6 +144,7 @@ export class ProfilComponent implements OnInit {
   }
 
   onOpdaterProfil() {
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -139,7 +153,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
       if (result) {
         this.kontaktOplysningsListe = result;
-        this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
+        this.restApi.updateData(this.kontaktoplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
           this.ngOnInit();
         })
       }
@@ -162,7 +176,11 @@ export class ProfilComponent implements OnInit {
       }
     });
   }
+  onSkiftPassword(){
+    this.router.navigate(['/main/skiftpassword']);
+  }
 
+  //skal kigges sammen med backend gruppe
   onSletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
       width: '300px',
@@ -170,7 +188,7 @@ export class ProfilComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
-        this.restApi.deleteData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
           this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
             if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
               this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) => {
@@ -186,6 +204,8 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+
+//skal kigges igen
   onSletBryggeri() {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
@@ -195,14 +215,16 @@ export class ProfilComponent implements OnInit {
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
+         // localStorage.removeItem('bryggeriId');
           //skal kigges igen
-          // this.brugerListe.certifikatStatus = 1;
-          // this.brugerListe.certifikatBilled = "";
-          this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
-            localStorage.removeItem('bryggeriId');
+          // this.brugerListe.certifikat.cStatus = 1;
+        //  this.brugerListe.certifikat.certifikatBilled = '';
+//this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
             console.log(data);
+            localStorage.removeItem('bryggeriId');
             this.ngOnInit();
-          })
+
+         // })
           // this.snackBar.open("Bryggeri oplysninger slettet med succes");
           // }, err => {
           //   this.snackBar.open("Øl skal slettes først");
@@ -215,6 +237,12 @@ export class ProfilComponent implements OnInit {
     this.bryggeriOprettelsesForm.reset();
     this.router.navigate(['/main/profil']);
     this.visFillerOB = false;
+  }
+
+  logud(){
+    localStorage.clear();
+    this.router.navigate(['/main/main']);
+
   }
 
 

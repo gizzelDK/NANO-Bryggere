@@ -28,7 +28,6 @@ export class CertifikatComponent implements OnInit {
   url: string = "assets/images/Profil billede.png";
 
   constructor(
-    public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public http: HttpClient
@@ -36,15 +35,16 @@ export class CertifikatComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    //this.onHentBruger();
+    this.onHentBruger();
   }
-  onHentBruger() {
+onHentBruger() {
     if (this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
       this.restApi.getData(this.brugerId, this.endpointB).subscribe((data) => {
         // this.brugerList = data.filter((res: any) => {
         //   return res.id === this.brugerId;
         // });
         this.bruger = data;
+        
       })
     }
   }

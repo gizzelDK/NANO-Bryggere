@@ -30,6 +30,7 @@ export class OlSogningComponent implements OnInit {
   kontaktOplysningId: number;
   olId: number;
   bryggeriId: number;
+  id = this.actRoute.snapshot.params['id'];
 
   constructor(
     public dialog: MatDialog,
@@ -63,6 +64,8 @@ export class OlSogningComponent implements OnInit {
     }
   }
 
+
+  //brugs ikke lige nu , kigg venligst under html side
   onShowOl(id: any) {
     this.restApi.getData(id, this.endpointO).subscribe(data => {
       this.ol = data;
@@ -76,7 +79,7 @@ export class OlSogningComponent implements OnInit {
             this.kontaktOplysning = kontaktOplysningData;
             // this.kontaktOplysningId = this.kontaktOplysning.id;
             localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
-            this.router.navigate(['../øl/øl-side/', this.olId]);
+            this.router.navigate(['../ol/ol-side/', this.olId]);
           });
         });
       }
@@ -87,7 +90,7 @@ export class OlSogningComponent implements OnInit {
             this.samarbejde = samarbejdeData;
             // this.kontaktOplysningId = this.kontaktOplysning.id;
             localStorage.setItem('olSamarbejdeId', JSON.stringify(this.samarbejde.id));
-            this.router.navigate(['../øl/øl-side-samarbejde/', this.olId]);
+            this.router.navigate(['../ol/ol-side-samarbejde/', this.olId]);
           });
         });
       }

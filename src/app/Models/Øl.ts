@@ -12,7 +12,7 @@ export class Øl {
     public procent: number;
     public smag: string;
     public beskrivelse: string;
-    public olBilled: string;
+    public olBillede: string;
     public bryggeriId: number;
     public bryggeri: Bryggeri;
     public bryggeProcess: Opskrift;

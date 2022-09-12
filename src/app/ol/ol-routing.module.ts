@@ -8,7 +8,8 @@ import { OlSideComponent } from './ol-side/ol-side.component';
 import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 
 const routes: Routes = [
-  {path:'ol-lager', component:OlLagerComponent},
+  {path:'ol-lager/:id', component:OlLagerComponent},
+  {path:'ol-side/:id', component:OlLagerComponent},
   {path:'ol-lommeregner', component:OlLommeregnerComponent},
   {path:'ol-opskrift', component:OlOpskriftComponent},
   {path:'ol-samarbejde', component:OlSideSamarbejdeComponent},

@@ -38,6 +38,7 @@ import { KopierOpskriftComponent } from './kopier-opskrift/kopier-opskrift.compo
 import { BryggerKatalogComponent } from './brygger-katalog/brygger-katalog.component';
 import { FolgBryggerComponent } from './folg-brygger/folg-brygger.component';
 import { FindBryggerComponent } from './find-brygger/find-brygger.component';
+import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FindBryggerComponent } from './find-brygger/find-brygger.component';
     KopierOpskriftComponent,
     BryggerKatalogComponent,
     FolgBryggerComponent,
-    FindBryggerComponent
+    FindBryggerComponent,
+    SkiftpasswordComponent
   ],
   imports: [
     CommonModule,

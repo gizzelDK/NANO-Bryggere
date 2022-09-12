@@ -10,14 +10,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RegistrerComponent implements OnInit {
   @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: 0, level: 0, kontaktoplysningerId: null,
-  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '',
-   deleted:false, acceptedPolicy: false , certifikatId:null};
-//certifikatStatus: 1
+  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '', cStatus:0
+};
+
 
    brugerFormGroup:any = new FormGroup({});
    endpointK = '/Kontaktoplysningers';
    endpointB= '/Brugers';
    endpointR= '/Rolles';
+   endpointC='/Certifikats';
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -40,41 +41,23 @@ export class RegistrerComponent implements OnInit {
       'rolleId': new FormControl(''),
       'rolleNavn': new FormControl(''),
       'level': new FormControl(''),
-      'deleted': new FormControl(''),
-      'acceptedPolicy': new FormControl(''),
-      'certifikatId': new FormControl(''),
     });
   }
   onOpretBruger(){
     console.log('test:',  this.nyBruger);
-    //this.nyBruger.certifikatStatus = 1;
-    this.nyBruger.acceptedPolicy=false;
-    this.nyBruger.deleted=false;
     this.nyBruger.rolleNavn="Bruger";
     this.nyBruger.level=100;
-    //this.nyBruger.certifikatId=1;
+    this.nyBruger.cStatus=1;
     this.nyBruger.rolleId=2;
     this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
       console.log('kontakt:', dataC);
        this.nyBruger.kontaktoplysningerId= dataC.id;
-   /*     this.nyBruger.rolleNavn='Bruger';
-       this.nyBruger.level=100 + ""; */
- /*       if(this.nyBruger.rolleNavn == 'AnonymBruger')
-       this.nyBruger.level=0 + "";
-       if(this.nyBruger.rolleNavn == 'Bruger')
-       this.nyBruger.level=100 + "";
-       if(this.nyBruger.rolleNavn == 'Moderator')
-       this.nyBruger.level=200 + "";
-       if(this.nyBruger.rolleNavn == 'Administrator')
-       this.nyBruger.level=300 + ""; */
-      // this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
-      //  this.nyBruger.rolleId=dataR.id;
        this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
-        console.log("bruger:", this.nyBruger);
-        // var userId = dataB.id;
          this.router.navigate(["../login/login"]);
         }) ;
-      //})
+        this.restApi.createData(this.nyBruger, this.endpointC).subscribe((dataC) => {
+          console.log('cer....' ,this.nyBruger )
+        })
      } , err => {
         {alert('udfyldt alle felter')
        }

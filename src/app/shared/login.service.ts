@@ -44,6 +44,7 @@ export class LoginService  {
         localStorage.setItem('brugerId' , this.clearance$.id.toString()) ;
         localStorage.setItem('rolle' , this.clearance$.role);
         localStorage.setItem('level' , this.clearance$.level);
+      //console.log('responce.....', response);
         this._isLoggedIn$.next(true)
         console.log('log of response', response)
         console.log('this.bruger......................................', this.rolle)
