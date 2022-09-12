@@ -42,7 +42,7 @@ export class OpretForumDialogBoxComponent implements OnInit {
     //   beskrivelse: new FormControl('', Validators.required),
     //   oprettet: new FormControl('', Validators.required)
     // });
-    // this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
   }
   onAnuller() {
     this.opretForm.reset();

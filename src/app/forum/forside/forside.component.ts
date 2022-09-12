@@ -7,6 +7,7 @@ import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
+import { OpdaterPostDialogBoxComponent } from '../opdater-post-dialog-box/opdater-post-dialog-box.component';
 import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-forum-dialog-box.component';
 
 @Component({
@@ -19,8 +20,7 @@ export class ForsideComponent implements OnInit {
   @Input() postSvar = { titel: '', indhold: '', brugerId: 0, forumId: 0, postId: 0 };
   dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
-  // dialogRefOpdaterPost: MatDialogRef<UpdatePostDialogBoxComponent>;
-  // dialogRefOpdaterForum: MatDialogRef<UpdateForumDialogBoxComponent>;
+  dialogRefOpdaterPost: MatDialogRef<OpdaterPostDialogBoxComponent>;
   opretForm: any = new FormGroup({});
   svarForm: any = new FormGroup({});
   forums: any;
@@ -164,15 +164,15 @@ export class ForsideComponent implements OnInit {
         dialogConfig.autoFocus = true;
         dialogConfig.width = "40%";
         dialogConfig.height = 'auto';
-        // this.dialogRefOpdaterPost = this.dialog.open(UpdatePostDialogBoxComponent, dialogConfig);
-        // this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
-        //   if (result) {
-        //     this.opdaterForum = result;
-        //     this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((dataP) => {
-        //       this.ngOnInit();
-        //     })
-        //   }
-        // })
+        this.dialogRefOpdaterPost = this.dialog.open(OpdaterPostDialogBoxComponent, dialogConfig);
+        this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
+          if (result) {
+            this.opdaterForum = result;
+            this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((dataP) => {
+              this.ngOnInit();
+            })
+          }
+        })
       }
       else {
         alert('Du kan ikke update denne besked, det er fordi det ikke din!')
@@ -189,15 +189,15 @@ export class ForsideComponent implements OnInit {
         dialogConfig.autoFocus = true;
         dialogConfig.width = "40%";
         dialogConfig.height = 'auto';
-        // this.dialogRefOpdaterForum = this.dialog.open(UpdateForumDialogBoxComponent, dialogConfig);
-        // this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
-        //   if (result) {
-        //     this.opdaterForum = result;
-        //     this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe((dataF) => {
-        //       this.ngOnInit();
-        //     })
-        //   }
-        // })
+        this.dialogRefOpdaterForum = this.dialog.open(OpdaterForumDialogBoxComponent, dialogConfig);
+        this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
+          if (result) {
+            this.opdaterForum = result;
+            this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe((dataF) => {
+              this.ngOnInit();
+            })
+          }
+        })
       }
       else {
         alert('Du kan ikke update denne besked, det er fordi det ikke din!')

@@ -148,7 +148,8 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
 
   onAnuller() {
     this.opretForm.reset();
-    this.router.navigate(['/samarbejde/samarbejds-side'])
+    this.dialogRefOpretSamarbejde.close();
+    // this.router.navigate(['/samarbejde/samarbejds-side'])
   }
 
   onSubmitSamarbejde() {
