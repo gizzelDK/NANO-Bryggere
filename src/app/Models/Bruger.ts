@@ -2,7 +2,7 @@ import { Rapport } from './Rapport';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 
 import { Rolle } from "./Rolle";
-import { Deltager } from './Deltager';
+// import { Deltager } from './Deltager';
 import { Event } from "./Event";
 
 import { Certifikat } from './Certifikat';
