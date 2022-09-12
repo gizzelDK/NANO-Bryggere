@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-// import { OpretteEventsDialogBoxComponent } from '../oprette-events-dialog-box/oprette-events-dialog-box.component';
-// import { UpdateEventsDialogBoxComponent } from '../update-events-dialog-box/update-events-dialog-box.component';
+import { OpdaterEventDialogBoxComponent } from '../opdater-event-dialog-box/opdater-event-dialog-box.component';
+import { OpretEventDialogBoxComponent } from '../opret-event-dialog-box/opret-event-dialog-box.component';
 
 @Component({
   selector: 'app-event-admin-side',
@@ -13,9 +13,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./event-admin-side.component.css']
 })
 export class EventAdminSideComponent implements OnInit {
-  // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  // dialogRefOpretEvents: MatDialogRef<OpretteEventsDialogBoxComponent>;
-  // dialogRefOpdaterEvents: MatDialogRef<UpdateEventsDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpretEvents: MatDialogRef<OpretEventDialogBoxComponent>;
+  dialogRefOpdaterEvents: MatDialogRef<OpdaterEventDialogBoxComponent>;
   searchkeyEventTitel: string;
   searchkeyDeltagelse: string;
   clickButton: boolean = true;
@@ -82,14 +82,14 @@ export class EventAdminSideComponent implements OnInit {
       alert('der er nogle der deltager i dette events. Først skal de afmelds under deltager')
     }
     else {
-      // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-      // dialogRef.afterClosed().subscribe(result => {
-      //   if (result) {
-      //     this.restApi.deleteData(id, this.endpointE).subscribe((data) => {
-      //       this.ngOnInit();
-      //     })
-      //   }
-      // });
+      let dialogRef = this.dialog.open(SletDialogBoxComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.restApi.deleteData(id, this.endpointE).subscribe((data) => {
+            this.ngOnInit();
+          })
+        }
+      });
     }
   }
 
@@ -100,15 +100,15 @@ export class EventAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    // this.dialogRefOpdaterEvents = this.dialog.open(UpdateEventsDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpdaterEvents.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.eventListe = result;
-    //     this.restApi.updateData(id, this.endpointE, this.eventListe).subscribe((data) => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // })
+    this.dialogRefOpdaterEvents = this.dialog.open(OpdaterEventDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterEvents.afterClosed().subscribe(result => {
+      if (result) {
+        this.eventListe = result;
+        this.restApi.updateData(id, this.endpointE, this.eventListe).subscribe((data) => {
+          this.ngOnInit();
+        })
+      }
+    })
   }
 
   onOpretEvent() {
@@ -117,9 +117,9 @@ export class EventAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    // this.dialogRefOpretEvents = this.dialog.open(OpretteEventsDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpretEvents.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // })
+    this.dialogRefOpretEvents = this.dialog.open(OpretEventDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretEvents.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
   }
 }

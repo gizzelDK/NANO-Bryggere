@@ -5,8 +5,8 @@ import { MineEventsComponent } from './mine-events/mine-events.component';
 
 const routes: Routes = [
   {path:'events', component:EventkalenderSideComponent},
-  {path:'', component: EventkalenderSideComponent},
-  {path:'mine-events', component:MineEventsComponent}];
+  {path:'mine-events', component:MineEventsComponent},
+  {path:'', component: EventkalenderSideComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

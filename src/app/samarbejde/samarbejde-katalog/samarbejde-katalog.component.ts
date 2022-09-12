@@ -39,13 +39,13 @@ export class SamarbejdeKatalogComponent implements OnInit {
   }
 
   onHentOl() {
-    if (this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
-      this.restApi.getDatas(this.endpointO).subscribe(data => {
-      this.olListe = data.filter((res: any) => {
-        return  res.samarbejdeId === this.samarbejdeId;
-        });
-      })
-    }
+    // if (this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
+    //   this.restApi.getDatas(this.endpointO).subscribe(data => {
+    //   this.olListe = data.filter((res: any) => {
+    //     return  res.samarbejdeId === this.samarbejdeId;
+    //     });
+    //   })
+    // }
   }
 
   onOpretSamarbejde() {
@@ -96,6 +96,6 @@ export class SamarbejdeKatalogComponent implements OnInit {
 
   onOlLager(id: any) {
     localStorage.setItem('SamarbejdelagerId', JSON.stringify(id));
-    this.router.navigate(['../main/samarbejde-øl-lager/', id]);
+    this.router.navigate(['./samarbejde/samarbejde-ol-lager/', id]);
   }
 }

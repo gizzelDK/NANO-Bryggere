@@ -38,12 +38,12 @@ export class SamarbejdeOlLagerComponent implements OnInit {
     });
   }
   onAnuller() {
-    return this.router.navigate(['../main/katalog']);
+    return this.router.navigate(['./samarbejde/katalog']);
   };
  
   onSubmitOl() {
     this.restApi.updateData(this.olId, this.endpointO, this.olListe).subscribe((data) => {
-      this.router.navigate(['../main/samarbejds-side']);
+      this.router.navigate(['./samarbejde/samarbejds-side']);
     });
   }
 }

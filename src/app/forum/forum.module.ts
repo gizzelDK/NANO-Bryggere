@@ -16,13 +16,15 @@ import { ForumRoutingModule } from './forum-routing.module';
 import { ForsideComponent } from './forside/forside.component';
 import { OpdaterForumDialogBoxComponent } from './opdater-forum-dialog-box/opdater-forum-dialog-box.component';
 import { OpdaterPostDialogBoxComponent } from './opdater-post-dialog-box/opdater-post-dialog-box.component';
+import { OpretForumDialogBoxComponent } from './opret-forum-dialog-box/opret-forum-dialog-box.component';
 
 
 @NgModule({
   declarations: [
     ForsideComponent,
     OpdaterForumDialogBoxComponent,
-    OpdaterPostDialogBoxComponent
+    OpdaterPostDialogBoxComponent,
+    OpretForumDialogBoxComponent
   ],
   imports: [
     CommonModule,
