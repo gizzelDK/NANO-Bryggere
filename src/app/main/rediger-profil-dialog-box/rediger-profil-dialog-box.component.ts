@@ -1,4 +1,4 @@
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/KontaktOplysninger';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
