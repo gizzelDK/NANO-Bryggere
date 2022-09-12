@@ -32,25 +32,25 @@ export class MineEventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.onHentDeltager();
+    // this.onHentDeltager();
   }
-  onHentDeltager(){
-    this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.deltagerListe=data
-      if(this.brugerId){
-        this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
-      }
-    })
-  }
-
-  // onHentEvent(){
-  //   this.restApi.getDatas(this.endpointE).subscribe(data => {
-  //     this.eventListe=data
+  // onHentDeltager(){
+  //   this.restApi.getDatas(this.endpointD).subscribe(data => {
+  //     this.deltagerListe=data
   //     if(this.brugerId){
-  //       this.eventListe = this.eventListe.filter((a:any) => a.id === this.deltagerListe.eventid);
+  //       this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
   //     }
   //   })
   // }
+
+  onHentEvent(){
+    this.restApi.getDatas(this.endpointE).subscribe(data => {
+      this.eventListe=data
+      if(this.brugerId){
+        this.eventListe = this.eventListe.filter((a:any) => a.id === this.deltagerListe.eventid);
+      }
+    })
+  }
 
   onVisEvent(id:any){
     this.clickButton=false;
