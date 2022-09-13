@@ -9,10 +9,10 @@ import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 
 const routes: Routes = [
   {path:'ol-lager/:id', component:OlLagerComponent},
-  {path:'ol-side/:id', component:OlLagerComponent},
+  {path:'ol-side/:id', component:OlSideComponent},
+  {path:'ol-samarbejde', component:OlSideSamarbejdeComponent},
   {path:'ol-lommeregner', component:OlLommeregnerComponent},
   {path:'ol-opskrift', component:OlOpskriftComponent},
-  {path:'ol-samarbejde', component:OlSideSamarbejdeComponent},
   {path:'', component:OlSideComponent},
   {path:'ol-sogning', component:OlSogningComponent},];
 

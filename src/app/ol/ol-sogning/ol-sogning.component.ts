@@ -23,7 +23,7 @@ export class OlSogningComponent implements OnInit {
   endpointO = '/Øl';
   endpointB = '/Bryggeris';
   endpointS = '/Samarbejdes';
-  endpointK = '/KontaktOplysningers';
+  endpointK = '/Kontaktoplysningers';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
@@ -74,10 +74,13 @@ export class OlSogningComponent implements OnInit {
       if(this.ol.bryggeriId){
         this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(bryg => {
           this.bryggeri = bryg;
+          console.log(this.bryggeri.kontaktOplysningerId);
           localStorage.setItem('olBryggeriId', JSON.stringify(this.bryggeri.id));
-          this.restApi.getData(this.bryggeri.kontaktOplysningerId, this.endpointK).subscribe(kontaktOplysningData => {
+          this.kontaktOplysningId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+          this.restApi.getData(this.kontaktOplysningId, this.endpointK).subscribe(kontaktOplysningData => {
             this.kontaktOplysning = kontaktOplysningData;
-            // this.kontaktOplysningId = this.kontaktOplysning.id;
+            console.log(kontaktOplysningData);
+            this.kontaktOplysningId = this.kontaktOplysning.id;
             localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
             this.router.navigate(['../ol/ol-side/', this.olId]);
           });
