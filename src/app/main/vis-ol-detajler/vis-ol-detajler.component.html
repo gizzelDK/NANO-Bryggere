@@ -1,0 +1,27 @@
+<mat-card *ngIf="olInfo">
+    <img mat-dialog-title [src]="olInfo.olBilled" alt="" style="width: 100%; height: auto;">
+      <mat-dialog-content mat-dialog-content class="mat-typography">
+        <p class="titelStyle">Navn:</p>
+        <p class="txtStyle">{{olInfo.navn}}</p>
+        <p class="titelStyle">Type:</p>
+        <p class="txtStyle">{{olInfo.type}}</p>
+        <p class="titelStyle">Smag:</p>
+        <p class="txtStyle">{{olInfo.smag}}</p>
+        <p class="titelStyle">Procent:</p>
+        <p class="txtStyle">{{olInfo.procent}}</p>
+        <p class="titelStyle">Land:</p>
+        <p class="txtStyle">{{olInfo.land}}</p>
+        <p class="titelStyle">Bryggeprocess:</p>
+        <p class="txtStyle">{{olInfo.Bryggeprocess}}</p>
+        <p class="titelStyle">Årgang:</p>
+        <p class="txtStyle">{{olInfo.argang}}</p>
+        <!-- <p class="txtStyle" >&#229;rgang</p> -->
+        <p class="titelStyle">Antal:</p>
+        <p class="txtStyle">{{olInfo.antal}}</p>
+        <p class="titelStyle">Beskrivelse:</p>
+        <p class="txtStyle">{{olInfo.beskrivelse}}</p>
+      </mat-dialog-content>
+      <div mat-dialog-actions>
+        <button mat-button mat-dialog-close >Close</button>
+      </div>
+    </mat-card>

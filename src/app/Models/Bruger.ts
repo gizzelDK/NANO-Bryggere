@@ -6,7 +6,7 @@ import { Rolle } from "./Rolle";
 import { Event } from "./Event";
 
 import { Certifikat } from './Certifikat';
-import { Kontaktoplysninger } from './KontaktOplysninger';
+import { Kontaktoplysninger } from './Kontaktoplysninger';
 
 
 // export enum CertifikatStatus{

@@ -1,0 +1,19 @@
+<mat-card *ngIf="eventInfo">
+    <img mat-dialog-title [src]="eventInfo.eventBilled" alt="" style="width: 100%; height: auto;">
+      <mat-dialog-content mat-dialog-content class="mat-typography">
+        <p class="titelStyle">Titel:</p>
+        <p class="txtStyle">{{eventInfo.titel}}</p>
+        <p class="titelStyle">Beskrivelse:</p>
+        <p class="txtStyle">{{eventInfo.beskrivelse}}</p>
+        <p class="titelStyle">Start dato:</p>
+        <p class="txtStyle">{{eventInfo.startDato}}</p>
+        <p class="titelStyle">Slut dato:</p>
+        <p class="txtStyle">{{eventInfo.slutDato}}</p>
+        <p class="titelStyle">Lokation:</p>
+        <p class="txtStyle">{{eventInfo.lokation}}</p>
+      </mat-dialog-content>
+      <div mat-dialog-actions>
+        <button mat-button mat-dialog-close >Close</button>
+        <button mat-button mat-dialog-close (click)="onJoinEvents(eventInfo.id)" >Join Events</button>
+      </div>
+    </mat-card>

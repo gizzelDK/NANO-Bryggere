@@ -1,5 +1,5 @@
 import { Bruger } from "./Bruger";
-import { Kontaktoplysninger } from "./KontaktOplysninger";
+import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Samarbejde } from "./Samarbejde";
 import { Tag } from "./Tag";
 

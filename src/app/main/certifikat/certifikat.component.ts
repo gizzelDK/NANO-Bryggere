@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Certifikat } from 'src/app/Models/Certifikat';
-import { Kontaktoplysninger } from 'src/app/Models/KontaktOplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 
 import { RestApiService } from 'src/app/shared/rest-api.service';
 

@@ -39,6 +39,9 @@ import { BryggerKatalogComponent } from './brygger-katalog/brygger-katalog.compo
 import { FolgBryggerComponent } from './folg-brygger/folg-brygger.component';
 import { FindBryggerComponent } from './find-brygger/find-brygger.component';
 import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component';
+import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
+import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
+import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component'
     BryggerKatalogComponent,
     FolgBryggerComponent,
     FindBryggerComponent,
-    SkiftpasswordComponent
+    SkiftpasswordComponent,
+    VisDetajlerComponent,
+    VisEventsDetajlerComponent,
+    VisOlDetajlerComponent
   ],
   imports: [
     CommonModule,

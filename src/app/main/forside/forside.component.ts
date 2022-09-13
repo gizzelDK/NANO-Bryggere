@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Bryggeri} from 'src/app/Models/Bryggeri'
 import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-// import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
-// import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
-// import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
+import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
+import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
+import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
 import { Øl } from 'src/app/Models/Øl';
 
 @Component({
@@ -55,28 +55,27 @@ export class ForsideComponent implements OnInit {
   }
 
   onVisOlDetaljer(id:any){
-    // this.dialog.open(VisOlDetajlerComponent , {
-    //   width:'400px',
-    //   height:'300'
+    this.dialog.open(VisOlDetajlerComponent , {
+      width:'400px',
+      height:'300'
 
-    // });
+    });
     localStorage.setItem('forsideOlId' , id);
   }
 
   onVisDetaljer(id:any){
-    // this.dialog.open(VisDetajlerComponent , {
-    //   width:'400px',
-    //   height:'auto'
-
-    // });
+    this.dialog.open(VisDetajlerComponent , {
+      width:'400px',
+      height:'auto'
+    });
     localStorage.setItem('forsideBryggeriId' , id);
   }
 
   onVisEventsDetaljer(id:any){
-    // this.dialog.open(VisEventsDetajlerComponent , {
-    //   width:'400px',
-    //   height:'auto'
-    // });
+    this.dialog.open(VisEventsDetajlerComponent , {
+      width:'400px',
+      height:'auto'
+    });
     localStorage.setItem('forsideEventsId' , id);
   }
 }
