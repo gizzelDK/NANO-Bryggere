@@ -8,6 +8,7 @@ export class Certifikat{
   public id : number;
   public certifikatBilled:string;
   public cStatus:CertifikatStatus=CertifikatStatus.IkkeSendt;
+  public brugerId:number;
 }
 
 

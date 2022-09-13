@@ -10,9 +10,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RegistrerComponent implements OnInit {
   @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: 0, level: 0, kontaktoplysningerId: null,
-  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '',  
+  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '',
 };
-@Input() nyCertifikat = {cStatus:0, brugerId: null}
+//@Input() nyCertifikat = {cStatus:'', brugerId: null}
 
 
    brugerFormGroup:any = new FormGroup({});
@@ -53,13 +53,13 @@ export class RegistrerComponent implements OnInit {
       console.log('kontakt:', dataK);
        this.nyBruger.kontaktoplysningerId= dataK.id;
        this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
-        console.log("certifikat", this.nyCertifikat.brugerId = dataB.id);
-        this.nyCertifikat.brugerId = dataB.id;
-        this.nyCertifikat.cStatus=1;
-         this.restApi.createData(this.nyCertifikat, this.endpointC).subscribe((dataC) => {
-           console.log('cer....' ,this.nyBruger )
+        //console.log("certifikat", this.nyCertifikat.brugerId = dataB.id);
+       // this.nyCertifikat.brugerId = dataB.id;
+       // this.nyCertifikat.cStatus='IkkeSendt';
+        // this.restApi.createData(this.nyCertifikat, this.endpointC).subscribe((dataC) => {
+        //   console.log('cer....' ,this.nyBruger )
            this.router.navigate(["../login/login"]);
-        })
+       // })
       }) ;
      } , err => {
         {alert('udfyldt alle felter')
