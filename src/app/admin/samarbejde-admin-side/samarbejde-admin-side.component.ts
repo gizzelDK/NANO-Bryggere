@@ -58,17 +58,17 @@ export class SamarbejdeAdminSideComponent implements OnInit {
     });
   }
 
-  onOpretSamarbejde() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "30%";
-    dialogConfig.height = '20%';
-    // this.dialogRefOpretSamarbejde = this.dialog.open(OpretSamarbejdeDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // })
-  }
+  // onOpretSamarbejde() {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = "30%";
+  //   dialogConfig.height = '20%';
+  //   // this.dialogRefOpretSamarbejde = this.dialog.open(OpretSamarbejdeDialogBoxComponent, dialogConfig);
+  //   // this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
+  //   //   this.ngOnInit();
+  //   // })
+  // }
 
   onOpdaterSamarbejde(id:any) {
     localStorage.setItem('samarbejdeId', JSON.stringify(id));

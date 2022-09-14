@@ -51,7 +51,7 @@ export class SamarbejdeSideComponent implements OnInit {
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
 
   ngOnInit(): void {
-    // this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.olId=JSON.parse(localStorage.getItem('olId') || '{}');
     this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     this.onHentSamarbejde();
@@ -71,12 +71,12 @@ export class SamarbejdeSideComponent implements OnInit {
    onHentSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointS).subscribe((data) => {
-        // this.samarbejder = data;
+        this.samarbejder = data;
         this.samarbejder = data.filter((res: any) => {
           return res.bryggeriId1 === this.bryggeriId || res.bryggeriId2 === this.bryggeriId;
         });
-        this.samarbejder.forEach(function (value){
-        })
+        // this.samarbejder.forEach(function (value){
+        // })
       })
     }
   }

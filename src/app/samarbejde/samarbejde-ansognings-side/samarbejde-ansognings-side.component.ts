@@ -42,20 +42,20 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
 
   //Vis bryggeri navn for eget bryggeri og den anden bryggeries navn
   onHentSamarbejdeListe() {
-    // return this.restApi.getDatas(this.endpointSA).subscribe((dataSA) => {
-    //   this.samarbejdeAnmodningsListe = dataSA.filter((res: any) => {
-    //     return res.bryggeriId2 === this.bryggeriId;
-    //   });
-      // return this.restApi.getDatas(this.endpointB).subscribe(dataB => {
-      //   this.bryggeriList1 = dataB;
-      //   for (let i = 0; i < this.bryggeriList1.length; i++) {
-      //     if (this.samarbejdeAnmodningsListe.bryggeriId1 = this.bryggeriList1[i].id) {
-      //       // this.brygger = this.bryggeriList1[i];
-      //       this.anmodernavn.navn = this.bryggeriList1[i];
-      //     }
-      //   }
-      // })
-    // })
+    return this.restApi.getDatas(this.endpointSA).subscribe((dataSA) => {
+      this.samarbejdeAnmodningsListe = dataSA.filter((res: any) => {
+        return res.bryggeriId2 === this.bryggeriId;
+      });
+      return this.restApi.getDatas(this.endpointB).subscribe(dataB => {
+        this.bryggeriList1 = dataB;
+        for (let i = 0; i < this.bryggeriList1.length; i++) {
+          if (this.samarbejdeAnmodningsListe.bryggeriId1 = this.bryggeriList1[i].id) {
+            // this.brygger = this.bryggeriList1[i];
+            this.anmodernavn.navn = this.bryggeriList1[i];
+          }
+        }
+      })
+    })
   }
 
   // onHentSamarbejde() {
@@ -154,7 +154,8 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
     this.onTestSamarbejdeNavn(aId);
     this.godkendSamarbejde.bryggeriId1 = bId1;
     this.godkendSamarbejde.bryggeriId2 = bId2;
-    this.godkendSamarbejde.titel = this.bryggeriN1.navn + this.bryggeriN2.navn;
+    this.godkendSamarbejde.titel = "test";
+    // this.godkendSamarbejde.titel = this.bryggeriN1.navn + this.bryggeriN2.navn;
     // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
     return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
       this.restApi.deleteData(aId, this.endpointSA).subscribe((data) => {

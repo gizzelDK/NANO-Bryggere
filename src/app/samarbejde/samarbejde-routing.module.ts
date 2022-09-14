@@ -13,11 +13,11 @@ const routes: Routes = [
   {path:'opdater-samarbejde', component:OpdaterSamarbejdeDialogBoxComponent},
   {path:'opret-samarbejde', component:OpretSamarbejdeDialogBoxComponent},
   {path:'samarbejde-ansogning', component:SamarbejdeAnsogningsSideComponent},
-  {path:'', component:SamarbejdeKatalogComponent},
   {path:'samarbejde-katalog', component:SamarbejdeKatalogComponent},
   {path:'samarbejde-ol-lager', component:SamarbejdeOlLagerComponent},
   {path:'samarbejde-side', component:SamarbejdeSideComponent},
-  {path:'samarbejde-visning', component:SamarbejdeVisningComponent},];
+  {path:'samarbejde-visning', component:SamarbejdeVisningComponent},
+  {path:'', component: SamarbejdeSideComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
