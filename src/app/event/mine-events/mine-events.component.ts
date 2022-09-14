@@ -58,7 +58,7 @@ export class MineEventsComponent implements OnInit {
     this.clickButton=false;
     this.restApi.getData(id , this.endpointD).subscribe(data => {
       this.eventListe= data ;
-      this.restApi.getData(this.eventListe.eventsId, this.endpointE).subscribe(data => {
+      this.restApi.getData(this.eventListe.eventId, this.endpointE).subscribe(data => {
         this.eventListe= data ;
       })
     })
