@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
   }
 //admin rettigheder
   onHentRolle(){
+    console.log('rolleId...', this.rolleId);
     if(this.rolleId = JSON.parse(localStorage.getItem('rolleId') || 'null')){
       this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) =>{
         if(data.level == 30){
