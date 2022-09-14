@@ -16,7 +16,7 @@ import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-fo
   styleUrls: ['./forside.component.css']
 })
 export class ForsideComponent implements OnInit {
-  @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0 };
+  @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0, oprettet: ''};
   @Input() postSvar = { titel: '', indhold: '', brugerId: 0, forumId: 0, postId: 0 };
   dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
@@ -97,6 +97,8 @@ export class ForsideComponent implements OnInit {
   onGodkendPost(id: any) {
     this.postOprettelse.forumId = id;
     this.postOprettelse.brugerId = this.brugerId;
+    this.postOprettelse.
+    console.log(this.postOprettelse.brugerId);
     this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((dataP) => {
       this.postOprettelse.indhold = '';
       this.postOprettelse.titel = '';

@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-// import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
-// import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-forum-dialog-box.component';
+import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
+import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-forum-dialog-box.component';
 
 @Component({
   selector: 'app-forum-admin-side',
@@ -15,9 +15,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./forum-admin-side.component.css']
 })
 export class ForumAdminSideComponent implements OnInit {
-  // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  // dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
-  // dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
+  dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
   forums: Forum[];
   forumListe: any;
   endpointF = '/Fora';
@@ -66,10 +66,10 @@ export class ForumAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    // this.dialogRefOpretForum = this.dialog.open(OpretForumDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpretForum.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // })
+    this.dialogRefOpretForum = this.dialog.open(OpretForumDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretForum.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
   }
 
   onVisPost(id:any){
@@ -95,16 +95,16 @@ export class ForumAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    // this.dialogRefOpdaterForum = this.dialog.open(OpdaterForumDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.forumListe = result;
-    //     console.log(this.forumListe);
-    //     this.restApi.updateData(id, this.endpointF, this.forumListe).subscribe((data) => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // })
+    this.dialogRefOpdaterForum = this.dialog.open(OpdaterForumDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
+      if (result) {
+        this.forumListe = result;
+        console.log(this.forumListe);
+        this.restApi.updateData(id, this.endpointF, this.forumListe).subscribe((data) => {
+          this.ngOnInit();
+        })
+      }
+    })
   }
 
   onGemAndringer(id:any){
@@ -120,14 +120,14 @@ export class ForumAdminSideComponent implements OnInit {
   onSletForum(id:any){
       this.posts=this.posts.filter((p:any) => p.forumId === id)
     if(this.posts.length === 0){
-    // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result == true){
-    //     this.restApi.deleteData(id, this.endpointF).subscribe(data => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // });
+    let dialogRef = this.dialog.open(SletDialogBoxComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+        this.restApi.deleteData(id, this.endpointF).subscribe(data => {
+          this.ngOnInit();
+        })
+      }
+    });
     }
     else{
       alert('alle beskeder i forumet skal slettes først!');
@@ -137,14 +137,14 @@ export class ForumAdminSideComponent implements OnInit {
   onSletPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(data => {
       if(this.rolle ===300) {
-        // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-        // dialogRef.afterClosed().subscribe(result => {
-        //   if (result == true) {
-        //     this.restApi.deleteData(id, this.endpointP).subscribe(data => {
-        //       this.ngOnInit();
-        //     })
-        //   }
-        // });
+        let dialogRef = this.dialog.open(SletDialogBoxComponent);
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == true) {
+            this.restApi.deleteData(id, this.endpointP).subscribe(data => {
+              this.ngOnInit();
+            })
+          }
+        });
       } else {
         alert('du kan ikke slette denne besked, du er kun en bruger!')
       }
