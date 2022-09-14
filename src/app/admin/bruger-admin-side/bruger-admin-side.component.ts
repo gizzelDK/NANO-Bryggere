@@ -19,7 +19,7 @@ export class BrugerAdminSideComponent implements OnInit {
   bruger = new Bruger();
   endpointB = '/Brugers'; //endpointB
   endpointL = '/Logins'; //endpointL
-  endpointK = '/KontaktOplysningers'; //endpointK
+  endpointK = '/Kontaktoplysningers'; //endpointK
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn: string;
   searchkeyEmail: string;
@@ -54,7 +54,7 @@ export class BrugerAdminSideComponent implements OnInit {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktoplysningerId;
-      console.log(data.kontaktoplysningerId);
+      console.log("testK", data.kontaktoplysningerId);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })
