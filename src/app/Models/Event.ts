@@ -1,5 +1,6 @@
-import { Bruger } from "./Bruger";
+import { Deltager } from "./Deltager";
 import { Tag } from "./Tag";
+
 
 export class Event{
   public id : number;
@@ -10,6 +11,6 @@ export class Event{
   public lokation:string;
   public eventBilled:string;
   public tags:Tag;
-  public deltagere: Bruger;
+  public deltagelse: Deltager;
 
 }

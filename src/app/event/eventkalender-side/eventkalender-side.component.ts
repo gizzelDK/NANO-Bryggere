@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';
 // import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';
 
 @Component({
@@ -15,7 +16,7 @@ export class EventkalenderSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Event[];
   endpointE = '/Events';
-  // endpointD = '/Deltagers';
+  endpointD = '/Deltagers';
   searchkey: string;
   deltagene: boolean = false;
   joinning: boolean
@@ -49,17 +50,17 @@ export class EventkalenderSideComponent implements OnInit {
   }
 
   onHentDeltagene() {
-    // this.restApi.getDatas(this.endpointD).subscribe(data => {
-    //   this.deltagerListe = data;
-    //   if (this.brugerId) {
-    //     this.deltagerListe = this.deltagerListe.filter((a: any) => a.brugerId === this.brugerId);
-    //     for (var d = 0; d < this.deltagerListe.length; d++) {
-    //       if (this.deltagerListe[d].eventsId) {
-    //         this.deltagelsesArray.push(this.deltagerListe[d].eventsId);
-    //       }
-    //     }
-    //   }
-    // })
+     this.restApi.getDatas(this.endpointD).subscribe(data => {
+       this.deltagerListe = data;
+       if (this.brugerId) {
+         this.deltagerListe = this.deltagerListe.filter((a: any) => a.brugerId === this.brugerId);
+         for (var d = 0; d < this.deltagerListe.length; d++) {
+          if (this.deltagerListe[d].eventsId) {
+             this.deltagelsesArray.push(this.deltagerListe[d].eventsId);
+           }
+         }
+       }
+     })
   }
 
   onVisEvent(id: any) {
@@ -82,15 +83,15 @@ export class EventkalenderSideComponent implements OnInit {
 
   onDeltagEvent(id: any) {
     if (this.deltagelsesArray.includes(id)) {
-      // this.dialog.open(MessageDialogBoxComponent);
+       this.dialog.open(MessageDialogBoxComponent);
     }
     else {
       this.deltager.brugerId = this.brugerId;
       this.deltager.eventsId = id;
       this.deltager.erDeltagene = true;
-      // this.restApi.createData(this.deltager, this.endpointD).subscribe(data => {
-      //   this.onHentDeltagene();
-      // })
+       this.restApi.createData(this.deltager, this.endpointD).subscribe(data => {
+         this.onHentDeltagene();
+       })
     }
   }
 

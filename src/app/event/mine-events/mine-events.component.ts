@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 
 @Component({
   selector: 'app-mine-events',
@@ -27,30 +28,31 @@ export class MineEventsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    // this.onHentDeltager();
+    this.onHentDeltager();
   }
-  // onHentDeltager(){
-  //   this.restApi.getDatas(this.endpointD).subscribe(data => {
-  //     this.deltagerListe=data
-  //     if(this.brugerId){
-  //       this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
-  //     }
-  //   })
-  // }
+   onHentDeltager(){
+     this.restApi.getDatas(this.endpointD).subscribe(data => {
+       this.deltagerListe=data
+       if(this.brugerId){
+         this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
+       }
+     })
+   }
 
-  onHentEvent(){
+/*   onHentEvent(){
     this.restApi.getDatas(this.endpointE).subscribe(data => {
       this.eventListe=data
       if(this.brugerId){
         this.eventListe = this.eventListe.filter((a:any) => a.id === this.deltagerListe.eventid);
       }
     })
-  }
+  } */
 
   onVisEvent(id:any){
     this.clickButton=false;
@@ -67,9 +69,9 @@ export class MineEventsComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-    //  this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
-    //    this.deltagerListe=data;
-    //  })
+      this.searchService.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
+        this.deltagerListe=data;
+      })
     }
   }
 
