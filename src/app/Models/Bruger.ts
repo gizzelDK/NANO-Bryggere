@@ -7,6 +7,9 @@ import { Event } from "./Event";
 
 import { Certifikat } from './Certifikat';
 import { Kontaktoplysninger } from './Kontaktoplysninger';
+import { Deltager } from './Deltager';
+
+
 
 
 // export enum CertifikatStatus{
@@ -30,7 +33,7 @@ export class Bruger {
   public rapporter : Rapport;
   public acceptedPolicy : boolean;
   public deleted :boolean;
-  //public deltager: Deltager;
+  public deltager: Deltager;
   //public certifikatStatus: CertifikatStatus;
   //public certifikatBilled: string;
 }

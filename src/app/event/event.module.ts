@@ -13,12 +13,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MessageDialogBoxComponent } from './message-dialog-box/message-dialog-box.component';
 // import { MessageDialogBoxComponent } from './message-dialog-box/message-dialog-box.component';
 
 @NgModule({
   declarations: [
     EventkalenderSideComponent,
     MineEventsComponent,
+    MessageDialogBoxComponent,
     // MessageDialogBoxComponent
   ],
   imports: [
