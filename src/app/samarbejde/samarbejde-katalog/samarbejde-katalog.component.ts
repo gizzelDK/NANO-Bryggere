@@ -4,9 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { OpdaterSamarbejdeDialogBoxComponent } from '../opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
-import { OpretSamarbejdeDialogBoxComponent } from '../opret-samarbejde-dialog-box/opret-samarbejde-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { OpretSamarbejdeOlDialogBoxComponent } from '../opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
+import { OpdaterSamarbejdeOlDialogBoxComponent } from '../opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
 
 @Component({
   selector: 'app-samarbejde-katalog',
@@ -15,8 +15,8 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 })
 export class SamarbejdeKatalogComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefOpretSamarbejdeOl: MatDialogRef<OpretSamarbejdeDialogBoxComponent>;
-  dialogRefOpdaterSamarbejdeOl: MatDialogRef<OpdaterSamarbejdeDialogBoxComponent>;
+  dialogRefOpretSamarbejdeOl: MatDialogRef<OpretSamarbejdeOlDialogBoxComponent>;
+  dialogRefOpdaterSamarbejdeOl: MatDialogRef<OpdaterSamarbejdeOlDialogBoxComponent>;
   ol: Øl;
   olListe: Øl[];
   samarbejde: Samarbejde;
@@ -54,7 +54,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = "70%";
-    this.dialogRefOpretSamarbejdeOl = this.dialog.open(OpretSamarbejdeDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretSamarbejdeOl = this.dialog.open(OpretSamarbejdeOlDialogBoxComponent, dialogConfig);
     this.dialogRefOpretSamarbejdeOl.afterClosed().subscribe(result => {
       this.ngOnInit();
     })
@@ -67,7 +67,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    this.dialogRefOpdaterSamarbejdeOl = this.dialog.open(OpdaterSamarbejdeDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterSamarbejdeOl = this.dialog.open(OpdaterSamarbejdeOlDialogBoxComponent, dialogConfig);
     this.dialogRefOpdaterSamarbejdeOl.afterClosed().subscribe(result => {
       if (result) {
         this.oller = result;

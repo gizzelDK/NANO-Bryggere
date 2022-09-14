@@ -28,6 +28,8 @@ import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-
 import { OpretSamarbejdeDialogBoxComponent } from './opret-samarbejde-dialog-box/opret-samarbejde-dialog-box.component';
 import { OpdaterSamarbejdeDialogBoxComponent } from './opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
 import { SamarbejdeAnsogningsSideComponent } from './samarbejde-ansognings-side/samarbejde-ansognings-side.component';
+import { OpretSamarbejdeOlDialogBoxComponent } from './opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
+import { OpdaterSamarbejdeOlDialogBoxComponent } from './opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { SamarbejdeAnsogningsSideComponent } from './samarbejde-ansognings-side/
     SamarbejdeOlLagerComponent,
     OpretSamarbejdeDialogBoxComponent,
     OpdaterSamarbejdeDialogBoxComponent,
-    SamarbejdeAnsogningsSideComponent
+    SamarbejdeAnsogningsSideComponent,
+    OpretSamarbejdeOlDialogBoxComponent,
+    OpdaterSamarbejdeOlDialogBoxComponent
   ],
   imports: [
     CommonModule,
