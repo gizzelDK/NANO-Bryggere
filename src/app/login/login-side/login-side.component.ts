@@ -38,21 +38,34 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
-   onSubmitLogin(){
+
+ // parseInt(this.loginService.clearance$.level) > 10 &&
+ async  onSubmitLogin(){
     if(!this.loginForm.invalid){
-       this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
+      await this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
     //  console.log('test1....' , this.loginService.isLoggedIn$);
         if(this.loginService.isLoggedIn$.value == true){
-        this.router.navigate(['../main/profil']);
+          if( this.loginService.clearance$.role === "Administrator"){
+//console.log('isadmin....', this.loginService.clearance$.role );
+            this.router.navigate(['../admin/forside-admin']);
+
+          }
+          else{
+            console.log('isadmin....', this.loginService.clearance$.role);
+            this.router.navigate(['../main/profil']);
+          }
      }
     }
     else{
       alert('username or password is empty');
     }
+
   }
 
   onSubmitRegistre() {
     this.router.navigate(['../login/registrer']);
   };
+
+
 
 }

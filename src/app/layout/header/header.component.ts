@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 //admin rettigheder
   onHentRolle(){
+
     // if(this.rolleId = JSON.parse(localStorage.getItem('rolleId') || 'null')){
       // this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) =>{
         // if(data.level == 20){
@@ -63,6 +64,7 @@ export class HeaderComponent implements OnInit {
               this.erAdmin = true;
               console.log("Administrator");
             }
+
         }
         else{
           this.erAdmin = false;
