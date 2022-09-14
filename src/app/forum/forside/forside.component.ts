@@ -97,8 +97,8 @@ export class ForsideComponent implements OnInit {
   onGodkendPost(id: any) {
     this.postOprettelse.forumId = id;
     this.postOprettelse.brugerId = this.brugerId;
-    this.postOprettelse.
-    console.log(this.postOprettelse.brugerId);
+    // this.postOprettelse.
+    // console.log(this.postOprettelse.brugerId);
     this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((dataP) => {
       this.postOprettelse.indhold = '';
       this.postOprettelse.titel = '';
