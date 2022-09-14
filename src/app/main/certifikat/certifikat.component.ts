@@ -55,8 +55,8 @@ onHentBruger() {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.url = e.target.result;
-/*         this.bruger.certifikatBilled = e.target.result;
-        this.bruger.certifikatStatus = 2; */
+        // this.bruger.certifikatBilled = e.target.result;
+        // this.bruger.certifikatStatus = 2; 
         this.certifikat.certifikatBilled = e.target.result;
         this.certifikat.cStatus = 2;
         console.log(this.bruger);
@@ -68,7 +68,7 @@ onHentBruger() {
     // if (this.bruger.certifikatStatus == 2) {
     //   return;
     // }
-    this.restApi.updateData(this.brugerId, this.endpointB, this.bruger).subscribe((data) => {
+    this.restApi.updateData(this.brugerId, this.endpointB, this.certifikat).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });
   }
