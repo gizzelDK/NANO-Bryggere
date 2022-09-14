@@ -16,7 +16,8 @@ import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-fo
   styleUrls: ['./forside.component.css']
 })
 export class ForsideComponent implements OnInit {
-  @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0, oprettet: ''};
+  @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0 };
+  //, oprettet: ''
   @Input() postSvar = { titel: '', indhold: '', brugerId: 0, forumId: 0, postId: 0 };
   dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
@@ -68,7 +69,8 @@ export class ForsideComponent implements OnInit {
       indhold: new FormControl('', Validators.required),
       brugerId: new FormControl('', Validators.required),
       forumId: new FormControl('', Validators.required),
-      postid: new FormControl('', Validators.required)
+      postId: new FormControl('', Validators.required),
+     // oprettet: new FormControl('')
     });
     this.onHentForum();
     this.onHentPost();
@@ -87,19 +89,21 @@ export class ForsideComponent implements OnInit {
     })
   }
 
-  onHentRolle(){
-    this.restApi.getDatas(this.endpointR).subscribe(dataR =>{ 
+   onHentRolle(){
+    this.restApi.getDatas(this.endpointR).subscribe(dataR =>{
       this.rolleListe = dataR
-      this.rolle = this.rolleListe.find((a:any) => a.level === 300)
+      this.rolle = this.rolleListe.find((a:any) => a.level === 20)
     })
   }
 
   onGodkendPost(id: any) {
+
     this.postOprettelse.forumId = id;
     this.postOprettelse.brugerId = this.brugerId;
-    // this.postOprettelse.
-    // console.log(this.postOprettelse.brugerId);
+     console.log(this.postOprettelse.brugerId);
+     console.log('postInfo...', this.postOprettelse);
     this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((dataP) => {
+      console.log('postInfo...',dataP);
       this.postOprettelse.indhold = '';
       this.postOprettelse.titel = '';
       this.ngOnInit();
@@ -130,7 +134,7 @@ export class ForsideComponent implements OnInit {
 
   onSletForum(id: any) {
     this.restApi.getData(id, this.endpointF).subscribe(dataF => {
-      if (this.brugerId === dataF.brugerId  || this.rolle ===300) {
+      if (this.brugerId === dataF.brugerId  || this.rolle ===20) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
           if (result == true) {
@@ -139,7 +143,7 @@ export class ForsideComponent implements OnInit {
             })
           }
         });
-      } 
+      }
       else {
         alert('Du kan ikke slette denne besked, det er fordi det ikke din!')
       }
@@ -159,7 +163,7 @@ export class ForsideComponent implements OnInit {
 
   onOpdaterPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(dataP => {
-      if (this.brugerId === dataP.brugerId || this.rolle ===300) {
+      if (this.brugerId === dataP.brugerId || this.rolle ===20) {
         localStorage.setItem('postId', JSON.stringify(id));
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
@@ -169,7 +173,7 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterPost = this.dialog.open(OpdaterPostDialogBoxComponent, dialogConfig);
         this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
           if (result) {
-            this.opdaterForum = result;
+            this.opdaterPost = result;
             this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((dataP) => {
               this.ngOnInit();
             })
@@ -184,7 +188,7 @@ export class ForsideComponent implements OnInit {
 
   onOpdaterForum(id: any) {
     this.restApi.getData(id, this.endpointF).subscribe(dataF => {
-      if (this.brugerId === dataF.brugerId || this.rolle ===300) {
+      if (this.brugerId === dataF.brugerId || this.rolle ===20) {
         localStorage.setItem('forumId', JSON.stringify(id));
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
@@ -221,7 +225,7 @@ export class ForsideComponent implements OnInit {
 
   onSletPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(dataP => {
-      if (this.brugerId === dataP.brugerId  || this.rolle ===300) {
+      if (this.brugerId === dataP.brugerId  || this.rolle ===20) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
           if (result == true) {
@@ -230,7 +234,7 @@ export class ForsideComponent implements OnInit {
             })
           }
         });
-      } 
+      }
       else {
         alert('Du kan ikke slette denne besked, det er fordi det ikke din!')
       }
