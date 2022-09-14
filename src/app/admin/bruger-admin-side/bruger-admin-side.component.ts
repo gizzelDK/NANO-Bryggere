@@ -53,7 +53,8 @@ export class BrugerAdminSideComponent implements OnInit {
   onVisBruger(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
-      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      this.kontaktOplysningerId = data.kontaktoplysningerId;
+      console.log(data.kontaktoplysningerId);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })

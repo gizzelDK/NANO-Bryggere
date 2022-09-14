@@ -1,38 +1,40 @@
 <mat-card class="main" id="imgeUp">
-    <table style="display: flex; justify-content: center; height: auto;">
-        <mat-card-content *ngIf="ol" style="width: 50%; justify-content: center; height: 100%;">
+    <table style="display: flex; justify-content: center; height: 40%;">
+        <mat-card-content *ngIf="ol" style="width: 50%; justify-content: center; height: auto;">
             <div fxLayout="column" fxLayoutAlign="space-evenly"
-                style=" height: 25%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
+                style=" height:25%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
                 <button style=" background-color: transparent; border-color: transparent;"
                     (click)="onTilbage()">
-                    <a><span class="material-icons">arrow_back</span></a>
+                     <a><span class="material-icons">arrow_back</span></a>
                 </button>
                 <h1 class="centers" style="font-weight: bold;">{{ol.navn}}</h1>
                 <button style="background-color: transparent; border-color: transparent;">
                     <mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon>
                 </button>
             </div>
-            <div class="centers" style="margin-top: 10px;">
+            <div class="centers" style="margin-top: 5px;">
                 <img [src]="ol.olBillede" alt="" style="width: 50%; justify-content: center;">
-            </div>
-            <div fxlayout="row" style="margin-top: 10px; height: 100%; width: 100%;">
-                <mat-grid-list cols="2" rowHeight="2:1" style="height: 100%;">
-                    <mat-grid-tile style="height: 100%;">
-                        <div>
+            </div >
+            <div  style=" margin-top:5px; height: 100%;" >
+                <mat-grid-list cols="2" rowHeight="2:1" >
+                    <mat-grid-tile style=" margin-top:5px; height: 100%;">
+                        <div >
                             <h2 style="font-weight: bold;">Øl info:</h2>
-                            <p style="font-weight: bold; font-size: 14px; margin: 0%;">Titel:</p>
-                            <p>{{ol.navn}}</p>
-                            <p style="font-weight: bold;  font-size:  14px; margin: 0%;">Type:</p>
-                            <p>{{ol.type}}</p>
-                            <p style="font-weight: bold;  font-size: 14px; margin: 0%;">Alkohol procent:</p>
-                            <p>{{ol.procent}}</p>
-                            <p style="font-weight: bold;  font-size:  14px; margin: 0%;">Smag:</p>
-                            <p>{{ol.smag}}</p>
-                            <p style="font-weight: bold;  font-size:  14px; margin: 0%;">Beskrivelse:</p>
+<!--                             <p style="font-weight: bold; font-size: 14px; ">Titel:</p>
+                            <p>{{ol.navn}}</p> -->
+                            <p style="font-weight: bold;  font-size:  14px; ">Beskrivelse:</p>
                             <p>{{ol.beskrivelse}}</p>
+                            <p style="font-weight: bold;  font-size:  14px;">Type:</p>
+                            <p>{{ol.type}}</p>
+                            <p style="font-weight: bold;  font-size: 14px; ">Alkohol procent:</p>
+                            <p>{{ol.procent}}</p>
+                            <p style="font-weight: bold;  font-size:14px; ">Smag:</p>
+                            <p>{{ol.smag}}</p>
+
+
                         </div>
                     </mat-grid-tile>
-                    <mat-grid-tile style="height: 75%;">
+                    <mat-grid-tile style=" margin-top:5px; height: 100%;" >
                         <div>
                             <div *ngIf="bryggeri">
                                 <h2 style="font-weight: bold;">Brygger info:</h2>
@@ -51,6 +53,26 @@
                     </mat-grid-tile>
                 </mat-grid-list>
             </div>
+             <div>
+              <h2 style="font-weight: bold; font-size: medium; margin: 20px;" class="containStyle centers">Send din Kommanter og Rating:</h2>
+              <form [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 80%;" >
+
+                <mat-form-field  appearance="fill" class="example-full-width">
+
+                  <input matInput  placeholder="Skrive din kommanter her" formControlName="tekst" [(ngModel)]="kommanter.tekst" >
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="example-full-width">
+
+                  <input matInput type="number" placeholder="Rating mellem 0 til 5" formControlName="rating" [(ngModel)]="kommanter.rating" >
+                </mat-form-field>
+                <button mat-raised-button type="submit" (click)="onSendKommanter()" class="login-btn" class="btnMainStyle">Send Kommanter</button>
+
+              </form>
+            </div>
+
+
+
         </mat-card-content>
     </table>
+
 </mat-card>

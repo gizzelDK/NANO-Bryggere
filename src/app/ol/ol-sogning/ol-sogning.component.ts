@@ -65,28 +65,32 @@ export class OlSogningComponent implements OnInit {
   }
 
 
-  //brugs ikke lige nu , kigg venligst under html side
-  onShowOl(id: any) {
+
+  onShowOl(id: number) {
+    console.log('idOlsogning..', id);
     this.restApi.getData(id, this.endpointO).subscribe(data => {
       this.ol = data;
+      console.log('idOl..', data.id);
       this.olId = this.ol.id;
       localStorage.setItem('olId', JSON.stringify(this.olId));
       if(this.ol.bryggeriId){
         this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(bryg => {
           this.bryggeri = bryg;
-          console.log(this.bryggeri.kontaktOplysningerId);
+          console.log('bryggriId...',this.bryggeri.id);
           localStorage.setItem('olBryggeriId', JSON.stringify(this.bryggeri.id));
           this.kontaktOplysningId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
           this.restApi.getData(this.kontaktOplysningId, this.endpointK).subscribe(kontaktOplysningData => {
             this.kontaktOplysning = kontaktOplysningData;
             console.log(kontaktOplysningData);
             this.kontaktOplysningId = this.kontaktOplysning.id;
+            console.log('kontaktOplysningId..', this.kontaktOplysning.id);
             localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
             this.router.navigate(['../ol/ol-side/', this.olId]);
           });
         });
       }
-      if(this.ol.samarbejder.id){
+/*       if(this.ol.samarbejder.id){
+
         this.restApi.getData(this.ol.samarbejder.id, this.endpointS).subscribe(samarbejde => {
           this.samarbejde = samarbejde;
           this.restApi.getData(this.samarbejde.id, this.endpointS).subscribe(samarbejdeData => {
@@ -96,7 +100,7 @@ export class OlSogningComponent implements OnInit {
             this.router.navigate(['../ol/ol-side-samarbejde/', this.olId]);
           });
         });
-      }
+      } */
     });
   }
 }

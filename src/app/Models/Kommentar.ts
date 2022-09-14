@@ -1,4 +1,5 @@
 import { Øl } from 'src/app/Models/Øl';
+import { Bruger } from './Bruger';
 
 
 export class Kommentar{
@@ -7,5 +8,7 @@ export class Kommentar{
   public ol: Øl;
   public olId:number;
   public rating: number;
+  public forfatterId:number;
+  public forfatter:Bruger;
 
 }

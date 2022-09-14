@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'ol' , loadChildren :() => import('./ol/ol.module').then(mod => mod.OlModule)},
   {path:'forum' , loadChildren :() => import('./forum/forum.module').then(mod => mod.ForumModule)},
   {path:'samarbejde' , loadChildren :() => import('./samarbejde/samarbejde.module').then(mod => mod.SamarbejdeModule)},
-  {path:'forum' , loadChildren :() => import('./admin/admin.module').then(mod => mod.AdminModule)},
+  {path:'admin' , loadChildren :() => import('./admin/admin.module').then(mod => mod.AdminModule)},
   {path:'event' , loadChildren :() => import('./event/event.module').then(mod => mod.EventModule),
     canActivate: [IsAuthenticatedGuard, HasRoleGuard],
     data:{
