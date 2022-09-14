@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   erAdmin: boolean;
   erBrygger: boolean;
   rolleId: number;
+  level: number;
   bryggeriId: number;
   // brugerId: number;
   endpointR = '/Rolles';
@@ -53,20 +54,25 @@ export class HeaderComponent implements OnInit {
   }
 //admin rettigheder
   onHentRolle(){
-    console.log('rolleId...', this.rolleId);
-    if(this.rolleId = JSON.parse(localStorage.getItem('rolleId') || 'null')){
-      this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) =>{
-        if(data.level == 30){
-          this.erAdmin = true;
-          console.log("Administrator");
+
+    // if(this.rolleId = JSON.parse(localStorage.getItem('rolleId') || 'null')){
+      // this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) =>{
+        // if(data.level == 20){
+          if(this.level = JSON.parse(localStorage.getItem('level') || 'null')){
+            if(this.level == 20)
+            {
+              this.erAdmin = true;
+              console.log("Administrator");
+            }
+
         }
         else{
           this.erAdmin = false;
           //login
           console.log("Administrator rettigheder mangler");
         }
-      })
-    }
+      // });
+    // }
   }
 
   onClickMenu(){

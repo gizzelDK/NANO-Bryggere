@@ -48,7 +48,7 @@ export class LoginService  {
         this._isLoggedIn$.next(true)
         console.log('log of response', response)
         console.log('this.bruger......................................', this.rolle)
-      })
+    })
   }
   // private getUser(token: string): Rolle{
   //   return JSON.parse(atob(token.split('.')[1])) as Rolle;
