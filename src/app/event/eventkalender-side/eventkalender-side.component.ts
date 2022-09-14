@@ -30,7 +30,7 @@ export class EventkalenderSideComponent implements OnInit {
   deltagerId: number;
   liste: any;
   Deltagene: boolean;
-  @Input() deltager = { brugerId: 0, eventsId: 0, erDeltagene: false }
+  @Input() deltager = { brugerId: 0, eventId: 0  }
 
   constructor(
     public dialog: MatDialog,
@@ -40,6 +40,7 @@ export class EventkalenderSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    console.log('brugerId.....', this.brugerId);
     this.onHentEvent();
     this.onHentDeltagene();
   }
@@ -82,13 +83,14 @@ export class EventkalenderSideComponent implements OnInit {
   }
 
   onDeltagEvent(id: any) {
+
     if (this.deltagelsesArray.includes(id)) {
        this.dialog.open(MessageDialogBoxComponent);
     }
     else {
       this.deltager.brugerId = this.brugerId;
-      this.deltager.eventsId = id;
-      this.deltager.erDeltagene = true;
+      this.deltager.eventId = id;
+      console.log('deltager...' ,this.deltager);
        this.restApi.createData(this.deltager, this.endpointD).subscribe(data => {
          this.onHentDeltagene();
        })
