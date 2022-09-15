@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./opret-samarbejde-ol-dialog-box.component.css']
 })
 export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
-  @Input() olOprettelse = {olBillede:'', navn: '', beskrivelse: '', land:'', samarbejdeId: null, type: '', smag: '', procent: '', antal: '', aargang: null, bryggerId: null};
+  @Input() olOprettelse = {olBillede:'', navn: '', beskrivelse: '', land:'', type: '', smag: '', procent: '', antal: '', aargang: null, bryggerId: null};
 
   opretForm: any = new FormGroup({});
   endpointO = '/Øl';
@@ -29,7 +29,7 @@ export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
       type: new FormControl('', Validators.required),
       smag: new FormControl('', Validators.required),
       procent: new FormControl('', Validators.required),
-      samarbejdeId: new FormControl('', Validators.required),
+      // samarbejdeId: new FormControl('', Validators.required),
       aargang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
@@ -51,8 +51,8 @@ export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
   };
 
   onSubmitOl() {
-    this.olOprettelse.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
-    this.olOprettelse.olBillede = JSON.parse(localStorage.getItem('olBillede') || '{}');
+    // this.olOprettelse.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
+    // this.olOprettelse.olBillede = JSON.parse(localStorage.getItem('olBillede') || '{}');
     this.olOprettelse.bryggerId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     console.log(this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((olData) => {

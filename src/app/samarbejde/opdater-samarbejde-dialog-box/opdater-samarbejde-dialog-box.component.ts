@@ -34,7 +34,7 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
         bryggeriId1: new FormControl(this.samarbejdeListe.bryggeriId1),
         bryggeriId2: new FormControl(this.samarbejdeListe.bryggeriId2),
         titel: new FormControl(this.samarbejdeListe.titel),
-        olBilled: new FormControl(this.samarbejdeListe.olBilled)
+        olBillede: new FormControl(this.samarbejdeListe.olBillede)
       });
     })
   }
@@ -45,7 +45,7 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.samarbejdeListe.olBilled =e.target.result;
-        localStorage.setItem('olBilled' ,JSON.stringify(this.samarbejdeListe.olBilled));
+        localStorage.setItem('olBillede' ,JSON.stringify(this.samarbejdeListe.olBillede));
       }
     }
   };
