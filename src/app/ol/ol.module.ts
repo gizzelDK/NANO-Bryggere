@@ -20,6 +20,7 @@ import { OlLommeregnerComponent } from './ol-lommeregner/ol-lommeregner.componen
 import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
 
 
+
 @NgModule({
   declarations: [
     OlSideComponent,

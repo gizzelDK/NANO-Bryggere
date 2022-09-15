@@ -1,23 +1,24 @@
 <mat-card class="main" id="imgeUp">
+
     <table style="display: flex; justify-content: center; height: 40%;">
-        <mat-card-content *ngIf="ol" style="width: 50%; justify-content: center; height: auto;">
+        <mat-card-content *ngIf="ol" style="width: 50%; justify-content: center; height: 100%;">
             <div fxLayout="column" fxLayoutAlign="space-evenly"
-                style=" height:25%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
+                style=" height:16%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
                 <button style=" background-color: transparent; border-color: transparent;"
                     (click)="onTilbage()">
                      <a><span class="material-icons">arrow_back</span></a>
                 </button>
                 <h1 class="centers" style="font-weight: bold;">{{ol.navn}}</h1>
                 <button style="background-color: transparent; border-color: transparent;">
-                    <mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon>
+                    <!-- <mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon> -->
                 </button>
             </div>
-            <div class="centers" style="margin-top: 5px;">
+            <div class="centers" style="margin-top: 5px;" >
                 <img [src]="ol.olBillede" alt="" style="width: 50%; justify-content: center;">
             </div >
             <div  style=" margin-top:5px; height: 100%;" >
                 <mat-grid-list cols="2" rowHeight="2:1" >
-                    <mat-grid-tile style=" margin-top:5px; height: 100%;">
+                    <mat-grid-tile style=" margin-top:5px; height: 100%;" >
                         <div >
                             <h2 style="font-weight: bold;">Øl info:</h2>
 <!--                             <p style="font-weight: bold; font-size: 14px; ">Titel:</p>
@@ -38,37 +39,52 @@
                         <div>
                             <div *ngIf="bryggeri">
                                 <h2 style="font-weight: bold;">Brygger info:</h2>
-                                <p style="font-weight: bold; font-size: 14px; margin: 0%;">Bryggeri navn:</p>
+                                <p style="font-weight: bold; font-size: 14px;">Bryggeri navn:</p>
                                 <p>{{bryggeri.navn}}</p>
                             </div>
                             <div *ngIf="kontaktOplysninger">
-                                <p style="font-weight: bold; font-size:  14px; margin: 0%;">Addresse:</p>
+                                <p style="font-weight: bold; font-size:  14px;">Addresse:</p>
                                 <p>{{kontaktOplysninger.addresselinje1}}</p>
-                                <p style="font-weight: bold; font-size:  14px; margin: 0%;">Email:</p>
+                                <p style="font-weight: bold; font-size:  14px; ">Email:</p>
                                 <p>{{kontaktOplysninger.email}}</p>
-                                <p style="font-weight: bold; font-size:  14px; margin: 0%;">Telefon nr:</p>
+                                <p style="font-weight: bold; font-size:  14px; ">Telefon nr:</p>
                                 <p>{{kontaktOplysninger.telefonNr}}</p>
                             </div>
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
             </div>
-             <div>
-              <h2 style="font-weight: bold; font-size: medium; margin: 20px;" class="containStyle centers">Send din Kommanter og Rating:</h2>
-              <form [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 80%;" >
 
-                <mat-form-field  appearance="fill" class="example-full-width">
+            <div>
+              <h2 style="font-weight: bold; font-size: small; margin: 10px;" class="containStyle centers">Send din Kommanter og Rating:</h2>
+              <form [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 100%;" *ngIf="kommanter" >
 
-                  <input matInput  placeholder="Skrive din kommanter her" formControlName="tekst" [(ngModel)]="kommanter.tekst" >
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="example-full-width">
+                   <!-- <div [formGroupName]="KommenterForm.tekst"]> -->
+                    <mat-form-field  appearance="fill" class="example-full-width">
+                    <input matInput [(ngModel)]="kommanter.tekst" formControlName="tekst"  class="input-control" placeholder="Skrive din kommanter her">
+                    </mat-form-field>
+                  <!-- </div> -->
+                   <!-- <div [formGroupName]="KommenterForm.rating"]> -->
+                  <mat-form-field appearance="fill" class="example-full-width" >
+                    <!-- <input matInput type="number" [(ngModel)]="kommanter.rating" min="0" max="5" formControlName="rating"  class="input-control" placeholder="Rating mellem 0 til 5" > -->
+                    <input matInput type="number" min="0" max="5"  (change)="onChange($event)" (ngModelChange)="ngModelDataShow($event)" formControlName="rating"  class="form-control" placeholder="Rating mellem 0 til 5" >
+                    <!-- <mat-label>Select rating mellem 0 til 5</mat-label> -->
+            <!--                   <mat-select matNativeControl formControlName="rating" name="rating" [(ngModel)]="kommanter.rating" >
+                      <mat-option value="0" selected>0</mat-option>
+                      <mat-option value="1">1</mat-option>
+                      <mat-option value="2">2</mat-option>
+                      <mat-option value="3">3</mat-option>
+                      <mat-option value="4">4</mat-option>
+                      <mat-option value="5">5</mat-option>
+                    </mat-select> -->
+                  </mat-form-field>
+                  <button mat-raised-button type="submit" (click)="onSendKommanter()" class="login-btn" class="btnMainStyle">Send Kommanter</button>
+                <!-- </div> -->
+                </form>
+                  </div>
 
-                  <input matInput type="number" placeholder="Rating mellem 0 til 5" formControlName="rating" [(ngModel)]="kommanter.rating" >
-                </mat-form-field>
-                <button mat-raised-button type="submit" (click)="onSendKommanter()" class="login-btn" class="btnMainStyle">Send Kommanter</button>
 
-              </form>
-            </div>
+
 
 
 
@@ -76,3 +92,4 @@
     </table>
 
 </mat-card>
+

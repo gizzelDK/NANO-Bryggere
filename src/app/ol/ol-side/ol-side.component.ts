@@ -1,5 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
@@ -26,12 +26,14 @@ export class OlSideComponent implements OnInit {
   kontaktOplysningerId: number;
   id = this.actRoute.snapshot.params['id'];
   KommenterForm:any = new FormGroup({});
+  valueRating:number;
  @Input() kommanter={olId:0, tekst:'', forfatterId:0 , rating:0}
 
 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
+    private _formBuilder: FormBuilder,
     public router: Router,
     public actRoute: ActivatedRoute
   ) { }
@@ -49,12 +51,21 @@ export class OlSideComponent implements OnInit {
     this.onHentOl();
     this.onHentKontaktOplysninger();
     this.onHentBryggeri();
-    
-    this.KommenterForm= new FormGroup({
+
+ /*    this.KommenterForm= new FormGroup({
       tekst:new FormControl(''),
-      rating:new FormGroup('',[Validators.min(0), Validators.max(5)])
+     // rating:new FormGroup('',[Validators.min(0), Validators.max(5)])
+      rating:new FormGroup('')
+
+    }); */
+    this.KommenterForm= this._formBuilder.group({
+      'tekst':new FormControl(''),
+     // rating:new FormGroup('',[Validators.min(0), Validators.max(5)])
+      'rating':new FormGroup('')
 
     });
+
+
 
   }
 
@@ -73,9 +84,9 @@ export class OlSideComponent implements OnInit {
   }
 
   onHentOl(){
-    return this.restApi.getData(this.id, this.endpointO).subscribe((data) => {
+    return this.restApi.getData(this.olId, this.endpointO).subscribe((data) => {
       this.ol = data;
-      console.log('infoOl..', data);
+      console.log('infoOl..', this.ol.id);
     })
   }
 
@@ -86,12 +97,41 @@ export class OlSideComponent implements OnInit {
     this.router.navigate(['../øl/øl-søgning']);
   };
 
+  onChange($event:any){
+    console.log("On change value:"+$event.target.value);
+  }
+  ngModelDataShow($event:any){
+    this.valueRating=+$event;
+    console.log("Ng Model On change value:"+$event);
+  }
+
   onSendKommanter(){
     this.kommanter.forfatterId=this.brugerId;
     this.kommanter.olId=this.olId;
+/*     if( this.kommanter.rating == 0){
+      this.kommanter.rating=0;
+    }
+    if( this.kommanter.rating ==1){
+      this.kommanter.rating=1;
+    }
+    if( this.kommanter.rating ==2){
+      this.kommanter.rating=2;
+    }
+    if( this.kommanter.rating ==3){
+      this.kommanter.rating=3;
+    }
+    if( this.kommanter.rating ==4){
+      this.kommanter.rating=4;
+    }
+    if( this.kommanter.rating ==5){
+      this.kommanter.rating=5;
+    } */
+   // this.kommanter.rating= parseInt(this.kommanter.rating.toString());
+   this.kommanter.rating=this.valueRating;
+    console.log('drop.....', this.kommanter.rating);
     this.restApi.createData(this.kommanter, this.endpointKom).subscribe((data) =>{
       this.kommanterId=data.id;
-      console.log('kommanter....', this.kommanterId);
+      console.log('kommanter....', data);
     })
 
 

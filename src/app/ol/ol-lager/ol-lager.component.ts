@@ -11,7 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlLagerComponent implements OnInit {
   LagerForm: FormGroup;
   endpointO = '/Øl';
-  selected = '';
+ // selected = '';
   ol: any;
   olId = this.actRoute.snapshot.params['id'];
   olListe : any = {};
