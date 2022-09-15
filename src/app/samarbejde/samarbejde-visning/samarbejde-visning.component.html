@@ -1,60 +1,57 @@
-<div class="main" id="imgeUp" *ngIf="ol">
-    <mat-toolbar style="background: linear-gradient(#6c6c6d, #cfd4d6);">
-        <h1 class="centers">Samarbejde</h1>
-    </mat-toolbar>
+<div class="main">
+    <mat-card>
+        <mat-toolbar style="background: linear-gradient(#6c6c6d, #cfd4d6);">
+        <!-- <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));"> -->
+            <form class="example-form" style="justify-content: center; width: 100%;">
+                <mat-form-field class="txtHeader">
+                    <input matInput type="search" placeholder="Find samarbejde" [(ngModel)]="searchkey"
+                        (ngModelChange)="onFindSamarbejde()" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </form>
+        </mat-toolbar>
+    </mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel style="margin-top: 10px;">
+            <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 55%;"
+                [disabled]="clickButton" (click)="clickButton=true" class="centers">
+                <!-- <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 45%;"
+                class="centers" hideToggle="true"> -->
                 <mat-expansion-panel-header
-                    style="background: linear-gradient(#6c6c6d, #cfd4d6); justify-content: center; width: 100%;">
-                    <mat-panel-title class="centers" style="justify-content: center;">
-                        Øl Navn: {{ol.navn}}
+                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
+                    <mat-panel-title style="justify-content: center; color: black;" class="centers">
+                        <span class="titelStyle" style="margin-right: 10px;">Titel:</span>
+                        <span>{{samarbejde.titel}}</span>
                     </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletOl(ol.id)">Slet Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterOl(ol.id)">Rediger Øl</button>
+                    <mat-action-row class="cards" style="justify-content: center;">
+                        <button mat-button class="txtBtn" style="color: black;" (click)="onVisSamarbejde(samarbejde.id)">Vis
+                            samarbejde</button> 
+                        <button mat-button class="txtBtn" style="color: black;" (click)="onSletSamarbejde(samarbejde.id)">Slet
+                            samarbejde</button> 
+                        <button mat-button class="txtBtn" style="color: black;" (click)="onOpdaterSamarbejde(samarbejde.id)">Opdater
+                            samarbejde</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <mat-card class="containStyle">
-                    <span>Type:</span>
-                    <p>{{ol.type}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Smag:</span>
-                    <p>{{ol.smag}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Land:</span>
-                    <p>{{ol.land}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Øl Billed:</span>
-                    <img [src]="ol.olBillede" alt="" style="width: 20%; height: 20%;">
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Beskrivelse:</span>
-                    <p>{{ol.beskrivelse}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Procent:</span>
-                    <p>{{ol.procent}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Procent:</span>
-                    <p>{{ol.aargang}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Flaske antal:</span>
-                    <p>{{ol.flaskeAntal}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Tønde antal:</span>
-                    <p>{{ol.tondeAntal}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <span>Flaske reserve antal:</span>
-                    <p>{{ol.flaskeResAntal}}</p>
-                </mat-card>
+                <!-- <div *ngIf="samarbejdeList"> -->
+                    <mat-card class="containStyle">
+                        <p class="titelStyle"> Titel:</p>
+                        <p>{{samarbejde.titel}}</p>
+                    </mat-card>
+                    <mat-card class="containStyle">
+                        <p class="titelStyle">Samarbejde billede:</p>
+                        <p><img [src]="samarbejde.olBillede" alt="" style="width: 40%; height: 40%;"></p>
+                    </mat-card>
+                    <div>
+                        <mat-card class="containStyle">
+                            <p class="titelStyle">Brygger:</p>
+                            <div *ngIf="bryggriList1">
+                                <p>{{bryggriList1.navn}} </p>
+                            </div>
+                            <div *ngIf="bryggriList2">
+                                <p>{{bryggriList2.navn}}</p>
+                            </div>
+                        </mat-card>
+                    </div>
+                <!-- </div> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>
