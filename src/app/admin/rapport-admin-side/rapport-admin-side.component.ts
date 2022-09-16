@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Rapport } from 'src/app/Models/Rapport';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 
 @Component({
   selector: 'app-rapport-admin-side',
@@ -35,7 +36,8 @@ export class RapportAdminSideComponent implements OnInit {
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class RapportAdminSideComponent implements OnInit {
     //   for (let i = 0; i < res.length; i++) {
     //     if(res.RapportId)
     //     {
-    //       this.rapports = res[i]; 
+    //       this.rapports = res[i];
     //     }
     //   }
     // });
@@ -82,9 +84,9 @@ export class RapportAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getRapportByType(this.searchkeyType, this.endpointR).subscribe((data) => {
-      //   return this.rapports = data;
-      // });
+       this.searchService.getRapportByType(this.searchkeyType, this.endpointR).subscribe((data) => {
+         return this.rapports = data;
+       });
     }
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Event } from 'src/app/Models/Event';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 import { OpdaterEventDialogBoxComponent } from '../opdater-event-dialog-box/opdater-event-dialog-box.component';
 import { OpretEventDialogBoxComponent } from '../opret-event-dialog-box/opret-event-dialog-box.component';
 
@@ -30,7 +31,8 @@ export class EventAdminSideComponent implements OnInit {
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -71,9 +73,9 @@ export class EventAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getEventParticipantsByUsername(this.searchkeyDeltagelse.toLowerCase(), this.endpointE).subscribe((data) => {
-      //   return this.events = data;
-      // })
+       this.searchService.getEventParticipantsByUsername(this.searchkeyDeltagelse.toLowerCase(), this.endpointE).subscribe((data) => {
+         return this.events = data;
+       })
     }
   }
 

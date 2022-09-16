@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -19,7 +19,7 @@ export class OlAdminSideComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute
   ) { }
@@ -45,14 +45,14 @@ export class OlAdminSideComponent implements OnInit {
   }
 
   onSletOl(id: any) {
-    // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result)
-    //   {
-    //     this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // });
+     let dialogRef = this.dialog.open(SletDialogBoxComponent);
+     dialogRef.afterClosed().subscribe(result => {
+       if(result)
+       {
+         this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+           this.ngOnInit();
+         })
+       }
+     });
   };
 }

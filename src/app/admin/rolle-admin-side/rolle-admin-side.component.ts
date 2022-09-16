@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 
 @Component({
   selector: 'app-rolle-admin-side',
@@ -27,7 +28,8 @@ export class RolleAdminSideComponent implements OnInit {
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -45,18 +47,15 @@ export class RolleAdminSideComponent implements OnInit {
       this.rolleId = res.rolleId;
       this.restApi.getData(this.rolleId, this.endpointR).subscribe((res) => {
         this.rolle = res;
-         if(this.rolle.rolleNavn == 300){
+         if(this.rolle.rolleNavn == 20){
           this.rolleName = 'Administrator'
         }
-        if(this.rolle.rolleNavn == 200){
-          this.rolleName = 'Moderator'
-        }
-        if(this.rolle.rolleNavn == 100){
+        if(this.rolle.rolleNavn == 10){
           this.rolleName = 'Bruger'
         }
         if(this.rolle.rolleNavn == 0){
           this.rolleName = 'Anonymbruger'
-        } 
+        }
       })
     })
   }
@@ -80,14 +79,12 @@ export class RolleAdminSideComponent implements OnInit {
       if (this.searchkeyRolleNavn.toLowerCase() == 'anonymbruger')
         this.level = 0;
       if (this.searchkeyRolleNavn.toLowerCase() == 'bruger')
-        this.level = 100;
-      if (this.searchkeyRolleNavn.toLowerCase() == 'moderator')
-        this.level = 200;
+        this.level = 10;
       if (this.searchkeyRolleNavn.toLowerCase() == 'administrator')
-        this.level = 300;
-      // this.restApi.getDataByLevel(this.level, this.endpointB).subscribe((data) => {
-      //   return this.bruger = data;
-      // })
+        this.level = 20;
+       this.searchService.getDataByLevel(this.level, this.endpointB).subscribe((data) => {
+         return this.bruger = data;
+       })
     }
   }
 

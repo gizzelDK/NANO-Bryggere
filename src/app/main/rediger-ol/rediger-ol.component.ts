@@ -17,7 +17,7 @@ export class RedigerOlComponent implements OnInit {
   argang: Date;
 
   constructor(
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     private router: Router,
     public actRoute: ActivatedRoute
   ) { }
@@ -34,7 +34,6 @@ export class RedigerOlComponent implements OnInit {
       process: new FormControl('', Validators.required),
       olBilled: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
-      // billed: new FormControl('', Validators.required),
       antal: new FormControl('', Validators.required)
     });
     this.onHentOl();

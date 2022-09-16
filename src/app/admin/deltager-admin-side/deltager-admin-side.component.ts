@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 
 @Component({
   selector: 'app-deltager-admin-side',
@@ -22,7 +23,8 @@ export class DeltagerAdminSideComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -54,9 +56,9 @@ export class DeltagerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getEventParticipantsByUsername(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
-      //   return this.deltager=res
-      // })
+       this.searchService.getEventParticipantsByUsername(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
+         return this.deltager=res
+       })
     }
   }
 

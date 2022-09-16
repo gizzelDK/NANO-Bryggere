@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-// import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+ import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 
 @Component({
   selector: 'app-bryggeri-admin-side',
@@ -14,8 +15,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bryggeri-admin-side.component.css']
 })
 export class BryggeriAdminSideComponent implements OnInit {
-  // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  // dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   bryggeri: any;
   bryggeritest: Bryggeri;
   brugertest: any;
@@ -35,7 +36,8 @@ export class BryggeriAdminSideComponent implements OnInit {
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -75,7 +77,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   //#region find
   //vi skal kigge på det efter oprette samarbejde component
   onFindBryggeriSamarbejde() {
-    /*    if(this.searchkeyBryggeriSamarbejde == ''){
+ /*        if(this.searchkeyBryggeriSamarbejde == ''){
          this.ngOnInit();
        }
        else{
@@ -91,15 +93,15 @@ export class BryggeriAdminSideComponent implements OnInit {
   //#endregion
 
   onSletBryggeri(id: any) {
-    // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.onOpdaterBruger(id);
-    //     this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // });
+     let dialogRef = this.dialog.open(SletDialogBoxComponent);
+     dialogRef.afterClosed().subscribe(result => {
+       if (result) {
+         this.onOpdaterBruger(id);
+         this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+           this.ngOnInit();
+         })
+       }
+     });
   };
 
   //SKAL TESTES
@@ -130,15 +132,15 @@ export class BryggeriAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     localStorage.setItem('bryggeriId', id.toString());
-    // this.dialogRefOpdaterBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpdaterBryggeri.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.bryggeriListe = result;
-    //     this.restApi.updateData(id, this.endpointB, this.bryggeriListe).subscribe((data) => {
-    //       this.onVisBryggeri(id);
-    //       this.onHentBryggeri();
-    //     })
-    //   }
-    // });
+     this.dialogRefOpdaterBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+     this.dialogRefOpdaterBryggeri.afterClosed().subscribe(result => {
+       if (result) {
+         this.bryggeriListe = result;
+         this.restApi.updateData(id, this.endpointB, this.bryggeriListe).subscribe((data) => {
+           this.onVisBryggeri(id);
+           this.onHentBryggeri();
+         })
+      }
+     });
   };
 }
