@@ -1,10 +1,11 @@
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-// import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-// import { OpdaterSamarbejdeDialogBoxComponent } from '../opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
+import { OpdaterSamarbejdeDialogBoxComponent } from '../opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
 // import { OpretSamarbejdeDialogBoxComponent } from '../opret-samarbejde-dialog-box/opret-samarbejde-dialog-box.component';
 
 @Component({
@@ -13,9 +14,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./samarbejde-admin-side.component.css']
 })
 export class SamarbejdeAdminSideComponent implements OnInit {
-  // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   // dialogRefOpretSamarbejde: MatDialogRef<OpretSamarbejdeDialogBoxComponent>;
-  // dialogRefOpdaterSamarbejde: MatDialogRef<OpdaterSamarbejdeDialogBoxComponent>;
+  dialogRefOpdaterSamarbejde: MatDialogRef<OpdaterSamarbejdeDialogBoxComponent>;
   searchkeySamarbejdeNavn: string;
   searchkeySamarbejdeBryggeri: string;
   clickButton: boolean = true;
@@ -32,6 +33,7 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -77,15 +79,15 @@ export class SamarbejdeAdminSideComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height = 'auto';
-    // this.dialogRefOpdaterSamarbejde = this.dialog.open(OpdaterSamarbejdeDialogBoxComponent, dialogConfig);
-    // this.dialogRefOpdaterSamarbejde.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.samarbejdeListe = result;
-    //     this.restApi.updateData(id, this.endpointS, this.samarbejdeListe).subscribe((data) => {
-    //       this.ngOnInit();
-    //     })
-    //   }
-    // })
+     this.dialogRefOpdaterSamarbejde = this.dialog.open(OpdaterSamarbejdeDialogBoxComponent, dialogConfig);
+     this.dialogRefOpdaterSamarbejde.afterClosed().subscribe(result => {
+       if (result) {
+         this.samarbejdeListe = result;
+         this.restApi.updateData(id, this.endpointS, this.samarbejdeListe).subscribe((data) => {
+           this.ngOnInit();
+         })
+       }
+     })
   }
 
   onSletSamarbejde(id:any) {
@@ -93,14 +95,14 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       alert('Der er et problem');
     }
     else {
-      // let dialogRef = this.dialog.open(SletDialogBoxComponent);
-      // dialogRef.afterClosed().subscribe(result => {
-      //   if (result) {
-      //     this.restApi.deleteData(id, this.endpointS).subscribe((data) => {
-      //       this.ngOnInit();
-      //     })
-      //   }
-      // });
+       let dialogRef = this.dialog.open(SletDialogBoxComponent);
+       dialogRef.afterClosed().subscribe(result => {
+         if (result) {
+           this.restApi.deleteData(id, this.endpointS).subscribe((data) => {
+             this.ngOnInit();
+           })
+         }
+       });
     }
   }
 
@@ -114,15 +116,15 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       })
     }
   }
-  
+
   onFindSamarbejdeOl() {
     if (this.searchkeySamarbejdeBryggeri == '') {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getDataByEnavn(this.searchkeySamarbejdeBryggeri, this.endpointS).subscribe((data) => {
-      //   return this.samarbejder = data;
-      // })
+       this.searchService.getDataByEnavn(this.searchkeySamarbejdeBryggeri, this.endpointS).subscribe((data) => {
+         return this.samarbejder = data;
+       })
     }
   }
 }

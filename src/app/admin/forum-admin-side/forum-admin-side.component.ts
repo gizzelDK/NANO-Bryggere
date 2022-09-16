@@ -6,6 +6,7 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
 import { OpretForumDialogBoxComponent } from '../opret-forum-dialog-box/opret-forum-dialog-box.component';
 
@@ -37,7 +38,7 @@ export class ForumAdminSideComponent implements OnInit {
     public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +56,7 @@ export class ForumAdminSideComponent implements OnInit {
     })
   }
   onHentRolle(){
-    this.restApi.getDatas(this.endpointR).subscribe(roller =>{ 
+    this.restApi.getDatas(this.endpointR).subscribe(roller =>{
       this.rolleListe = roller
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
     })
@@ -82,9 +83,9 @@ export class ForumAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getUserByEventsTitle(this.searchkey, this.endpointF).subscribe(data => {
-      //   this.forums = data;
-      // })
+       this.searchService.getUserByEventsTitle(this.searchkey, this.endpointF).subscribe(data => {
+         this.forums = data;
+       })
     }
   }
 
@@ -133,7 +134,7 @@ export class ForumAdminSideComponent implements OnInit {
       alert('alle beskeder i forumet skal slettes først!');
     }
   }
-  
+
   onSletPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(data => {
       if(this.rolle ===300) {

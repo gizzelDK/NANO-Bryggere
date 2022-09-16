@@ -10,5 +10,6 @@ export class Kontaktoplysninger {
   public by: string;
   public email: string;
   public telefonNr: string;
+  public offentlig : boolean;
   public bryggeri:Bryggeri;
 }

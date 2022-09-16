@@ -7,7 +7,8 @@ import { retry, catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SearchServiceService {
-  apiUrl = 'https://localhost:7142/api';
+  apiUrl = 'https://localhost:7252/api';
+  
   constructor(private http: HttpClient) { }
 
   httpOptions = {

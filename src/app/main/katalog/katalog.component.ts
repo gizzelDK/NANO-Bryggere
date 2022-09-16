@@ -17,7 +17,7 @@ export class KatalogComponent implements OnInit {
   ol: Øl;
   endpointO = '/Øl';
   endpointKom='/Kommentars';
-  searchkey: string;
+//searchkey: string;
   bryggeriId: number;
   bryggeriListe: any;
   argang: Date;
@@ -26,6 +26,8 @@ export class KatalogComponent implements OnInit {
   olId:number;
   arrayList = new Array();
   avg:number;
+  id = this.actRoute.snapshot.params['id'];
+  ratingList:any;
 
   constructor(
     public dialog: MatDialog,
@@ -37,6 +39,7 @@ export class KatalogComponent implements OnInit {
   ngOnInit(): void {
     this.onHentOl();
     this.onHentKammanter();
+
 
   }
   onHentOl() {
@@ -78,29 +81,39 @@ export class KatalogComponent implements OnInit {
        this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
         this.kommanterList=data.filter((res:any) => {
           return res.brugerId != this.brugerId;
-//&& res.olId == this.olId
         });
-        console.log('kommanterIfno.....', this.kommanterList);
-        for(var rating of this.kommanterList){
-          console.log('ratingList......', rating.rating);
-          this.arrayList.push(rating.rating);
-        }
-       console.log('hiii',this.arrayList);
-       var sum =0;
-
-       for(var i=0; i<this.arrayList.length; i++ ){
-         sum += parseInt(this.arrayList[i]);
-
-       }
-       console.log('sum......', sum);
-         this.avg = sum / this.arrayList.length;
-       console.log('avg......', this.avg);
       })
     }
+  }
+
+
+  onVisDetajler(id:any){
+    console.log('id...' ,id);
+      this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
+       this.ratingList=data.filter((res:any) => {
+         return res.olId === id;
+       });
+       console.log('ratingList.....', this.ratingList);
+       for(var rating of this.ratingList){
+         this.arrayList.push(rating.rating);
+       }
+      console.log('this.arrayList',this.arrayList);
+      var sum =0;
+      for(var i=0; i<this.arrayList.length; i++ ){
+        sum += parseInt(this.arrayList[i]);
+      }
+      console.log('sum......', sum);
+        this.avg = sum / this.arrayList.length;
+      console.log('avg......', this.avg);
+      this.arrayList=[];
+      console.log('tomtarray......', this.arrayList);
+     })
 
   }
 
-  onFindOl() {
+
+
+/*   onFindOl() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }
@@ -109,5 +122,5 @@ export class KatalogComponent implements OnInit {
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
-  }
+  } */
 }

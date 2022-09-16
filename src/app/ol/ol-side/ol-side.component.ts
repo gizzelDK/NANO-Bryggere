@@ -52,15 +52,8 @@ export class OlSideComponent implements OnInit {
     this.onHentKontaktOplysninger();
     this.onHentBryggeri();
 
- /*    this.KommenterForm= new FormGroup({
-      tekst:new FormControl(''),
-     // rating:new FormGroup('',[Validators.min(0), Validators.max(5)])
-      rating:new FormGroup('')
-
-    }); */
     this.KommenterForm= this._formBuilder.group({
       'tekst':new FormControl(''),
-     // rating:new FormGroup('',[Validators.min(0), Validators.max(5)])
       'rating':new FormGroup('')
 
     });
@@ -108,30 +101,12 @@ export class OlSideComponent implements OnInit {
   onSendKommanter(){
     this.kommanter.forfatterId=this.brugerId;
     this.kommanter.olId=this.olId;
-/*     if( this.kommanter.rating == 0){
-      this.kommanter.rating=0;
-    }
-    if( this.kommanter.rating ==1){
-      this.kommanter.rating=1;
-    }
-    if( this.kommanter.rating ==2){
-      this.kommanter.rating=2;
-    }
-    if( this.kommanter.rating ==3){
-      this.kommanter.rating=3;
-    }
-    if( this.kommanter.rating ==4){
-      this.kommanter.rating=4;
-    }
-    if( this.kommanter.rating ==5){
-      this.kommanter.rating=5;
-    } */
-   // this.kommanter.rating= parseInt(this.kommanter.rating.toString());
    this.kommanter.rating=this.valueRating;
     console.log('drop.....', this.kommanter.rating);
     this.restApi.createData(this.kommanter, this.endpointKom).subscribe((data) =>{
       this.kommanterId=data.id;
       console.log('kommanter....', data);
+      this.KommenterForm='';
     })
 
 

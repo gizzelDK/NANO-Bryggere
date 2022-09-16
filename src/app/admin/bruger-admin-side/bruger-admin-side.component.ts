@@ -1,3 +1,4 @@
+import { SearchServiceService } from 'src/app/shared/search-service.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,7 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
-// import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+
 
 @Component({
   selector: 'app-bruger-admin-side',
@@ -13,8 +16,8 @@ import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
   styleUrls: ['./bruger-admin-side.component.css']
 })
 export class BrugerAdminSideComponent implements OnInit {
-  // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  // dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
+   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+   dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   brugere: Bruger[];
   bruger = new Bruger();
   endpointB = '/Brugers'; //endpointB
@@ -37,7 +40,8 @@ export class BrugerAdminSideComponent implements OnInit {
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public searchService: SearchServiceService
   ) { }
 
   ngOnInit(): void {
@@ -77,9 +81,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
-      //   return this.brugere = data;
-      // })
+       this.searchService.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
+         return this.brugere = data;
+       })
     }
   }
 
@@ -88,9 +92,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
-      //   return this.brugere = data;
-      // })
+       this.searchService.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
+         return this.brugere = data;
+       })
     }
   }
 
@@ -99,9 +103,9 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      // this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
-      //   return this.brugere = data;
-      // })
+       this.searchService.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
+         return this.brugere = data;
+       })
     }
   }
 
@@ -142,15 +146,15 @@ export class BrugerAdminSideComponent implements OnInit {
     this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
       localStorage.setItem('KontaktOplysningerId', this.kontaktOplysningerId.toString());
-      // this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-      // this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
-      //   if (result) {
-      //     this.oplysningsListe = result;
-      //     this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
-      //       this.onVisBruger(id);
-      //     })
-      //   }
-      // });
+       this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+       this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
+         if (result) {
+           this.oplysningsListe = result;
+           this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
+             this.onVisBruger(id);
+           })
+         }
+       });
     })
   };
 }
