@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PwDto } from 'src/app/Models/pwDto';
+import { PwDto } from 'src/app/Models/PwDto';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
