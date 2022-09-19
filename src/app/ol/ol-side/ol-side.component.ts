@@ -27,6 +27,7 @@ export class OlSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   KommenterForm:any = new FormGroup({});
   valueRating:number;
+  offentligProfil:boolean;
  @Input() kommanter={olId:0, tekst:'', forfatterId:0 , rating:0}
 
 
@@ -52,9 +53,9 @@ export class OlSideComponent implements OnInit {
     this.onHentKontaktOplysninger();
     this.onHentBryggeri();
 
-    this.KommenterForm= this._formBuilder.group({
-      'tekst':new FormControl(''),
-      'rating':new FormGroup('')
+    this.KommenterForm= new FormGroup({
+      tekst:new FormControl(''),
+      rating:new FormControl('')
 
     });
 
@@ -65,14 +66,18 @@ export class OlSideComponent implements OnInit {
   onHentKontaktOplysninger(){
     return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
       this.kontaktOplysninger = data;
-      console.log('infokont..', data);
+      console.log('infokont..', this.kontaktOplysninger);
+
+
     })
   }
 
   onHentBryggeri(){
     return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
       this.bryggeri = data;
-      console.log('infoBryggeri..', data);
+      console.log('infoBryggeri..',  this.bryggeri);
+      this.offentligProfil=this.bryggeri.kontaktoplysninger.offentlig;
+      console.log('offentligProfil..', this.offentligProfil);
     })
   }
 
@@ -87,7 +92,7 @@ export class OlSideComponent implements OnInit {
   onTilbage() {
     localStorage.removeItem('olKontaktOplysningerId');
     localStorage.removeItem('olBryggeriId');
-    this.router.navigate(['../øl/øl-søgning']);
+    this.router.navigate(['../ol/ol-sogning']);
   };
 
   onChange($event:any){
@@ -106,7 +111,10 @@ export class OlSideComponent implements OnInit {
     this.restApi.createData(this.kommanter, this.endpointKom).subscribe((data) =>{
       this.kommanterId=data.id;
       console.log('kommanter....', data);
-      this.KommenterForm='';
+      this.KommenterForm.reset({
+        'tekst':'',
+        'rating':''
+      });
     })
 
 

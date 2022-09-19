@@ -48,10 +48,11 @@
       <input matInput formControlName="byCtl" placeholder="{{kontaktOplysningsListe.by}}"
         [(ngModel)]="kontaktOplysningsListe.by">
     </mat-form-field>
-     <!-- <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Brugernavn:</mat-label>
-        <input matInput formControlName="BrugernavnCtl" placeholder="{{brugerListe.brugernavn}}" [(ngModel)]="brugerListe.brugernavn">
-      </mat-form-field> -->
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Offentlig:</mat-label>
+        <input matInput formControlName="offentligCtl" placeholder="{{kontaktOplysningsListe.offentlig}}"
+        [(ngModel)]="kontaktOplysningsListe.offentlig">
+      </mat-form-field>
     <div mat-dialog-actions class="btn-container">
       <button mat-button (click)="dialogRefUpdateProfile.close(false)">Anuller</button>
       <button mat-button cdkFocusInitial [mat-dialog-close]="kontaktOplysningsListe">Gem ændringer</button>
