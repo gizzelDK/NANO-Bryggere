@@ -37,63 +37,6 @@ export class RestApiService {
     )
   }
 
-/*  getDataByEmail(email:any, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/email/' + email)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getDataByEnavn(enavn:any, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/enavn/' + enavn)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getDataByLevel(level:number, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/level/' + level)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getEventParticipantsByUsername(brugernavn:string, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/brugernavn/' + brugernavn)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getUserByEventsTitle(titel:string, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/titel/' + titel)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getRapportByType(titel:string, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/titel/' + titel)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getParticipantByEventsTitle(titel : string , endpoint:string) : Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint + '/eventTitel/' + titel)
-   .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  } */
-
-
   createData(data: any, endpoint: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + endpoint, JSON.stringify(data), this.httpOptions)
     .pipe(
@@ -108,6 +51,14 @@ export class RestApiService {
       retry(1),
       catchError(this.handleError)
     )
+  }
+
+  //https://localhost:7252/api/Brugers/Offentlighed/2?setting=false
+  ChangeStatus(id:any, endpoint:string,offentlige:boolean):Observable<any>{
+    return this.http.put<any>(this.apiUrl+endpoint+'/Offentlighed/'+ id+ '?setting='+offentlige, JSON.stringify(offentlige), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError))
   }
 
   deleteData(id: any, endpoint: string){

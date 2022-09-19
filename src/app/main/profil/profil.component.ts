@@ -23,6 +23,7 @@ export class ProfilComponent implements OnInit {
   endpointBru = '/Brugers';
   endpointR = '/Rolles';
 
+
   kontaktOplysningsListe: any;
   bryggeriLogo: any;
   rolleListe: any;
@@ -37,11 +38,16 @@ export class ProfilComponent implements OnInit {
   visFillerOB = false;
   visFillerB = false;
   visFillerP = true;
+  visOffentlig=true;
   brugerListe: Bruger;
   url: string;
+  Offentligvisning=true;
+
 
   @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
+
   bryggeriOprettelsesForm: any = new FormGroup({});
+  ChangeOffentligStatusForm:any=new FormGroup({});
 
   constructor(
     public dialog: MatDialog,
@@ -65,6 +71,10 @@ export class ProfilComponent implements OnInit {
       'navn': new FormControl('', Validators.required),
       'beskrivelse': new FormControl(''),
       'kontaktOplysningerId': new FormControl('')
+    });
+
+    this.ChangeOffentligStatusForm=this._formBuilder.group({
+      'offentligStatus':new FormControl('')
     });
 
   }
@@ -231,6 +241,16 @@ export class ProfilComponent implements OnInit {
         })
       }
     });
+  }
+
+  onChangeStatus(){
+    console.log('offentlig......', this.brugerListe.kontaktoplysninger.offentlig);
+    console.log('brugerId......', this.brugerId);
+    this.restApi.ChangeStatus(this.brugerId, this.endpointBru , this.brugerListe.kontaktoplysninger.offentlig).subscribe((data) =>{
+
+      console.log('nyedata..', data);
+    })
+
   }
 
   onClose() {

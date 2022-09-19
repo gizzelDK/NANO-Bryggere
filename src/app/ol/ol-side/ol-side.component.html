@@ -33,7 +33,7 @@
 
                         </div>
                     </mat-grid-tile>
-                    <mat-grid-tile style=" margin-top:5px; height: 100%;" >
+                    <mat-grid-tile style=" margin-top:5px; height: 100%;" *ngIf="this.offentligProfil">
                         <div>
                             <div *ngIf="bryggeri">
                                 <h2 style="font-weight: bold;">Brygger info:</h2>
@@ -53,9 +53,9 @@
                 </mat-grid-list>
             </div>
 
-            <div>
+            <div >
               <h2 style="font-weight: bold; font-size: small; margin: 10px;" class="containStyle centers">Send din Kommanter og Rating:</h2>
-              <form [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 100%;" *ngIf="kommanter" >
+              <form  [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 100%;" *ngIf="KommenterForm" >
                     <mat-form-field  appearance="fill" class="example-full-width">
                     <input matInput [(ngModel)]="kommanter.tekst" formControlName="tekst"  class="input-control" placeholder="Skrive din kommanter her">
                     </mat-form-field>

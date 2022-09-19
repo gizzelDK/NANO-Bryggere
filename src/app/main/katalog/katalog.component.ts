@@ -76,7 +76,7 @@ export class KatalogComponent implements OnInit {
      });
   };
 
-  onHentKammanter(){
+/*   onHentKammanter(){
     if(this.brugerId=JSON.parse(localStorage.getItem('brugerId') || '{}')){
        this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
         this.kommanterList=data.filter((res:any) => {
@@ -84,9 +84,21 @@ export class KatalogComponent implements OnInit {
         });
       })
     }
+  } */
+
+  onHentKammanter(){
+    if(this.brugerId=JSON.parse(localStorage.getItem('brugerId') || '{}')){
+       this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
+       this.kommanterList=data.filter((res:any) => {
+        console.log('kommanterList.....', res);
+       // console.log('kommanterList.....', this.kommanterList);
+       return res.brugerId != this.brugerId;
+        });
+      })
+    }
   }
 
-
+  //vise øl detajler og regne rating
   onVisDetajler(id:any){
     console.log('id...' ,id);
       this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
