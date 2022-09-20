@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
@@ -14,16 +14,18 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
+  @Input() insertPhoto = {certifikatBilled: '', cstatus: '', brugerId: 0}
   endpointB = '/Brugers';
   endpointK = '/KontaktOplysningers';
   endpointC = '/Certifikats';
-  certifikat: Certifikat;
+  certifikat: Certifikat = new Certifikat();
   bruger: Bruger;
   kontakt: Kontaktoplysninger;
   brugerList: Bruger[];
   certifikatId: number;
   brugerId: number;
   kontaktId: number;
+  afta: string;
   file: any;
   url: string = "assets/images/Profil billede.png";
 
@@ -58,17 +60,23 @@ onHentBruger() {
         // this.bruger.certifikatBilled = e.target.result;
         // this.bruger.certifikatStatus = 2; 
         this.certifikat.certifikatBilled = e.target.result;
-        this.certifikat.cStatus = 2;
-        console.log(this.bruger);
+        this.insertPhoto.certifikatBilled = e.target.result;
+        // this.certifikat.cStatus = 2;
+        console.log("reader",this.insertPhoto.certifikatBilled);
       }
     }
   };
 
   onUploadCertifikat() {
+    // this.certifikat.certifikatBilled = this.url;
     // if (this.bruger.certifikatStatus == 2) {
     //   return;
     // }
-    this.restApi.updateData(this.brugerId, this.endpointB, this.certifikat).subscribe((data) => {
+    console.log("test1",this.certifikat.certifikatBilled);
+    this.insertPhoto.cstatus = "VentTilGodkendt";
+    this.insertPhoto.brugerId =  JSON.parse(localStorage.getItem('brugerId') || '{}');
+    console.log("test2",this.insertPhoto);
+    this.restApi.createData(this.insertPhoto, this.endpointC).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });
   }

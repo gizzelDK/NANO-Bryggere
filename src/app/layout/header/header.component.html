@@ -80,6 +80,9 @@
         <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/ol/ol-opskrift']">
           <span><a>Opskrift</a></span>
         </button>
+        <button mat-menu-item [routerLink]="['/main/find-brygger']">
+          <span><a>Find brygger</a></span>
+        </button>
       </mat-menu>
 
       <mat-menu #samarbejde="matMenu">

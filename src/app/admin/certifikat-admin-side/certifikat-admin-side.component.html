@@ -17,12 +17,12 @@
                     <mat-expansion-panel-header
                         style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
-                            <span style="font-weight: bold; margin-right: 20px; color: black;"> Brugernavn: </span>
-                            <span style="color: black;">{{certifikat.brugernavn}}</span>
+                            <span style="font-weight: bold; margin-right: 20px; color: black;"> Brugerid: </span>
+                            <span style="color: black;">{{certifikat.brugerId}}</span>
                         </mat-panel-title>
                         <mat-action-row class="centers cards" style="justify-content: center;">
                             <button mat-button class="btnMainStyle" style="color: black;"
-                                (click)="onVisBrugerCertifikat(certifikat.id)">Vis info</button>
+                                (click)="onVisBrugerCertifikat(certifikat.brugerId)">Vis info</button>
                             <button mat-button class="btnMainStyle" style="color: black;"
                                 (click)="onBekraftCertifikat(certifikat.id)">Godkend certifikat</button>
                             <button mat-button class="btnMainStyle" style="color: black;"
