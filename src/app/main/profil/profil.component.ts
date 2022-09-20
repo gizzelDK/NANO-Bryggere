@@ -147,7 +147,7 @@ export class ProfilComponent implements OnInit {
           this.visB = false;
           this.snackBar.open('Nyt bryggeri oprettet')
           this.ngOnInit();
-          this.onClose();
+          //this.onClose();
         }
       })
     }
@@ -191,7 +191,7 @@ export class ProfilComponent implements OnInit {
   }
 
   //skal kigges sammen med backend gruppe
-  onSletProfil() {
+ /*  onSletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
       width: '300px',
       disableClose: true
@@ -199,7 +199,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
         this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
-          this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
+         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
             if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
               this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) => {
 
@@ -212,7 +212,26 @@ export class ProfilComponent implements OnInit {
         })
       }
     });
+  } */
+
+  onSletProfil() {
+    this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
+      width: '300px',
+      disableClose: true
+    });
+    this.dialogRefSlet.afterClosed().subscribe(result => {
+      if (result) {
+          this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) =>{
+          this.snackBar.open('Bruger slets');
+          localStorage.removeItem('brugerId');
+          this.ngOnInit();
+          this.router.navigate(['/main/main']);
+        })
+
+      }
+    });
   }
+
 
 
 //skal kigges igen
@@ -231,7 +250,9 @@ export class ProfilComponent implements OnInit {
         //  this.brugerListe.certifikat.certifikatBilled = '';
 //this.restApi.updateData(this.brugerId, this.endpointBru, this.brugerListe).subscribe((data) => {
             console.log(data);
+            this.snackBar.open('Bryggeri slets');
             localStorage.removeItem('bryggeriId');
+            console.log('bryggeriId........',this.bryggeriId);
             this.ngOnInit();
 
          // })
