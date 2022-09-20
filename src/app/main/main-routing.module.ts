@@ -9,6 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RapportSideComponent } from './rapport-side/rapport-side.component';
 import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component';
+import { FindBryggerComponent } from './find-brygger/find-brygger.component';
 
 const routes: Routes = [
 {path:'', component:ForsideComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
 {path:'opdater-øl/:id', component:RedigerOlComponent},
 {path:'opret-øl', component:OpretOlComponent},
 {path:'katalog', component:KatalogComponent},
+{path:'find-brygger', component:FindBryggerComponent},
 //{path:'samarbejds-side', component:SamarbejdeSideComponent},
 // {path:'samarbejd-opdater/:id', component:SamarbejdeRedigerComponent},
 // {path:'samarbejds-opretning', component:SamarbejdeOprettelseComponent},

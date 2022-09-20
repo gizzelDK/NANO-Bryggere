@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Certifikat } from 'src/app/Models/Certifikat';
 
 @Component({
   selector: 'app-certifikat-admin-side',
@@ -16,10 +17,12 @@ export class CertifikatAdminSideComponent implements OnInit {
   kontaktOplysningsListe: Kontaktoplysninger[]; //oplysninger
   kontaktOplysninger: Kontaktoplysninger;
   certifikatListe: any;
-  certifikat: Bruger; //oplysninger
-  kontaktOplysningerId: number;
-  endpointK = '/KontaktOplysningers';
+  brugerListe: any;
+  certifikat: Certifikat; //oplysninger
+  kontaktOplysningerId: any;
+  endpointK = '/Kontaktoplysningers';
   endpointB = '/Brugers';
+  endpointC = '/Certifikats';
   clickButton: boolean = true;
   searchkey: string;
   // dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
@@ -37,17 +40,24 @@ export class CertifikatAdminSideComponent implements OnInit {
   }
 
   onHentBrugerCertifikat() {
-    return this.restApi.getDatas(this.endpointB).subscribe((certifikatData) => {
-      this.certifikatListe = certifikatData.filter((a: any) => {
-        return a.certifikatStatus === 2;
+    this.restApi.getDatas(this.endpointC).subscribe((certifikatData) => {
+      this.certifikatListe = certifikatData.filter((c: any) => {
+        return c.cStatus === "VentTilGodkendt";
       });
-      this.restApi.getDatas(this.endpointK).subscribe((kontaktOplysningerData) => {
-        // this.kontaktOplysningsListe = kontaktOplysningerData;
-        this.kontaktOplysningsListe = kontaktOplysningerData.filter((a: any) => {
-          return a.id === this.certifikatListe.kontaktOplysningerId;
-        });
+      this.restApi.getDatas(this.endpointB).subscribe((brugerData) => {
+        this.brugerListe = brugerData;
+        // this.brugerListe
+        console.log(this.certifikatListe);
+
       })
+      // this.restApi.getDatas(this.endpointK).subscribe((kontaktOplysningerData) => {
+      //   this.kontaktOplysningsListe = kontaktOplysningerData;
+      //   this.kontaktOplysningsListe = kontaktOplysningerData.filter((a: any) => {
+      //     return a.id === this.certifikatListe.kontaktOplysningerId;
+      //   });
+      // })
     })
+    console.log(this.certifikatListe);
     //   return this.restApi.getDatas(this.endpointB).subscribe((brugerCertifikat) => {
     //   this.certifikatListe = brugerCertifikat.filter((a: Bruger) => {
     //     a.certifikatStatus === 2;
@@ -71,11 +81,11 @@ export class CertifikatAdminSideComponent implements OnInit {
 
   //Godkend certifikat
   onBekraftCertifikat(id: any) {
-    this.restApi.getData(id, this.endpointB).subscribe(data => {
+    this.restApi.getData(id, this.endpointC).subscribe(data => {
       this.certifikat = data;
 
-      // this.certifikat.certifikatStatus = 3;
-      this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
+      this.certifikat.cStatus = 2;
+      this.restApi.updateData(id, this.endpointC, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
@@ -83,11 +93,11 @@ export class CertifikatAdminSideComponent implements OnInit {
 
   //Benægt certifikat
   onBenagtCertifikat(id: any) {
-    this.restApi.getData(id, this.endpointB).subscribe(data => {
+    this.restApi.getData(id, this.endpointC).subscribe(data => {
       this.certifikat = data;
       // this.certifikat.certifikatStatus = 1;
       // this.certifikat.certifikatBilled = "";
-      this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
+      this.restApi.updateData(id, this.endpointC, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
@@ -95,23 +105,25 @@ export class CertifikatAdminSideComponent implements OnInit {
 
   onVisBrugerCertifikat(id: any) {
     this.clickButton = false;
+    console.log("visID",id);
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
-      this.kontaktOplysningerId = data.kontaktOplysningerId;
-      this.certifikat = data;
-      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
-        this.kontaktOplysninger = data;
-      })
+      this.kontaktOplysninger = data.kontaktoplysninger;
+      console.log("Test Kontakt", data.kontaktoplysninger);
+      // this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+      //   this.kontaktOplysninger = data;
+      // })
     })
   }
 
-  onViCertifikat(id: any) {
-    this.clickButton = false;
-    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
-      this.kontaktOplysningerId = data.kontaktOplysningerId;
-      this.certifikat = data;
-      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
-        this.kontaktOplysninger = data;
-      })
-    })
-  }
+  // onViCertifikat(id: any) {
+  //   this.clickButton = false;
+  //   return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+  //     this.kontaktOplysningerId = data;
+  //     console.log("Test Kontakt", this.kontaktOplysningerId);
+  //     // this.certifikat = data;
+  //     // this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+  //     //   this.kontaktOplysninger = data;
+  //     // })
+  //   })
+  // }
 }
