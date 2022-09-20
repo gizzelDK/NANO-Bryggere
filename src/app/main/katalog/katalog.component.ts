@@ -76,15 +76,6 @@ export class KatalogComponent implements OnInit {
      });
   };
 
-/*   onHentKammanter(){
-    if(this.brugerId=JSON.parse(localStorage.getItem('brugerId') || '{}')){
-       this.restApi.getDatas(this.endpointKom).subscribe((data) =>{
-        this.kommanterList=data.filter((res:any) => {
-          return res.brugerId != this.brugerId;
-        });
-      })
-    }
-  } */
 
   onHentKammanter(){
     if(this.brugerId=JSON.parse(localStorage.getItem('brugerId') || '{}')){
