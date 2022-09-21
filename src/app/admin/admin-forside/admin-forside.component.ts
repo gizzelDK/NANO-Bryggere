@@ -163,8 +163,8 @@ export class AdminForsideComponent implements OnInit {
     }
   }
   onRydBrugereOp(){
-    this.restApi.deleteData(0, this.endpointA).subscribe((data)=>{
-      this.slettedeBrugere = data + ' Brugere ryddet op!';
+    this.restApi.getData(0, this.endpointA).subscribe((data)=>{
+      this.slettedeBrugere = 'Slettede brugere: ' + JSON.stringify(data);
     })
   }
 
