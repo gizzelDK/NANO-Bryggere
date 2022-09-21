@@ -35,7 +35,7 @@ export class LoginService  {
     localStorage.clear()
     return this.apiservice.createData({ "brugernavn": username, "pw": pw },'/logins/').subscribe((response) =>{
       console.log('login response', response)
-      localStorage.setItem(this.TOKEN_NAME, response.bearer)
+      localStorage.setItem(this.TOKEN_NAME, 'bearer ' +response.bearer)
       var dt =this.getTokenDecoded(response.bearer);
       this._clearance$.id = dt.Id
       this._clearance$.name = dt.Name

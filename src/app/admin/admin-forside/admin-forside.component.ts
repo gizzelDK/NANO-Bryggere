@@ -24,7 +24,8 @@ const TREE_DATA: Search[] = [
     { name: 'Samarbejde', children: [{ name: 'Med Samarbejde navn' }, { name: 'Med Øl navn' }] },
     { name: 'Certifikat' },
     { name: 'Login' },
-    { name: 'Rapporteringer'}]
+    { name: 'Rapporteringer'},
+    { name: 'OprydningKnap'}]
   }
 ];
 
@@ -52,6 +53,9 @@ export class AdminForsideComponent implements OnInit {
   visLoginComponent: boolean = false;
   visSamarbejdeComponent: boolean = false;
   visRapportComponent: boolean = false;
+  visOprydningKnap: boolean = false;
+  endpointA: string = '/Admin/Oprydning/Brugere';
+  slettedeBrugere: string ='Ryd Slettede Brugere op';
 
   constructor(
     public dialog: MatDialog,
@@ -152,7 +156,16 @@ export class AdminForsideComponent implements OnInit {
         this.visRapportComponent = !this.visRapportComponent;
         break;
       }
+      case 'OprydningKnap': {
+        this.visOprydningKnap = !this.visOprydningKnap;
+        break;
+      }
     }
+  }
+  onRydBrugereOp(){
+    this.restApi.deleteData(0, this.endpointA).subscribe((data)=>{
+      this.slettedeBrugere = data + ' Brugere ryddet op!';
+    })
   }
 
 }
