@@ -91,35 +91,41 @@ export class ProfilComponent implements OnInit {
       console.log("kontaktId", this.brugerListe.kontaktoplysningerId);
       console.log("kontaktId2", this.brugerListe.certifikats);
       this.restApi.getDatas(this.endpointC).subscribe((dataC) => {
-        this.certifikatListe = dataC;
-        for (let c = 0; c < dataC.length; c++) {
+        this.certifikatListe = dataC.filter((res:any) =>{
+          return res.brugerId === this.brugerId;
+        });
+        console.log(this.certifikatListe);
+        for (let c = 0; c < this.certifikatListe.length; c++) {
             const element = { cStatus: dataC[c].cStatus };
-            if (this.certifikatListe[c].cStatus == "Godkendt") {
+            if (element.cStatus == "Godkendt") {
               this.visOB = false;
+              console.log("godkendt");
             }
           }
       this.restApi.getDatas(this.endpointB).subscribe((data) => {
         console.log('brygeri....', data);
         this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.brugerListe.kontaktoplysningerId);
-        console.log('brygerilist....', this.bryggeriListe);
-        console.log("bryggeriId---",this.bryggeriListe.id);
-        if (this.bryggeriListe !== undefined) {
-          localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
+        if(this.bryggeriListe){
+          console.log('brygerilist....', this.bryggeriListe);
           console.log("bryggeriId---",this.bryggeriListe.id);
-          this.url = this.bryggeriListe.bryggeriLogo;
-        }
-        if (this.brugerListe) {
-          console.log(this.brugerId);
-              if (this.bryggeriListe.id !== null) {
-                this.visOB = true;
-                this.visB = false;
-                console.log("bryggeri---", this.bryggeriListe);
-              }
-
-        }
-        else {
-          console.log("intet", this.certifikatListe)
-          this.visOB = true;
+          if (this.bryggeriListe !== undefined) {
+            localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
+            console.log("bryggeriId---",this.bryggeriListe.id);
+            this.url = this.bryggeriListe.bryggeriLogo;
+          }
+          if (this.brugerListe) {
+            console.log(this.brugerId);
+                if (this.bryggeriListe.id !== null) {
+                  this.visOB = true;
+                  this.visB = false;
+                  console.log("bryggeri---", this.bryggeriListe);
+                }
+  
+          }
+          else {
+            console.log("intet", this.certifikatListe)
+            this.visOB = true;
+          }
         }
       })
     })

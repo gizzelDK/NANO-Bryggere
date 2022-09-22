@@ -95,9 +95,7 @@ export class CertifikatAdminSideComponent implements OnInit {
   onBenagtCertifikat(id: any) {
     this.restApi.getData(id, this.endpointC).subscribe(data => {
       this.certifikat = data;
-      // this.certifikat.certifikatStatus = 1;
-      // this.certifikat.certifikatBilled = "";
-      this.restApi.updateData(id, this.endpointC, this.certifikat).subscribe(data => {
+      this.restApi.deleteData(id, this.endpointC).subscribe(data => {
         this.ngOnInit();
       })
     })
