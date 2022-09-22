@@ -23,7 +23,7 @@
         </mat-tree>
       </div>
     </mat-drawer>
-  
+
     <mat-drawer-content *ngIf="visBrugernavnComponent">
       <app-bruger-admin-side></app-bruger-admin-side>
     </mat-drawer-content>
@@ -64,7 +64,9 @@
       <app-samarbejde-admin-side></app-samarbejde-admin-side>
     </mat-drawer-content>
     <mat-drawer-content *ngIf="visRapportComponent">
-      <app-rapport-admin-side></app-rapport-admin-side> 
+      <app-rapport-admin-side></app-rapport-admin-side>
+    </mat-drawer-content>
+    <mat-drawer-content *ngIf="visOprydningKnap">
+      <button mat-raised-button color="accent"  (click)="onRydBrugereOp()">{{slettedeBrugere}}</button>
     </mat-drawer-content>
   </mat-drawer-container>
-  
