@@ -41,27 +41,16 @@ export class LoginSideComponent implements OnInit {
 
 
  async  onSubmitLogin(){
-    if(!this.loginForm.invalid){
-      await this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
-    //  console.log('test1....' , this.loginService.isLoggedIn$);
-        if(this.loginService.isLoggedIn$.value == true){
-          if( this.loginService.clearance$.role === "Administrator"){
-//console.log('isadmin....', this.loginService.clearance$.role );
-            this.router.navigate(['../admin/forside-admin']);
 
-          }
-          else{
-            console.log('isadmin....', this.loginService.clearance$.role);
-            this.router.navigate(['../main/profil']);
-          }
-     }
+    if(!this.loginForm.invalid){
+      await this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value);
     }
     else{
       alert('username or password is empty');
     }
 
   }
-
+  
   onSubmitRegistre() {
     this.router.navigate(['../login/registrer']);
   };

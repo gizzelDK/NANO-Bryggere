@@ -55,7 +55,7 @@
 
             <div >
               <h2 style="font-weight: bold; font-size: small; margin: 10px;" class="containStyle centers">Send din Kommanter og Rating:</h2>
-              <form  [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 100%;" *ngIf="KommenterForm" >
+              <form [formGroup]="KommenterForm" novalidate class="containStyle centers" style="width: 100%;" *ngIf="KommenterForm" >
                     <mat-form-field  appearance="fill" class="example-full-width">
                     <input matInput [(ngModel)]="kommanter.tekst" formControlName="tekst"  class="input-control" placeholder="Skrive din kommanter her">
                     </mat-form-field>

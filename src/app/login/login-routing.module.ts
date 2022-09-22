@@ -4,9 +4,9 @@ import { LoginSideComponent } from './login-side/login-side.component';
 import { RegistrerComponent } from './registrer/registrer.component';
 
 const routes: Routes = [
-{path:'',component:LoginSideComponent},
-{path:'login',component: LoginSideComponent},
-{path:'registration',component:RegistrerComponent}];
+  {path:'login',component: LoginSideComponent},
+  {path:'registration',component:RegistrerComponent},
+  {path:'',component:LoginSideComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -30,7 +30,6 @@ export class OlSideComponent implements OnInit {
   offentligProfil:boolean;
  @Input() kommanter={olId:0, tekst:'', forfatterId:0 , rating:0}
 
-
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -58,9 +57,6 @@ export class OlSideComponent implements OnInit {
       rating:new FormControl('')
 
     });
-
-
-
   }
 
   onHentKontaktOplysninger(){
@@ -116,7 +112,5 @@ export class OlSideComponent implements OnInit {
         'rating':''
       });
     })
-
-
   }
 }
