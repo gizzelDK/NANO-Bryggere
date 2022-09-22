@@ -62,6 +62,8 @@ export class SamarbejdeSideComponent implements OnInit {
       case 'Vis Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
        localStorage.setItem('samarbejdeId', JSON.stringify(id));
+       console.log('id....', id);
+       console.log('samarbejdeId....', this.samarbejdeId);
         this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
@@ -81,9 +83,9 @@ export class SamarbejdeSideComponent implements OnInit {
     }
   }
 
-  onOpdaterOl(id: any) {
+/*   onOpdaterOl(id: any) {
     this.router.navigate(['../samarbejde/opdater-samarbejde/', id]);
-  };
+  }; */
 
   VisSamarbejde(){
     this.showSamarbejdeSideComponent = !this.showSamarbejdeSideComponent;

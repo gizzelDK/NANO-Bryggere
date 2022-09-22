@@ -1,12 +1,12 @@
 <h1 mat-dialog-title>Rediger Samarbejde</h1>
 <div mat-dialog-content>
   <form class="example-form" [formGroup]="opdaterForm" *ngIf="samarbejdeListe">
-    <mat-form-field class="example-full-width" appearance="fill">
+<!--     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>olBillede</mat-label>
       <input matInput formControlName="olBillede">
       <img [src]="samarbejdeListe.olBillede" alt="" style="width: 20%; height: 20%;">
       <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Titel:</mat-label>
       <input matInput formControlName="titel" placeholder="{{samarbejdeListe.titel}}" [(ngModel)]="samarbejdeListe.titel">

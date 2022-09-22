@@ -68,7 +68,7 @@ export class EventAdminSideComponent implements OnInit {
     }
   }
 
-  onFindDeltagene() {
+ /*  onFindDeltagene() {
     if (this.searchkeyDeltagelse == "") {
       this.ngOnInit();
     }
@@ -77,7 +77,20 @@ export class EventAdminSideComponent implements OnInit {
          return this.events = data;
        })
     }
-  }
+  } */
+
+
+  ///skal kigges
+ /*  onFindBrugernavnByEventsTitel() {
+    if (this.searchkeyEventsTitel == "") {
+      this.ngOnInit();
+    }
+    else {
+       this.searchService.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
+         return this.brugere = data;
+       })
+    }
+  } */
 
   onSletEvent(id: any) {
     if (this.deltagelseListe.length !== 0) {

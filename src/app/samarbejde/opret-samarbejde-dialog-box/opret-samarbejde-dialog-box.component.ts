@@ -11,7 +11,8 @@ import { Samarbejde } from 'src/app/Models/Samarbejde';
   styleUrls: ['./opret-samarbejde-dialog-box.component.css']
 })
 export class OpretSamarbejdeDialogBoxComponent implements OnInit {
-  @Input() nySamarbejde = { bryggeriId1: 0, bryggeriId2: 0, brygger1Svar: true }
+  @Input() nySamarbejde = { bryggeriId1: 0, bryggeriId2: 0, brygger1Svar: true  }
+  //, titel:''
   opretForm: any = new FormGroup({});
   bryggeriId: number;
   endpointSA = '/SamarbejdeAnmodnings';
@@ -34,6 +35,8 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
     private _formBuilder: FormBuilder,
   ) { }
 
+
+ 
   ngOnInit(): void {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.onHentAnmodninger();
@@ -41,6 +44,7 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
     this.opretForm = this._formBuilder.group({
       'bryggeriId1': new FormControl(''),
       'bryggeriId2': new FormControl(''),
+      //'titel':new FormControl('')
     })
   }
 
@@ -146,6 +150,10 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
     })
   }
 
+  onSubmitBilled(){
+
+  }
+
   onAnuller() {
     this.opretForm.reset();
     this.dialogRefOpretSamarbejde.close();
@@ -157,7 +165,7 @@ export class OpretSamarbejdeDialogBoxComponent implements OnInit {
     this.nySamarbejde.brygger1Svar = true;
     console.log(this.nySamarbejde);
     this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
-      this.dialogRefOpretSamarbejde.close();
+    this.dialogRefOpretSamarbejde.close();
     })
   }
 }

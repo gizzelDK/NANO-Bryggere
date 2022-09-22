@@ -26,6 +26,9 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
   samarbejdeAnmodning: any;
   clickButton: boolean = true;
   bryggeriId: number;
+  navnBryggeri1:string;
+  navnBryggeri2:string;
+  navnSamarbejde:string;
 
   constructor(
     public dialog: MatDialog,
@@ -38,6 +41,7 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     console.log(this.bryggeriId);
     this.onHentSamarbejdeListe();
+
   }
 
   //Vis bryggeri navn for eget bryggeri og den anden bryggeries navn
@@ -45,13 +49,17 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
     return this.restApi.getDatas(this.endpointSA).subscribe((dataSA) => {
       this.samarbejdeAnmodningsListe = dataSA.filter((res: any) => {
         return res.bryggeriId2 === this.bryggeriId;
+
       });
+    //  console.log('this.samarbejdeAnmodningsListe', this.samarbejdeAnmodningsListe)
       return this.restApi.getDatas(this.endpointB).subscribe(dataB => {
         this.bryggeriList1 = dataB;
+       // console.log('this.bryggeriList1', this.bryggeriList1)
         for (let i = 0; i < this.bryggeriList1.length; i++) {
           if (this.samarbejdeAnmodningsListe.bryggeriId1 = this.bryggeriList1[i].id) {
             // this.brygger = this.bryggeriList1[i];
             this.anmodernavn.navn = this.bryggeriList1[i];
+           // console.log('this.anmodernavn.navn', this.anmodernavn.navn)
           }
         }
       })
@@ -132,14 +140,19 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
     }
   }
 
-  onTestSamarbejdeNavn(aId: any) {
+ /*  onTestSamarbejdeNavn(aId: any) {
     this.restApi.getData(aId, this.endpointSA).subscribe(dataSA => {
       this.samarbejdeAnmodning =  dataSA;
       this.restApi.getData(this.samarbejdeAnmodning.bryggeriId1, this.endpointB).subscribe(dataB => {
-        this.bryggeriN1 = dataB;      
+        this.bryggeriN1 = dataB;
+        this.navnBryggeri1=this.bryggeriN1.navn;
+        console.log('this.navnBryggeri1', this.navnBryggeri1);
       })
       this.restApi.getData(this.samarbejdeAnmodning.bryggeriId2, this.endpointB).subscribe(dataB => {
         this.bryggeriN2 = dataB;
+        this.navnBryggeri2=this.bryggeriN2.navn;
+        console.log('this.navnBryggeri2', this.navnBryggeri2);
+
       })
     })
     // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
@@ -148,21 +161,55 @@ export class SamarbejdeAnsogningsSideComponent implements OnInit {
     //     this.ngOnInit();
     //   })
     // })
+  } */
+
+
+  //str1.concat(str2.toString());
+  onTestAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
+   // this.onTestSamarbejdeNavn(aId);
+    // this.navnSamarbejde=this.navnBryggeri1.concat(this.navnBryggeri2.toString());
+//this.navnSamarbejde=this.anmodernavn.navn;
+
+this.restApi.getData(aId, this.endpointSA).subscribe(dataSA => {
+  this.samarbejdeAnmodning =  dataSA;
+  this.restApi.getData(this.samarbejdeAnmodning.bryggeriId1, this.endpointB).subscribe(dataB => {
+    this.bryggeriN1 = dataB;
+    this.navnBryggeri1=this.bryggeriN1.navn;
+   // console.log('this.navnBryggeri1', this.navnBryggeri1);
+  })
+  this.restApi.getData(this.samarbejdeAnmodning.bryggeriId2, this.endpointB).subscribe(dataB => {
+    this.bryggeriN2 = dataB;
+    this.navnBryggeri2=this.bryggeriN2.navn;
+    console.log('this.navnBryggeri2', this.navnBryggeri2);
+   console.log('this.navnBryggeri1', this.navnBryggeri1);
+   this.godkendSamarbejde.titel=this.navnBryggeri1.concat(this.navnBryggeri2.toString());
+   this.godkendSamarbejde.bryggeriId1 = bId1;
+   this.godkendSamarbejde.bryggeriId2 = bId2;
+ //  this.godkendSamarbejde.titel ='test';
+//this.godkendSamarbejde.titel = this.bryggeriN1.navn + this.bryggeriN2.navn;
+   console.log("godkendelse af samarbejde", this.godkendSamarbejde);
+   return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
+    localStorage.setItem('samarbejdeId', JSON.stringify(data.id));
+     this.restApi.deleteData(aId, this.endpointSA).subscribe((data) => {
+       this.ngOnInit();
+     })
+   })
+
+
+
+
+  })
+
+
+
+
+
+})
+
   }
 
-  onTestAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
-    this.onTestSamarbejdeNavn(aId);
-    this.godkendSamarbejde.bryggeriId1 = bId1;
-    this.godkendSamarbejde.bryggeriId2 = bId2;
-    this.godkendSamarbejde.titel = "test";
-    // this.godkendSamarbejde.titel = this.bryggeriN1.navn + this.bryggeriN2.navn;
-    // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
-    return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
-      this.restApi.deleteData(aId, this.endpointSA).subscribe((data) => {
-        this.ngOnInit();
-      })
-    })
-  }
+
+
 
   // onAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
   //     this.godkendSamarbejde.bryggeriId1 = bId1;

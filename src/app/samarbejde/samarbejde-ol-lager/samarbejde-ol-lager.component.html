@@ -29,14 +29,14 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Reserve Antal</p>
-                <input matInput type="number" [(ngModel)]="olListe.flaskeResevationAntal" min="0" max="80" formControlName="flaskeResevationAntal" placeholder="{{olListe.flaskeResevationAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="olListe.flaskeResAntal" min="0" max="80" formControlName="flaskeResAntal" placeholder="{{olListe.flaskeResAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <button mat-raised-button type="submit" (click)="onAnuller()" class="radius-btn" style="background: linear-gradient(#f53f3f, #ff6e6e);">Annuller</button>
-            
+
             <button mat-raised-button type="submit" (click)="onSubmitOl()" class="radius-btn" style="background: linear-gradient(#6cf04b, #41fd70);">Bekræft lager</button>
         </form>
     </mat-card-content>
