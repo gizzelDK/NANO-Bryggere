@@ -49,12 +49,15 @@ export class RolleAdminSideComponent implements OnInit {
         this.rolle = res;
          if(this.rolle.rolleNavn == 20){
           this.rolleName = 'Administrator'
+          console.log("Administrator", this.rolleName)
         }
         if(this.rolle.rolleNavn == 10){
           this.rolleName = 'Bruger'
+          console.log("Bruger", this.rolleName)
         }
         if(this.rolle.rolleNavn == 0){
           this.rolleName = 'Anonymbruger'
+          console.log("Anonymbruger", this.rolleName)
         }
       })
     })

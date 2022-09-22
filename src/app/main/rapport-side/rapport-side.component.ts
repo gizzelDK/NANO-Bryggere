@@ -70,34 +70,34 @@ export class RapportSideComponent implements OnInit {
     return this.restApi.getData(id, this.endpointR).subscribe((data) => {
         this.listeTest = data;
         // console.log(this.listeTest.godtaget);
-        this.onRapportType(this.listeTest.typeNavn);
+        this.onRapportType(this.listeTest.rType);
         this.onRapportGodtagelse(this.listeTest.godtaget);
       })
   }
 
   onRapportType(type: any) {
-    // console.log(godtaget);
+    console.log("start",type);
     switch (type) {
       case 0:
         type = "Anmeld bruger";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
 
       case 1:
         type = "Andet";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
         case 2:
         type = "Spørgsmål";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
         case 3:
         type = "Meld fejl";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
       default:
         break;

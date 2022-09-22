@@ -9,7 +9,7 @@
             <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
           </select> -->
 
-            <select matNativeControl class="input-control" formControlName="typenavn" [(ngModel)]="opretRapport.typenavn"
+            <select matNativeControl class="input-control" formControlName="rType" [(ngModel)]="opretRapport.rType"
               style="width: 100%; height: 100%;" placeholder="Type">
               <option *ngFor="let item of items" [value]="item.id">{{item.name}})</option>
             </select>

@@ -9,9 +9,6 @@ import { Certifikat } from './Certifikat';
 import { Kontaktoplysninger } from './Kontaktoplysninger';
 import { Deltager } from './Deltager';
 
-
-
-
 // export enum CertifikatStatus{
 //   IkkeSendt = 1,
 //   VentTilGodkendt = 2,
@@ -27,8 +24,8 @@ export class Bruger {
   public kontaktoplysningerId: number;
   public kontaktoplysninger: Kontaktoplysninger;
   public events: Event;
-  public certifikatId:number;
-  public certifikat:Certifikat;
+  // public certifikatId:number;
+  public certifikats:Certifikat;
   public follows: Bryggeri;
   public rapporter : Rapport;
   public acceptedPolicy : boolean;
