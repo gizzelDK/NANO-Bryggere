@@ -23,8 +23,9 @@ const TREE_DATA: Search[] = [
     { name: 'Tags', children: [{ name: 'Med Tag' }] },
     { name: 'Samarbejde', children: [{ name: 'Med Samarbejde navn' }] },
     { name: 'Certifikat' },
-    { name: 'Login' },
-    { name: 'Rapporteringer'}]
+    { name: 'Bruger Logins' },
+    { name: 'Rapporteringer'},
+    { name: 'Log ud'}]
   }
 ];
 
@@ -151,6 +152,10 @@ export class AdminForsideComponent implements OnInit {
       case 'Rapporteringer': {
         this.visRapportComponent = !this.visRapportComponent;
         break;
+      }
+      case 'Log ud':{
+        localStorage.clear();
+        this.router.navigate(['/login/']);
       }
     }
   }
