@@ -33,23 +33,23 @@ export class RapportSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.onHentBruger();
+    // this.onHentBruger();
     this.onHentRapport();
     // this.nyRapport.brugerId = this.brugerId;
   }
 
-  onHentBruger() {
-    if (this.brugerId) {
-      this.restApi.getDatas(this.endpointB).subscribe((data) => {
-        this.brugerListe = data;
-        for (let b = 0; b < data.length; b++) {
-          const listDrop = {id: this.brugerListe[b].id}
-          if (listDrop.id == this.brugerId)
-            this.bruger = listDrop;
-        }
-      })
-    }
-  }
+  // onHentBruger() {
+  //   if (this.brugerId) {
+  //     this.restApi.getData(this.brugerId,this.endpointB).subscribe((data) => {
+  //       this.brugerListe = data;
+  //       for (let b = 0; b < data.length; b++) {
+  //         const listDrop = {id: this.brugerListe[b].id}
+  //         if (listDrop.id == this.brugerId)
+  //           this.bruger = listDrop;
+  //       }
+  //     })
+  //   }
+  // }
 
   onHentRapport() {
     this.restApi.getDatas(this.endpointR).subscribe((data) => {
