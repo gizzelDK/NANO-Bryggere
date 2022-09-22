@@ -50,15 +50,23 @@ export class BrugerAdminSideComponent implements OnInit {
 
   onHentBruger() {
     return this.restApi.getDatas(this.endpointB).subscribe((res) => {
-      this.brugere = res;
-    })
+
+        this.brugere = res.filter((data:any) =>{
+          return data.brugernavn != 'admin'
+
+        });
+        console.log('res.....', this.brugere)
+      }
+
+    )
   }
 
   onVisBruger(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+    //  console.log('bryger....', data);
       this.kontaktOplysningerId = data.kontaktoplysningerId;
-      console.log("testK", data.kontaktoplysningerId);
+    //  console.log("testK", data.kontaktoplysningerId);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })
@@ -82,6 +90,7 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else {
        this.searchService.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
+       // console.log('efternavn...', data);
          return this.brugere = data;
        })
     }
@@ -93,12 +102,13 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else {
        this.searchService.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
+        console.log('email...', data);
          return this.brugere = data;
        })
     }
   }
 
-  onFindBrugernavnByEventsTitel() {
+/*   onFindBrugernavnByEventsTitel() {
     if (this.searchkeyEventsTitel == "") {
       this.ngOnInit();
     }
@@ -107,7 +117,7 @@ export class BrugerAdminSideComponent implements OnInit {
          return this.brugere = data;
        })
     }
-  }
+  } */
 
   //husk at kigge på slet bruger , kan ikke sltettes før slet deltager og login
   onSletBruger(id: any) {

@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'opret-samarbejde', component:OpretSamarbejdeDialogBoxComponent},
   {path:'samarbejde-ansogning', component:SamarbejdeAnsogningsSideComponent},
   {path:'samarbejde-katalog', component:SamarbejdeKatalogComponent},
-  {path:'samarbejde-ol-lager', component:SamarbejdeOlLagerComponent},
+  {path:'samarbejde-ol-lager/:id', component:SamarbejdeOlLagerComponent},
   {path:'samarbejde-side', component:SamarbejdeSideComponent},
   {path:'samarbejde-visning', component:SamarbejdeVisningComponent},
   {path:'', component: SamarbejdeSideComponent}];

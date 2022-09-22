@@ -67,12 +67,12 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width centers" appearance="fill">
+<!--             <mat-form-field class="example-full-width centers" appearance="fill">
                 <input matInput type="number" [(ngModel)]="olOprettelse.antal" min="0" formControlName="antal" placeholder="Antal" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <mat-form-field class="example-full-width centers" appearance="fill">
                 <input matInput type="date" [(ngModel)]="olOprettelse.aargang" formControlName="aargang" placeholder="Årgang" class="input-control">
@@ -80,6 +80,13 @@
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
+
+<!--             <mat-form-field class="example-full-width centers" appearance="fill">
+              <input matInput type="date" [(ngModel)]="olOprettelse.aargang" formControlName="aargang" placeholder="Årgang" class="input-control">
+              <mat-error>
+                  Dette felt skal udfyldes
+              </mat-error>
+          </mat-form-field> -->
 
             <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
 

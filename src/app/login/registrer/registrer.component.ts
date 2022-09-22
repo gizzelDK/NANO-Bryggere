@@ -9,7 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-  @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: 0, level: 0, kontaktoplysningerId: null,
+  @Input() nyBruger = { pw: '', brugernavn: '', rolleId: 0, kontaktoplysningerId: null,
   fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '', by: '', email: '', telefonNr: '',
 };
 //@Input() nyCertifikat = {cStatus:'', brugerId: null}
@@ -31,23 +31,23 @@ export class RegistrerComponent implements OnInit {
       'kontaktoplysningerId': new FormControl(''),
       'fnavn' : new FormControl('' , Validators.required),
       'enavn': new FormControl('' , Validators.required),
-      'addresselinje1': new FormControl(''),
+      'addresselinje1': new FormControl('' , Validators.required),
       'addresselinje2': new FormControl(''),
-      'postnr' : new FormControl(''),
-      'by': new FormControl(''),
+      'postnr' : new FormControl('' , Validators.required),
+      'by': new FormControl('' , Validators.required),
       'email' : new FormControl('' , Validators.email ),
-      'telefonNr': new FormControl(''),
-      'brugernavn' : new FormControl(''),
-      'pw': new FormControl(''),
+      'telefonNr': new FormControl('' , Validators.required),
+      'brugernavn' : new FormControl('' , Validators.required),
+      'pw': new FormControl('' , Validators.required),
       'rolleId': new FormControl(''),
-      'rolleNavn': new FormControl(''),
-      'level': new FormControl(''),
+    //  'rolleNavn': new FormControl(''),
+     // 'level': new FormControl(''),
     });
   }
   onOpretBruger(){
     console.log('test:',  this.nyBruger);
-    this.nyBruger.rolleNavn="Bruger";
-    this.nyBruger.level=100;
+   // this.nyBruger.rolleNavn="Bruger";
+   // this.nyBruger.level=10;
     this.nyBruger.rolleId=2;
     this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataK) => {
       console.log('kontakt:', dataK);

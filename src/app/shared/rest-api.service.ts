@@ -45,6 +45,7 @@ export class RestApiService {
     )
   }
 
+  //https://localhost:7252/api/Brugers/2(brugerId)
   updateData(id: any, endpoint: string, data: any): Observable<any>{
     return this.http.put<any>(this.apiUrl + endpoint +'/'+ id, JSON.stringify(data), this.httpOptions)
     .pipe(

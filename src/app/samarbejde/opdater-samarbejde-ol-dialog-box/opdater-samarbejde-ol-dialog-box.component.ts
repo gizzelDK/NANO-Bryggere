@@ -26,7 +26,7 @@ export class OpdaterSamarbejdeOlDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.olId = JSON.parse(localStorage.getItem('ølId') || '{}');
+    this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
     // this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     this.restApi.getData(this.olId, this.endpointO)
       .toPromise()
@@ -43,7 +43,7 @@ export class OpdaterSamarbejdeOlDialogBoxComponent implements OnInit {
             procent: new FormControl(this.olListe.procent),
             smag: new FormControl(this.olListe.smag),
             beskrivelse: new FormControl(this.olListe.beskrivelse),
-            olBilled: new FormControl(this.olListe.olBillede),
+            olBillede: new FormControl(this.olListe.olBillede),
             aargang: new FormControl(this.olListe.aargang),
             antal: new FormControl(this.olListe.antal),
           });

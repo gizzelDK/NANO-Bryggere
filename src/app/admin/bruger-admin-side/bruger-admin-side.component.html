@@ -26,14 +26,14 @@
               </mat-form-field>
             </form>
           </mat-tab>
-          <mat-tab label="Find bruger med EventsTitel">
+<!--           <mat-tab label="Find bruger med EventsTitel">
             <form class="example-form" style="justify-content: center; width: 100%;">
               <mat-form-field class="txtHeader">
                 <input matInput type="search" placeholder="Find bruger" [(ngModel)]="searchkeyEventsTitel"
                   (ngModelChange)="onFindBrugernavnByEventsTitel()" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
             </form>
-          </mat-tab>
+          </mat-tab> -->
         </mat-tab-group>
       </mat-toolbar>
     </mat-card>
@@ -47,10 +47,10 @@
                 <span class="txtbtn" style="color: black;">{{bruger.brugernavn}}</span>
               </mat-panel-title>
               <mat-action-row class="centers cards" style="justify-content: center;">
-                <button mat-button class="txtbtn" style="color: black;" (click)="onVisBruger(bruger.id)">Vis </button> 
-                <button mat-button class="txtbtn" style="color: black;" (click)="onOpdaterBruger(bruger.id)">Opdater </button> 
+                <button mat-button class="txtbtn" style="color: black;" (click)="onVisBruger(bruger.id)">Vis </button>
+                <!-- <button mat-button class="txtbtn" style="color: black;" (click)="onOpdaterBruger(bruger.id)">Opdater </button>  -->
                 <button mat-button class="txtbtn" style="color: black;" (click)="onSletBruger(bruger.id)">Slet </button>
-  
+
               </mat-action-row>
             </mat-expansion-panel-header>
             <div *ngIf="kontaktOplysninger">
@@ -64,11 +64,11 @@
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Addresselinje1:</span>
-                <span class="txtStyle">{{kontaktOplysninger.adresseLinje1}}</span>
+                <span class="txtStyle">{{kontaktOplysninger.addresselinje1}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Addresselinje2:</span>
-                <span class="txtStyle">{{kontaktOplysninger.adresseLinje2}}</span>
+                <span class="txtStyle">{{kontaktOplysninger.addresselinje2}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Telefonnr:</span>
@@ -80,7 +80,7 @@
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Postnr:</span>
-                <span class="txtStyle">{{kontaktOplysninger.postNr}}</span>
+                <span class="txtStyle">{{kontaktOplysninger.postnr}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">By:</span>

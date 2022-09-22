@@ -39,7 +39,7 @@ export class LoginSideComponent implements OnInit {
     );
   }
 
- // parseInt(this.loginService.clearance$.level) > 10 &&
+
  async  onSubmitLogin(){
     if(!this.loginForm.invalid){
       await this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
