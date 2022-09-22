@@ -91,10 +91,10 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   }
 
   onSletSamarbejde(id:any) {
-    if (this.samarbejdeListe.length !== 0) {
-      alert('Der er et problem');
-    }
-    else {
+    // if (this.samarbejdeListe.length == 0) {
+    //   alert('Der er et problem');
+    // }
+    // else {
        let dialogRef = this.dialog.open(SletDialogBoxComponent);
        dialogRef.afterClosed().subscribe(result => {
          if (result) {
@@ -103,7 +103,7 @@ export class SamarbejdeAdminSideComponent implements OnInit {
            })
          }
        });
-    }
+    // }
   }
 
   onFindSamarbejdeNavn(){

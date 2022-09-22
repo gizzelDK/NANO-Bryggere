@@ -11,10 +11,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./opret-rapport-dialog-box.component.css']
 })
 export class OpretRapportDialogBoxComponent implements OnInit {
-  @Input() opretRapport = { brugerId: 0, titel: "", besked: "", typenavn: 0, godtaget: false, anklagetbruger: 0 }
+  @Input() opretRapport = { brugerId: 0, titel: "", besked: "", rType: 0, godtaget: false, anklagetbruger: 0 }
   opretForm: any = new FormGroup({});
   endpointR = '/Rapports';
-  endpointB = '/Bruger';
+  endpointB = '/Brugers';
   clickButton: boolean = true;
   bruger: any;
   brugerListe: any;
@@ -43,13 +43,12 @@ export class OpretRapportDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    // this.onHentBruger();
-    // this.onHentRapport();
+
     this.opretRapport.brugerId = this.brugerId;
     this.opretForm = this._formBuilder.group({
       'titel': new FormControl(''),
       'besked': new FormControl(''),
-      'typenavn': new FormControl(''),
+      'rType': new FormControl(''),
       'anklagetbruger': new FormControl(''),
     })
   }

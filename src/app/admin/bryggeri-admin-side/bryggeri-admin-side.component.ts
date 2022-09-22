@@ -46,10 +46,11 @@ export class BryggeriAdminSideComponent implements OnInit {
   onHentBryggeri() {
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeri = data;
+      console.log('bryggeri...', this.bryggeri)
     })
   }
 
-  onVisBryggeri(id: any) {
+/*   onVisBryggeri(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.brygge = data;
@@ -59,7 +60,7 @@ export class BryggeriAdminSideComponent implements OnInit {
         });
       })
     })
-  };
+  }; */
 
   onFindBryggeriNavn() {
     if (this.searchkeyBryggeriNavn == "") {
@@ -77,7 +78,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   //#region find
   //vi skal kigge på det efter oprette samarbejde component
   onFindBryggeriSamarbejde() {
- /*        if(this.searchkeyBryggeriSamarbejde == ''){
+    /*      if(this.searchkeyBryggeriSamarbejde == ''){
          this.ngOnInit();
        }
        else{
@@ -96,7 +97,7 @@ export class BryggeriAdminSideComponent implements OnInit {
      let dialogRef = this.dialog.open(SletDialogBoxComponent);
      dialogRef.afterClosed().subscribe(result => {
        if (result) {
-         this.onOpdaterBruger(id);
+        // this.onOpdaterBruger(id);
          this.restApi.deleteData(id, this.endpointB).subscribe(data => {
            this.ngOnInit();
          })
@@ -105,7 +106,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   };
 
   //SKAL TESTES
-  onOpdaterBruger(id: any) {
+/*   onOpdaterBruger(id: any) {
     this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.bryggeritest = data;
 
@@ -124,7 +125,7 @@ export class BryggeriAdminSideComponent implements OnInit {
         })
       })
     })
-  }
+  } */
 
   onOpdaterBryggeri(id: any) {
     const dialogConfig = new MatDialogConfig();
@@ -137,7 +138,7 @@ export class BryggeriAdminSideComponent implements OnInit {
        if (result) {
          this.bryggeriListe = result;
          this.restApi.updateData(id, this.endpointB, this.bryggeriListe).subscribe((data) => {
-           this.onVisBryggeri(id);
+          // this.onVisBryggeri(id);
            this.onHentBryggeri();
          })
       }

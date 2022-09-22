@@ -79,6 +79,30 @@ export class ForsideComponent implements OnInit {
   onHentForum() {
     return this.restApi.getDatas(this.endpointF).subscribe((dataF) => {
       this.forums = dataF;
+      // this.restApi.getDatas(this.endpointTØ).subscribe((data) => {
+      //   // this.mineTagsList = data;
+      //   // .filter((res:any) => {
+      //   //   return res.ølId = this.olListe[res].id;
+      //   // });
+      //   console.log("olListe",this.olListe);
+      //   for (let t = 0; t < data.length; t++) {
+      //     const listeTest = {tagId: data[t].tagId, ølId: data[t].ølId} 
+      //     console.log("listeTest",listeTest);
+      //     if(this.olListe[t].id = listeTest.ølId)
+      //     {
+      //       this.mineTagsList[t].tagId = listeTest.tagId;
+      //       console.log("mineTagListe", this.mineTagsList);
+      //       this.mineTagsList[t].ølId = listeTest.ølId;
+      //     }
+      //   }
+      //   // this.restApi.getDatas(this.endpointT).subscribe((dataT) => {
+
+      //   // })
+      //   // console.log(this.tagsList);
+      //   // .filter((res: any) => {
+      //   //   return res.bryggeriId === this.bryggeriId;
+      //   // });
+      // })
     })
   }
 

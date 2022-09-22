@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { RestApiService } from './rest-api.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Clearance } from '../Models/Clearance';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +18,23 @@ export class LoginService  {
   endpointB = '/Brugers';
 
   get token(): any{
-    return localStorage.getItem(this.TOKEN_NAME)
+    return localStorage.getItem(this.TOKEN_NAME);
   }
   get rolle(): any{
-    return localStorage.getItem('rolle')
+    return localStorage.getItem('rolle');
   }
   get level(): any{
-    return localStorage.getItem('level')
+    return localStorage.getItem('level');
   }
-  constructor(private apiservice: RestApiService, private jwtHelper: JwtHelperService) {
+  constructor(private apiservice: RestApiService, private jwtHelper: JwtHelperService, private router: Router,) {
     this._isLoggedIn$.next(!!this.token)
     this._clearance$.role = this.rolle
     this._clearance$.level = this.level
    }
 
   login(username: string, pw: string){
-    localStorage.clear()
-    return this.apiservice.createData({ "brugernavn": username, "pw": pw },'/logins/').subscribe((response) =>{
+    return this.apiservice.createData({ "brugernavn": username, "pw": pw },'/Logins').subscribe((response) =>{
+      // localStorage.clear();
       console.log('login response', response)
       localStorage.setItem(this.TOKEN_NAME, 'bearer ' +response.bearer)
       var dt =this.getTokenDecoded(response.bearer);
@@ -48,6 +49,22 @@ export class LoginService  {
         this._isLoggedIn$.next(true)
         console.log('log of response', response)
         console.log('this.bruger......................................', this.rolle)
+
+        console.log("test",this.isLoggedIn$.value);
+        if(this.isLoggedIn$.value == true){
+          console.log("test1");
+          if( this.clearance$.role === "Administrator"){
+              console.log('isadmin....', this.clearance$.role );
+            this.router.navigate(['../admin/forside-admin']);
+          }
+          else{
+            console.log('isadmin....', this.clearance$.role);
+            this.router.navigate(['../main/profil']);
+            // .then(() => {
+            //   window.location.reload();
+            // });
+          }
+        }
     })
   }
   // private getUser(token: string): Rolle{

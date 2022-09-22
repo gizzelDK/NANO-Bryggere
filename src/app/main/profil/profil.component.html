@@ -3,11 +3,11 @@
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
-      <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontakt Oplysninger</button>
+      <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontaktoplysninger</button>
       <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visB">Vis Bryggeri Oplysninger</button>
       <button class="btnStyle" (click)="visFillerOB= !visFillerOB" [disabled]="this.visOB">Opret Bryggeri</button>
       <button class="btnStyle" (click)="visOffentlig= !visOffentlig">Offentlig Profil</button>
-       <button class="btnStyle"  (click)="logud()" >LogUd</button>
+       <button class="btnStyle"  (click)="logud()" >Log Ud</button>
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="brugerListe" style="width: 100%;">
@@ -17,7 +17,7 @@
           <mat-expansion-panel hideToggle="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Kontakt Oplysninger
+                Kontaktoplysninger
               </mat-panel-title>
               <mat-panel-description>
                 <mat-icon>account_circle</mat-icon>
@@ -40,7 +40,7 @@
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.addresselinje2}}</span>
               </mat-card>
               <mat-card class="containStyle centers" style="width: 100%;">
-                <span style="font-weight: bold; margin: 30px; color: black;">Telefonnr:</span>
+                <span style="font-weight: bold; margin: 30px; color: black;">Telefonnummer:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.telefonNr}}</span>
               </mat-card>
               <mat-card class="containStyle centers" style="width: 100%;">
@@ -48,7 +48,7 @@
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.email}}</span>
               </mat-card>
               <mat-card class="containStyle centers" style="width: 100%;">
-                <span style="font-weight: bold; margin: 30px; color: black;">Postnr:</span>
+                <span style="font-weight: bold; margin: 30px; color: black;">Postnummer:</span>
                 <span class="txtStyle">{{brugerListe.kontaktoplysninger.postnr}}</span>
               </mat-card>
               <mat-card class="containStyle centers" style="width: 100%;">
@@ -62,10 +62,6 @@
               <mat-card class="containStyle centers" style="width: 100%;">
                 <span style="font-weight: bold; margin: 30px; color: black;">Rolle:</span>
                 <span class="txtStyle">{{brugerListe.rolle.rolleNavn}}</span>
-              </mat-card>
-              <mat-card class="containStyle centers" style="width: 100%;">
-                <span style="font-weight: bold; margin: 30px; color: black;">Offentlig:</span>
-                <span class="txtStyle">{{brugerListe.kontaktoplysninger.offentlig}}</span>
               </mat-card>
               <mat-action-row>
                 <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger Profil</button>
@@ -133,7 +129,7 @@
                 <mat-label>Navn</mat-label>
                 <input matInput placeholder="Navn" formControlName="navn" [(ngModel)]="nytBryggeri.navn" required>
                 <mat-error>
-                  feltet skal udfyldes
+                  Udfyld felt
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
@@ -143,9 +139,9 @@
               </mat-form-field>
             </form>
             <mat-action-row>
-              <button mat-button color="primary" (click)="onClose()" class="btnMainStyle">Annulere</button>
+              <button mat-button color="primary" (click)="onClose()" class="btnMainStyle">Fortryd</button>
               <button mat-button color="primary" (click)="onOpretBryggeri(); $event.stopPropagation()"
-                class="btnMainStyle">Oprette Bryggeri</button>
+                class="btnMainStyle">Opret Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -170,7 +166,7 @@
               </mat-form-field>
             </form>
             <mat-action-row>
-              <button mat-button color="primary" (click)="onChangeStatus()" class="btnMainStyle">Change Status</button>
+              <button mat-button color="primary" (click)="onChangeStatus()" class="btnMainStyle">Skift Status</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>

@@ -14,7 +14,7 @@ export class OlAdminSideComponent implements OnInit {
   oller: Øl[];
   ol: Øl;
   endpointB = '/Øl';
-  data = sessionStorage.getItem('id');
+ // data = sessionStorage.getItem('id');
   searchkeyOlNavn: string;
 
   constructor(

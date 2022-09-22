@@ -75,19 +75,22 @@ export class OlSogningComponent implements OnInit {
       console.log('idOl..', data.id);
       this.olId = this.ol.id;
       localStorage.setItem('olId', JSON.stringify(this.olId));
+      console.log()
       if(this.ol.bryggeriId){
         this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(bryg => {
           this.bryggeri = bryg;
           console.log('bryggriId...',this.bryggeri.id);
           localStorage.setItem('olBryggeriId', JSON.stringify(this.bryggeri.id));
-          this.kontaktOplysningId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-          this.restApi.getData(this.kontaktOplysningId, this.endpointK).subscribe(kontaktOplysningData => {
+          console.log("knkt", this.bryggeri.kontaktoplysningerId);
+          // this.kontaktOplysningId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+          // console.log(this.kontaktOplysningId);
+          this.restApi.getData(this.bryggeri.kontaktoplysningerId, this.endpointK).subscribe(kontaktOplysningData => {
             this.kontaktOplysning = kontaktOplysningData;
-            console.log(kontaktOplysningData);
-            this.kontaktOplysningId = this.kontaktOplysning.id;
-            console.log('kontaktOplysningId..', this.kontaktOplysning.id);
-            localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
-            this.router.navigate(['../ol/ol-side/', this.olId]);
+            console.log("tt",this.bryggeri.kontaktoplysningerId);
+            // this.kontaktOplysningId = this.kontaktOplysning.id;
+            console.log('kontaktOplysningId..', this.bryggeri.kontaktoplysningerId);
+            localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.bryggeri.kontaktoplysningerId));
+            this.router.navigate(['../ol/ol-side/', id]);
           });
         });
       }

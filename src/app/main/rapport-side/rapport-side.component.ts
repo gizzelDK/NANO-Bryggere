@@ -33,23 +33,23 @@ export class RapportSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.onHentBruger();
+    // this.onHentBruger();
     this.onHentRapport();
     // this.nyRapport.brugerId = this.brugerId;
   }
 
-  onHentBruger() {
-    if (this.brugerId) {
-      this.restApi.getDatas(this.endpointB).subscribe((data) => {
-        this.brugerListe = data;
-        for (let b = 0; b < data.length; b++) {
-          const listDrop = {id: this.brugerListe[b].id}
-          if (listDrop.id == this.brugerId)
-            this.bruger = listDrop;
-        }
-      })
-    }
-  }
+  // onHentBruger() {
+  //   if (this.brugerId) {
+  //     this.restApi.getData(this.brugerId,this.endpointB).subscribe((data) => {
+  //       this.brugerListe = data;
+  //       for (let b = 0; b < data.length; b++) {
+  //         const listDrop = {id: this.brugerListe[b].id}
+  //         if (listDrop.id == this.brugerId)
+  //           this.bruger = listDrop;
+  //       }
+  //     })
+  //   }
+  // }
 
   onHentRapport() {
     this.restApi.getDatas(this.endpointR).subscribe((data) => {
@@ -70,34 +70,34 @@ export class RapportSideComponent implements OnInit {
     return this.restApi.getData(id, this.endpointR).subscribe((data) => {
         this.listeTest = data;
         // console.log(this.listeTest.godtaget);
-        this.onRapportType(this.listeTest.typeNavn);
+        this.onRapportType(this.listeTest.rType);
         this.onRapportGodtagelse(this.listeTest.godtaget);
       })
   }
 
   onRapportType(type: any) {
-    // console.log(godtaget);
+    console.log("start",type);
     switch (type) {
       case 0:
         type = "Anmeld bruger";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
 
       case 1:
         type = "Andet";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
         case 2:
         type = "Spørgsmål";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
         case 3:
         type = "Meld fejl";
-        this.listeTest.typeNavn = type;
-        // console.log(type);
+        this.listeTest.rType = type;
+        console.log(type);
         break;
       default:
         break;

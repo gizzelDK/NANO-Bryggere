@@ -10,6 +10,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { RapportSideComponent } from './rapport-side/rapport-side.component';
 import { SkiftpasswordComponent } from './skiftpassword/skiftpassword.component';
 import { FindBryggerComponent } from './find-brygger/find-brygger.component';
+import { FolgBryggerComponent } from './folg-brygger/folg-brygger.component';
+import { BryggerKatalogComponent } from './brygger-katalog/brygger-katalog.component';
 
 const routes: Routes = [
 {path:'', component:ForsideComponent},
@@ -23,12 +25,11 @@ const routes: Routes = [
 {path:'opret-øl', component:OpretOlComponent},
 {path:'katalog', component:KatalogComponent},
 {path:'find-brygger', component:FindBryggerComponent},
-//{path:'samarbejds-side', component:SamarbejdeSideComponent},
-// {path:'samarbejd-opdater/:id', component:SamarbejdeRedigerComponent},
+{path:'fulgte-brygger-side', component:FolgBryggerComponent},
+{path:'bryggers-katalog', component:BryggerKatalogComponent},
 // {path:'samarbejds-opretning', component:SamarbejdeOprettelseComponent},
 // {path:'samarbejde-øl-lager/:id', component:SamarbejdeOlLagerComponent},
-{path:'rapporter', component:RapportSideComponent},
-{path:'**', component: NotFoundComponent}];
+{path:'rapporter', component:RapportSideComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

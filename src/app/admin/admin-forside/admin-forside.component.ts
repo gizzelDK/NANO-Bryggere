@@ -13,19 +13,20 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{ name: 'Bruger', children: [{ name: 'Med BrugerEfternavn' }, { name: 'Med Brugernavn' }, { name: 'Med Email' }, { name: 'Med events Titel' }] },
-    { name: 'Rolle', children: [{ name: 'Med Rollenavn' }, { name: 'Rolle Med Brugernavn' }] },
-    { name: 'Bryggeri', children: [{ name: 'Med BryggeriSamarbejde' }, { name: 'Med Bryggerinavn' }] },
-    { name: 'Øl', children: [{ name: 'Med ØlId' }, { name: 'Med Ølnavn' }, { name: 'Med Øltype' }] },
-    { name: 'Events', children: [{ name: 'Med Eventstitel' }, { name: 'Med Deltagelser' }] },
+    children: [{ name: 'Bruger', children: [{ name: 'Med BrugerEfternavn' }, { name: 'Med Brugernavn' }, { name: 'Med Email' }] },
+    { name: 'Rolle', children: [{ name: 'Med Rollenavn' }] },
+    { name: 'Bryggeri', children: [ { name: 'Med Bryggerinavn' }] },
+    { name: 'Øl', children: [ { name: 'Med Ølnavn' }] },
+    { name: 'Events', children: [{ name: 'Med Eventstitel' }] },
     { name: 'Deltager', children: [{ name: 'Med EventTitel' }] },
     { name: 'Forum', children: [{ name: 'Med ForumTitel' }] },
     { name: 'Tags', children: [{ name: 'Med Tag' }] },
-    { name: 'Samarbejde', children: [{ name: 'Med Samarbejde navn' }, { name: 'Med Øl navn' }] },
+    { name: 'Samarbejde', children: [{ name: 'Med Samarbejde navn' }] },
     { name: 'Certifikat' },
-    { name: 'Login' },
-    { name: 'Rapporteringer'},
     { name: 'OprydningKnap'}]
+    { name: 'Bruger Logins' },
+    { name: 'Rapporteringer'},
+    { name: 'Log ud'}]
   }
 ];
 
@@ -159,6 +160,9 @@ export class AdminForsideComponent implements OnInit {
       case 'OprydningKnap': {
         this.visOprydningKnap = !this.visOprydningKnap;
         break;
+      case 'Log ud':{
+        localStorage.clear();
+        this.router.navigate(['/login/']);
       }
     }
   }

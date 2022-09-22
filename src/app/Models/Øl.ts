@@ -3,6 +3,7 @@ import { Kommentar } from "./Kommentar";
 import { Opskrift } from "./Opskrift";
 import { Samarbejde } from "./Samarbejde";
 import { Tag } from "./Tag";
+import { Øltags } from "./Øltags";
 
 export class Øl {
     public id: number;
@@ -24,5 +25,5 @@ export class Øl {
     //public samarbejdeId: number;
     public samarbejder: Samarbejde;
     public kommentarer:Kommentar;
-    public tags: Tag;
+    public tags: Øltags;
 }
