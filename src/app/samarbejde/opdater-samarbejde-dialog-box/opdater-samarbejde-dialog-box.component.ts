@@ -1,3 +1,4 @@
+import { Bryggeri } from './../../Models/Bryggeri';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +15,7 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
   samarbejdeId :number;
   opdaterForm: FormGroup = new FormGroup({});
   endpointS = '/Samarbejdes';
-   samarbejdeListe:any;
+  samarbejdeListe:any;
 
   constructor(
     public dialogRefRedigerSamarbejde : MatDialogRef<OpdaterSamarbejdeDialogBoxComponent>,
@@ -29,24 +30,25 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
     this.restApi.getData(this.samarbejdeId , this.endpointS)
     .toPromise()
     .then(data => {
+      console.log('samarbejde....' , this.samarbejdeListe);
       this.samarbejdeListe=data;
       this.opdaterForm = this.formBuilder.group({
         bryggeriId1: new FormControl(this.samarbejdeListe.bryggeriId1),
         bryggeriId2: new FormControl(this.samarbejdeListe.bryggeriId2),
         titel: new FormControl(this.samarbejdeListe.titel),
-        olBillede: new FormControl(this.samarbejdeListe.olBillede)
+       // olBillede: new FormControl(this.samarbejdeListe.olBillede)
       });
     })
   }
 
-  onSubmitCertifikat(event: any) {
+/*   onSubmitCertifikat(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
-        this.samarbejdeListe.olBilled =e.target.result;
+        this.samarbejdeListe.olBillede =e.target.result;
         localStorage.setItem('olBillede' ,JSON.stringify(this.samarbejdeListe.olBillede));
       }
     }
-  };
+  }; */
 }

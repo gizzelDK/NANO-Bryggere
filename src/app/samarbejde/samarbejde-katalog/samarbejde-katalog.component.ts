@@ -35,10 +35,12 @@ export class SamarbejdeKatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+    console.log('olOd..', this.olId);
     this.onHentOl();
   }
 
-  onHentOl() {
+ // onHentOl() {
     // if (this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
     //   this.restApi.getDatas(this.endpointO).subscribe(data => {
     //   this.olListe = data.filter((res: any) => {
@@ -46,6 +48,15 @@ export class SamarbejdeKatalogComponent implements OnInit {
     //     });
     //   })
     // }
+ // }
+
+  onHentOl() {
+   this.restApi.getDatas(this.endpointO).subscribe((data) => {
+    this.olListe=data.filter((res:any) => {
+      return res.id == this.olId;
+    });
+    console.log('olList..', this.olListe);
+   })
   }
 
   onOpretSamarbejde() {
@@ -61,7 +72,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
   }
 
   onOpdaterOl(id: any) {
-    localStorage.setItem('ølId', JSON.stringify(id));
+    localStorage.setItem('olId', JSON.stringify(id));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -79,10 +90,10 @@ export class SamarbejdeKatalogComponent implements OnInit {
   }
 
   onSletOl(id: any) {
-    if (this.olListe.length !== 0) {
+/*     if (this.olListe.length !== 0) {
       alert('der er et problem, tjek op på det')
-    }
-    else {
+    } */
+    // else {
       let dialogRef = this.dialog.open(SletDialogBoxComponent);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
@@ -91,11 +102,11 @@ export class SamarbejdeKatalogComponent implements OnInit {
           })
         }
       });
-    }
+    // }
   }
 
   onOlLager(id: any) {
-    localStorage.setItem('SamarbejdelagerId', JSON.stringify(id));
+   // localStorage.setItem('SamarbejdelagerId', JSON.stringify(id));
     this.router.navigate(['./samarbejde/samarbejde-ol-lager/', id]);
   }
 }

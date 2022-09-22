@@ -36,17 +36,17 @@
                 <button mat-button class="txtBtn" style="color: black;" (click)="onVisBruger(brug.id)">Vis </button>
                 <button mat-button class="txtBtn" style="color: black;" (click)="onNedgraderRolleNavn(brug.id)">Nedgrader </button>
                 <button mat-button class="txtBtn" style="color: black;" (click)="onOpgraderRolleNavn(brug.id)">Opgrader </button>
-                <button mat-button class="txtBtn" style="color: black;" (click)="onSletBruger(brug.id)">Slet </button>
+                <!-- <button mat-button class="txtBtn" style="color: black;" (click)="onSletBruger(brug.id)">Slet </button> -->
               </mat-action-row>
             </mat-expansion-panel-header>
             <div *ngIf="rolle">
               <mat-card class="containStyle">
                 <span class="titelStyle">Rolle:</span>
-                <span class="txtStyle">{{this.rolleName}}</span>
+                <span class="txtStyle">{{rolle.rolle.rolleNavn}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Level:</span>
-                <span class="txtStyle">{{rolle.level}}</span>
+                <span class="txtStyle">{{rolle.rolle.level}}</span>
               </mat-card>
             </div>
           </mat-expansion-panel>
