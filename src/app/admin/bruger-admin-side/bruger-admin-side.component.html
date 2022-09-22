@@ -47,46 +47,46 @@
                 <span class="txtbtn" style="color: black;">{{bruger.brugernavn}}</span>
               </mat-panel-title>
               <mat-action-row class="centers cards" style="justify-content: center;">
-                <button mat-button class="txtbtn" style="color: black;" (click)="onVisBruger(bruger.id)">Vis </button>
+                <button mat-button class="txtbtn" style="color: black;" (click)="onVisBruger()">Vis </button>
                 <!-- <button mat-button class="txtbtn" style="color: black;" (click)="onOpdaterBruger(bruger.id)">Opdater </button>  -->
                 <button mat-button class="txtbtn" style="color: black;" (click)="onSletBruger(bruger.id)">Slet </button>
 
               </mat-action-row>
             </mat-expansion-panel-header>
-            <div *ngIf="kontaktOplysninger">
+            <!-- <div *ngIf="kontaktOplysninger"> -->
               <mat-card class="containStyle">
                 <span class="titelStyle">Fornavn:</span>
-                <span class="txtStyle">{{kontaktOplysninger.fnavn}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.fnavn}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Efternavn:</span>
-                <span class="txtStyle">{{kontaktOplysninger.enavn}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.enavn}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Addresselinje1:</span>
-                <span class="txtStyle">{{kontaktOplysninger.addresselinje1}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.addresselinje1}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Addresselinje2:</span>
-                <span class="txtStyle">{{kontaktOplysninger.addresselinje2}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.addresselinje2}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Telefonnr:</span>
-                <span class="txtStyle">{{kontaktOplysninger.telefonNr}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.telefonNr}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Email:</span>
-                <span class="txtStyle">{{kontaktOplysninger.email}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.email}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">Postnr:</span>
-                <span class="txtStyle">{{kontaktOplysninger.postnr}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.postnr}}</span>
               </mat-card>
               <mat-card class="containStyle">
                 <span class="titelStyle">By:</span>
-                <span class="txtStyle">{{kontaktOplysninger.by}}</span>
+                <span class="txtStyle">{{bruger.kontaktoplysninger.by}}</span>
               </mat-card>
-            </div>
+            <!-- </div> -->
           </mat-expansion-panel>
         </mat-accordion>
       </table>

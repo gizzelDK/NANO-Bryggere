@@ -10,14 +10,6 @@
               </mat-form-field>
             </form>
           </mat-tab>
-<!--           <mat-tab label="Find events med deltagelser brugernavn">
-            <form class="example-form" style="justify-content: center; width: 100%;">
-              <mat-form-field class="txtHeader">
-                <input matInput type="search" placeholder="Find event" [(ngModel)]="searchkeyDeltagelse" (ngModelChange)="onFindDeltagene()"
-                  [ngModelOptions]="{standalone: true}">
-              </mat-form-field>
-            </form>
-          </mat-tab> -->
           <mat-tab label="Opret Events">
             <button mat-button class="btnOprette" (click)="onOpretEvent()">Klik her for at oprette et events</button>
           </mat-tab>
@@ -37,7 +29,6 @@
               <mat-action-row class="centers cards" style="justify-content: center;">
                 <!-- <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button>  -->
                 <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Opdater</button>
-                <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
                 <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet</button>
               </mat-action-row>
             </mat-expansion-panel-header>
