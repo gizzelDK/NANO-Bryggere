@@ -26,4 +26,5 @@ export class Øl {
     public samarbejder: Samarbejde;
     public kommentarer:Kommentar;
     public tags: Øltags;
+    public samarbejdeId: number;
 }

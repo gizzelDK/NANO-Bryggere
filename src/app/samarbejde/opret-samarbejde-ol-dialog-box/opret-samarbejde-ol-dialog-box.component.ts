@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./opret-samarbejde-ol-dialog-box.component.css']
 })
 export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
-  @Input() olOprettelse = {olBillede:'', navn: '', beskrivelse: '', land:'', type: '', smag: '', procent:null, aargang:'', bryggeriId: 0};
+  @Input() olOprettelse = {olBillede:'', navn: '', beskrivelse: '', land:'', type: '', smag: '', procent:null, aargang:'', bryggeriId: 0, samarbejdeId: 0};
  // , antal: ''
   opretForm: any = new FormGroup({});
   endpointO = '/Øl';
@@ -79,7 +79,8 @@ export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
     // this.olOprettelse.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     // this.olOprettelse.olBillede = JSON.parse(localStorage.getItem('olBillede') || '{}');
     this.olOprettelse.bryggeriId = this.bryggeriId;
-    console.log('samarbejdeId',  this.bryggeriId);
+    this.olOprettelse.samarbejdeId = this.samarbejdeId;
+    console.log('samarbejdeId',  this.samarbejdeId);
     console.log('ol...',this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((olData) => {
       console.log('olll...', olData)
@@ -87,5 +88,6 @@ export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
       this.dialogRefOpretSamarbejdeOl.close();
       //this.router.navigate(['../main/katalog']);
     });
+
   }
 }

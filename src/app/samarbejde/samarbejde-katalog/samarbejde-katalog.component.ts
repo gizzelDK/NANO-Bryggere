@@ -36,6 +36,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+    this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')
     console.log('olOd..', this.olId);
     this.onHentOl();
   }
@@ -53,7 +54,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
   onHentOl() {
    this.restApi.getDatas(this.endpointO).subscribe((data) => {
     this.olListe=data.filter((res:any) => {
-      return res.id == this.olId;
+      return res.samarbejdeId == this.samarbejdeId;
     });
     console.log('olList..', this.olListe);
    })
