@@ -6,9 +6,11 @@
             (click)="onNulstilOpskrift()">Opret opskrift</button>
         <h1 class="centers">Opskrift katalog</h1>
     </mat-toolbar>
-
-      <app-ol-opskrift-liste></app-ol-opskrift-liste>
-
+    <div class="row">
+      <div class="column">
+        <app-ol-opskrift-liste></app-ol-opskrift-liste>
+      </div>
+      <div class="column">
         <form [formGroup]="opskriftForm" class="example-form" style="justify-content: center;">
 
             <mat-form-field class="example-full-width centers" appearance="fill">
@@ -42,6 +44,11 @@
               <button mat-raised-button type="submit" (click)="onOpretOpskrift()" class="login-btn" style="background: linear-gradient(#84ba77, #6bac7b);">Gem opskrift</button>
             </div>
         </form>
+
+      </div>
+
+    </div>
+
         <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
             <mat-expansion-panel style="margin-top: 10px; width: 40%;" *ngFor="let ol of opskriftliste" expanded="false"

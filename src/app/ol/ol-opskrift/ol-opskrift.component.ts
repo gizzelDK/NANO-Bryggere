@@ -22,7 +22,7 @@ export class OlOpskriftComponent implements OnInit {
   olId: number;
   arrayList = new Array();
   id = this.actRoute.snapshot.params['id'];
-  @Input() opskrift = { ølId: 0, stepOne:"", stepTwo:"", stepThree:"", stepFour:"", stepFive:"", offentliggjort: false, bryggeriId: 0 }
+  @Input() opskrift = { ølId: null, stepOne:"", stepTwo:"", stepThree:"", stepFour:"", stepFive:"", offentliggjort: false, bryggeriId: 0 }
   opskriftForm:any = new FormGroup({});
 
   constructor(
@@ -33,7 +33,7 @@ export class OlOpskriftComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.bryggeriId = +JSON.parse(localStorage.getItem('bryggeriId') || '');
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
     this.opskriftForm = new FormGroup({
       stepOne: new FormControl('')
@@ -50,7 +50,8 @@ export class OlOpskriftComponent implements OnInit {
     onOpretOpskrift()
     {
       this.opskrift.bryggeriId = this.bryggeriId;
-      this.opskrift.ølId = this.olId;
+      // this.opskrift.ølId = this.olId;
+      console.log('We made it here', this.bryggeriId)
       this.restApi.createData(this.opskrift, this.endpointO).subscribe((data) =>{
         console.log('Opskrift.......', data);
       });
