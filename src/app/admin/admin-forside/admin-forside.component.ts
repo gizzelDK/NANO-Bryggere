@@ -55,8 +55,6 @@ export class AdminForsideComponent implements OnInit {
   visSamarbejdeComponent: boolean = false;
   visRapportComponent: boolean = false;
   visOprydningKnap: boolean = false;
-  endpointA: string = '/Admin/Oprydning/Brugere';
-  slettedeBrugere: string ='Ryd Slettede Brugere op';
 
   constructor(
     public dialog: MatDialog,
@@ -66,9 +64,7 @@ export class AdminForsideComponent implements OnInit {
   ) {this.dataSource.data = TREE_DATA;}
    hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onVisComponent(nodeName: string) {
     // console.log(nodeName);
@@ -167,10 +163,6 @@ export class AdminForsideComponent implements OnInit {
       }
     }
   }
-  onRydBrugereOp(){
-    this.restApi.deleteData(0, this.endpointA).subscribe((data)=>{
-      this.slettedeBrugere = 'Slettede brugere: ' + JSON.stringify(data);
-    })
-  }
+
 
 }

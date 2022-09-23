@@ -39,6 +39,7 @@ import { OpdaterEventDialogBoxComponent } from './opdater-event-dialog-box/opdat
 import { RapportAdminSideComponent } from './rapport-admin-side/rapport-admin-side.component';
 import { TagAdminSideComponent } from './tag-admin-side/tag-admin-side.component';
 import { CertifikatAdminSideComponent } from './certifikat-admin-side/certifikat-admin-side.component';
+import { SlettedeBrugereAdminComponent } from './slettede-brugere-admin/slettede-brugere-admin.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { CertifikatAdminSideComponent } from './certifikat-admin-side/certifikat
     OpdaterEventDialogBoxComponent,
     RapportAdminSideComponent,
     TagAdminSideComponent,
-    CertifikatAdminSideComponent
+    CertifikatAdminSideComponent,
+    SlettedeBrugereAdminComponent
   ],
   imports: [
     CommonModule,
