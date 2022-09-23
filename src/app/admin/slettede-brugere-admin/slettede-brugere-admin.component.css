@@ -1,0 +1,35 @@
+.neon{
+  top: 20%;
+  left: 30%;
+}
+button.neon::before{
+  content: "";
+  position: absolute;
+  background: hotpink;
+  top: 120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(40deg) scale(1.5, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+button.neon::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2em 0.5em hotpink;
+  opacity: 0;
+}
+button.neon:hover, button.neon:focus{
+  background: hotpink;
+  color: black;
+  text-shadow: none;
+}
+button.neon:hover::after{
+  opacity: 1;
+}
