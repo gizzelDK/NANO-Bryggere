@@ -8,6 +8,9 @@ import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptorProvider } from './shared/token-interceptor.service';
+import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
+
+
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import { AuthInterceptorProvider } from './shared/token-interceptor.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    MatSnackBarModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {

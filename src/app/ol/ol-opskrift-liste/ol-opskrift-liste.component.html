@@ -1,0 +1,46 @@
+<h1 class="centers">Opskrift Katalog</h1>
+<table style="width: 100%; height: 100%; display: flex;">
+    <mat-accordion class="example-headers-align" multi style="width: 100%;">
+        <mat-expansion-panel style="margin-top: 10px; width: 100%;" *ngFor="let opskrift of opskriftliste"
+            class="centers" hideToggle="true" [disabled]="clickButton" (click)="clickButton=true">
+            <mat-expansion-panel-header
+                style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
+                <mat-panel-title class="centers" style="justify-content: center;">
+                    <span class="titelStyle" style="margin-right: 10px;">Opskrift Id:</span>
+                    <span>{{opskrift.id}}</span>
+                </mat-panel-title>
+                <mat-action-row class="centers cards" style="justify-content: center;">
+                    <button mat-button class="txtBtn" (click)="onVisDetajler(opskrift.id)">Vis</button>
+                    <button mat-button class="txtBtn" (click)="onOpdaterOpskrift(opskrift.id)">Rediger</button>
+                    <button mat-button class="txtBtn" (click)="onSletOpskrifter(opskrift.id)">Slet</button>
+                </mat-action-row>
+            </mat-expansion-panel-header>
+            <mat-card class="containStyle">
+              <p class="titelStyle">step 1:</p>
+              <p>{{opskrift.stepOne}}</p>
+          </mat-card>
+          <mat-card class="containStyle">
+              <p class="titelStyle">step 2:</p>
+              <p>{{opskrift.stepTwo}}</p>
+          </mat-card>
+          <mat-card class="containStyle">
+              <p class="titelStyle">step 3:</p>
+              <p>{{opskrift.stepThree}}</p>
+          </mat-card>
+          <mat-card class="containStyle">
+              <p class="titelStyle">step 4</p>
+              <p>{{opskrift.stepFour}}</p>
+          </mat-card>
+          <mat-card class="containStyle">
+              <p class="titelStyle">step 5:</p>
+              <p>{{opskrift.stepFive}}</p>
+          </mat-card>
+          <div *ngIf="opskrifter">
+              <mat-card class="containStyle">
+                <p class="titelStyle">Status:</p>
+                <p>{{opskrifter.offentliggjort}}</p>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+</table>

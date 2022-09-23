@@ -5,6 +5,7 @@ import { RestApiService } from './rest-api.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Clearance } from '../Models/Clearance';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class LoginService  {
   get level(): any{
     return localStorage.getItem('level');
   }
-  constructor(private apiservice: RestApiService, private jwtHelper: JwtHelperService, private router: Router,) {
+  constructor(private apiservice: RestApiService, private jwtHelper: JwtHelperService, private router: Router) {
     this._isLoggedIn$.next(!!this.token)
     this._clearance$.role = this.rolle
     this._clearance$.level = this.level

@@ -15,7 +15,7 @@
       </span>
       <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
         <div *cdkVirtualFor="let ol of olListe" class="example-item" (click)="onVisOlDetaljer(ol.id)">
-          <img [src]="this.ol.olBilled" alt="" class="centerBilled" style="width: 40%; height: 40%;">
+          <img [src]="this.ol.olBillede" alt="" class="centerBilled" style="width: 40%; height: 40%;">
           <p class="titelStyle centers">Navn:</p>
           <p class="txtStyle centers">{{ol.navn}}</p>
         </div>

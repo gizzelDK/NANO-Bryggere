@@ -8,6 +8,7 @@ import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
 import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
 import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
 import { Øl } from 'src/app/Models/Øl';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-forside',
@@ -29,12 +30,16 @@ export class ForsideComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.onHentEvent();
     this.onHentBryggeri();
     this.onHentOl();
+    this.snackBar.open("Vi indsamler oplysninger om brugerens data, og ved brug af vores web-app godkender du brugen af vilkårene","OK",{
+      duration: 10000,
+    });
   }
   onHentEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {

@@ -16,8 +16,8 @@ import { OlSideComponent } from './ol-side/ol-side.component';
 import { OlSideSamarbejdeComponent } from './ol-side-samarbejde/ol-side-samarbejde.component';
 import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 import { OlLagerComponent } from './ol-lager/ol-lager.component';
-import { OlLommeregnerComponent } from './ol-lommeregner/ol-lommeregner.component';
 import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
+import { OlOpskriftListeComponent } from './ol-opskrift-liste/ol-opskrift-liste.component';
 
 
 
@@ -27,8 +27,8 @@ import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
     OlSideSamarbejdeComponent,
     OlSogningComponent,
     OlLagerComponent,
-    OlLommeregnerComponent,
-    OlOpskriftComponent
+    OlOpskriftComponent,
+    OlOpskriftListeComponent
   ],
   imports: [
     CommonModule,

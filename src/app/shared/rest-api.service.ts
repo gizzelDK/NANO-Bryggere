@@ -9,7 +9,7 @@ import { retry, catchError} from 'rxjs/operators';
 export class RestApiService {
 
   apiUrl = 'https://localhost:7252/api';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, ) { }
 
   httpOptions = {
     headers: new HttpHeaders({
