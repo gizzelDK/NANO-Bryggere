@@ -7,6 +7,8 @@
         <h1 class="centers">Opskrift katalog</h1>
     </mat-toolbar>
 
+      <app-ol-opskrift-liste></app-ol-opskrift-liste>
+
         <form [formGroup]="opskriftForm" class="example-form" style="justify-content: center;">
 
             <mat-form-field class="example-full-width centers" appearance="fill">
@@ -25,7 +27,7 @@
                 <input matInput type="text" [(ngModel)]="opskrift.stepFive" formControlName="stepFive" placeholder="trin 5" class="input-control">
             </mat-form-field>
             <mat-form-field class="example-full-width centers" appearance="fill">
-              <select matNativeControl [(ngModel)]="opskrift.offentlig" formControlName="offentlig"
+              <select matNativeControl [(ngModel)]="opskrift.offentliggjort" formControlName="offentliggjort"
                   class="input-control">
                   <option [ngValue]="false">
                     Privat
@@ -54,26 +56,7 @@
                         <button mat-button class="txtBtn" (click)="onSletOpskrift(ol.id)">Slet opskrift</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <mat-card class="containStyle">
-                    <p class="titelStyle">step 1:</p>
-                    <p>{{ol.stepOne}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p class="titelStyle">step 2:</p>
-                    <p>{{ol.stepTwo}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p class="titelStyle">step 3:</p>
-                    <p>{{ol.stepThree}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p class="titelStyle">step 4</p>
-                    <p>{{ol.stepFour}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p class="titelStyle">step 5:</p>
-                    <p>{{ol.stepFive}}</p>
-                </mat-card>
+
             </mat-expansion-panel>
         </mat-accordion>
     </table>

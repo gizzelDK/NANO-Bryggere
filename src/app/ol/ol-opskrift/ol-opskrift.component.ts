@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Opskrift } from 'src/app/Models/Opskrift';
-
+import { OlOpskriftListeComponent } from '../ol-opskrift-liste/ol-opskrift-liste.component';
 // import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
 @Component({
@@ -22,7 +22,7 @@ export class OlOpskriftComponent implements OnInit {
   olId: number;
   arrayList = new Array();
   id = this.actRoute.snapshot.params['id'];
-  @Input() opskrift = { ølId: 0, stepOne:"", stepTwo:"", stepThree:"", stepFour:"", stepFive:"", offentlig: false }
+  @Input() opskrift = { ølId: 0, stepOne:"", stepTwo:"", stepThree:"", stepFour:"", stepFive:"", offentliggjort: false, bryggeriId: 0 }
   opskriftForm:any = new FormGroup({});
 
   constructor(
@@ -34,13 +34,14 @@ export class OlOpskriftComponent implements OnInit {
 
   ngOnInit(): void {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
     this.opskriftForm = new FormGroup({
       stepOne: new FormControl('')
       ,stepTwo: new FormControl('')
       ,stepThree: new FormControl('')
       ,stepFour: new FormControl('')
       ,stepFive: new FormControl('')
-      ,offentlig: new FormControl('')
+      ,offentliggjort: new FormControl('')
     });
     }
     //knapper til siden
@@ -48,8 +49,11 @@ export class OlOpskriftComponent implements OnInit {
 
     onOpretOpskrift()
     {
-      //this.restApi.createData(this.opskrift, this.endpointO).subscribe();
-      console.log('Opskrift.......', this.opskrift)
+      this.opskrift.bryggeriId = this.bryggeriId;
+      this.opskrift.ølId = this.olId;
+      this.restApi.createData(this.opskrift, this.endpointO).subscribe((data) =>{
+        console.log('Opskrift.......', data);
+      });
     }
     onNulstilOpskrift(){
       this.opskriftForm.reset();
