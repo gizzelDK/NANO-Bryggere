@@ -214,6 +214,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
       if (result) {
         this.kontaktOplysningsListe = result;
+        console.log("result", result);
         this.restApi.updateData(this.kontaktoplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
           this.ngOnInit();
         })
