@@ -196,6 +196,7 @@ export class ProfilComponent implements OnInit {
         if (data) {
           this.visOB = true;
           this.visB = false;
+          this.visFillerOB = false;
           this.snackBar.open('Nyt bryggeri oprettet');
           this.ngOnInit();
           //this.onClose();
