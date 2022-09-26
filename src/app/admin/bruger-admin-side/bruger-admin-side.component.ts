@@ -44,6 +44,7 @@ export class BrugerAdminSideComponent implements OnInit {
     public searchService: SearchServiceService
   ) { }
 
+  //køre programmet hurtigere
   ngOnInit(): void {
     this.onHentBruger();
   }
