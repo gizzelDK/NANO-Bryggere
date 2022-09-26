@@ -61,8 +61,6 @@ export class OlSogningComponent implements OnInit {
       this.oller = this.oller.filter(res => {
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
      })
-      console.log('ollist...', this.oller);
-      console.log('serachkey...', this.searchkey);
     }
   }
 

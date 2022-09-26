@@ -1,6 +1,7 @@
+<cdk-virtual-scroll-viewport orientation="vertical" itemSize="50" class="example-viewport">
 <h1 class="centers">Opskrift Katalog</h1>
 <table style="width: 100%; height: 100%; display: flex;">
-    <mat-accordion class="example-headers-align" multi style="width: 100%;">
+  <mat-accordion class="example-headers-align" multi style="width: 100%;">
         <mat-expansion-panel style="margin-top: 10px; width: 100%;" *ngFor="let opskrift of opskriftliste"
             class="centers" hideToggle="true" [disabled]="clickButton" (click)="clickButton=true">
             <mat-expansion-panel-header
@@ -43,4 +44,5 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
-</table>
+    </table>
+  </cdk-virtual-scroll-viewport>

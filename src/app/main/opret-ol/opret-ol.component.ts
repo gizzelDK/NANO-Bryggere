@@ -61,7 +61,6 @@ onSubmitOl() {
 this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
 console.log('ol.', this.olOprettelse);
 this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((data) => {
-
   localStorage.setItem('olId', JSON.stringify(data.id));
   this.router.navigate(['../main/katalog']);
 });

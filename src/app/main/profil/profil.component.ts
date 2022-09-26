@@ -9,6 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 import { RedigerBryggeriDialogBoxComponent } from '../rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from '../rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
+import { HeaderComponent } from 'src/app/layout/header/header.component';
 
 @Component({
   selector: 'app-profil',
@@ -43,6 +44,7 @@ export class ProfilComponent implements OnInit {
   brugerListe: Bruger;
   myDate:Date;
   certifikatListe: any;
+  header: HeaderComponent;
   // certifikatType:CertifikatStatus;
   url: string;
   Offentligvisning = true;
@@ -120,13 +122,14 @@ export class ProfilComponent implements OnInit {
                   this.visB = false;
                   console.log("bryggeri---", this.bryggeriListe);
                 }
-  
+
           }
           else {
             console.log("intet", this.certifikatListe)
             this.visOB = true;
           }
         }
+        this.header;
       })
     })
     })
@@ -256,7 +259,7 @@ export class ProfilComponent implements OnInit {
           this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
              if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
                this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) => {
- 
+
                })
              }
            })
@@ -331,7 +334,7 @@ export class ProfilComponent implements OnInit {
 
   logud() {
     localStorage.clear();
-    this.router.navigate(['/main/main']);
+    this.router.navigate(['/login/login']);
   }
 
 }
