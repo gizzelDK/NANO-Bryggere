@@ -1,61 +1,61 @@
 <h1 mat-dialog-title>Rediger Kontaktoplysninger</h1>
 <div mat-dialog-content>
-  <form class="example-form" [formGroup]="opdaterForm" *ngFor="let kontakt of kontaktOplysningsListe">
+  <form class="example-form" [formGroup]="opdaterForm" *ngIf="this.kontaktOplysningsListe" >
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fornavn:</mat-label>
-      <input matInput formControlName="fnavnCtl" placeholder="{{kontakt.fnavn}}"
-        [(ngModel)]="kontakt.fnavn" value="{{kontakt.fnavn}}">
+      <input matInput formControlName="fnavnCtl" placeholder="{{this.kontaktOplysningsListe.fnavn}}"
+        [(ngModel)]="this.kontaktOplysningsListe.fnavn" value="{{this.kontaktOplysningsListe.fnavn}}">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Efternavn:</mat-label>
-      <input matInput formControlName="enavnCtl" placeholder="{{kontakt.enavn}}"
-        [(ngModel)]="kontakt.enavn" value="{{kontakt.enavn}}">
+      <input matInput formControlName="enavnCtl" placeholder="{{this.kontaktOplysningsListe.enavn}}"
+        [(ngModel)]="this.kontaktOplysningsListe.enavn" value="{{this.kontaktOplysningsListe.enavn}}">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Addresselinje1:</mat-label>
-      <input matInput formControlName="adr1Ctl" placeholder="{{kontakt.addresselinje1}}"
-        [(ngModel)]="kontakt.addresselinje1">
+      <input matInput formControlName="adr1Ctl" placeholder="{{this.kontaktOplysningsListe.addresselinje1}}"
+        [(ngModel)]="this.kontaktOplysningsListe.addresselinje1">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Addresselinje2:</mat-label>
-      <input matInput formControlName="adr2Ctl" placeholder="{{kontakt.addresselinje2}}"
-        [(ngModel)]="kontakt.addresselinje2">
+      <input matInput formControlName="adr2Ctl" placeholder="{{this.kontaktOplysningsListe.addresselinje2}}"
+        [(ngModel)]="this.kontaktOplysningsListe.addresselinje2">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Telefonnr:</mat-label>
-      <input matInput formControlName="telefonNrCtl" placeholder="{{kontakt.telefonNr}}"
-        [(ngModel)]="kontakt.telefonNr">
+      <input matInput formControlName="telefonNrCtl" placeholder="{{this.kontaktOplysningsListe.telefonNr}}"
+        [(ngModel)]="this.kontaktOplysningsListe.telefonNr">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Email:</mat-label>
-      <input matInput formControlName="emailCtl" placeholder="{{kontakt.email}}"
-        [(ngModel)]="kontakt.email">
+      <input matInput formControlName="emailCtl" placeholder="{{this.kontaktOplysningsListe.email}}"
+        [(ngModel)]="this.kontaktOplysningsListe.email">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Postnr:</mat-label>
-      <input matInput formControlName="postNrCtl" placeholder="{{kontakt.postnr}}"
-        [(ngModel)]="kontakt.postnr">
+      <input matInput formControlName="postNrCtl" placeholder="{{this.kontaktOplysningsListe.postnr}}"
+        [(ngModel)]="this.kontaktOplysningsListe.postnr">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>By:</mat-label>
-      <input matInput formControlName="byCtl" placeholder="{{kontakt.by}}"
-        [(ngModel)]="kontakt.by">
+      <input matInput formControlName="byCtl" placeholder="{{this.kontaktOplysningsListe.by}}"
+        [(ngModel)]="this.kontaktOplysningsListe.by">
     </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Offentlig:</mat-label>
-        <input matInput formControlName="offentligCtl" placeholder="{{kontakt.offentlig}}"
-        [(ngModel)]="kontakt.offentlig">
+        <input matInput formControlName="offentligCtl" placeholder="{{this.kontaktOplysningsListe.offentlig}}"
+        [(ngModel)]="this.kontaktOplysningsListe.offentlig">
       </mat-form-field>
     <div mat-dialog-actions class="btn-container">
       <button mat-button (click)="dialogRefUpdateProfile.close(false)">Anuller</button>
-      <button mat-button cdkFocusInitial [mat-dialog-close]="kontaktOplysningsListe">Gem ændringer</button>
+      <button mat-button cdkFocusInitial [mat-dialog-close]="this.kontaktOplysningsListe">Gem ændringer</button>
     </div>
   </form>
 </div>

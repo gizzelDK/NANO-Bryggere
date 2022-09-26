@@ -68,6 +68,7 @@ export class ProfilComponent implements OnInit {
     // localStorage.removeItem('bryggeriId');
     this.onHentBruger();
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    console.log('kontaktId .................:', this.kontaktoplysningerId);
     this.onHentBryggeri();
     this.onTjekCertifikat();
 
@@ -86,15 +87,15 @@ export class ProfilComponent implements OnInit {
   onHentBruger() {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
-      console.log('Bruger .................:', this.brugerListe)
+     // console.log('Bruger .................:', this.brugerListe)
       localStorage.setItem('kontaktoplysningerId', JSON.stringify(this.brugerListe.kontaktoplysningerId));
-      console.log("kontaktId", this.brugerListe.kontaktoplysningerId);
-      console.log("kontaktId2", this.brugerListe.certifikats);
+      //console.log("kontaktId", this.brugerListe.kontaktoplysningerId);
+      //console.log("kontaktId2", this.brugerListe.certifikats);
       this.restApi.getDatas(this.endpointC).subscribe((dataC) => {
         this.certifikatListe = dataC.filter((res:any) =>{
           return res.brugerId === this.brugerId;
         });
-        console.log(this.certifikatListe);
+       // console.log(this.certifikatListe);
         for (let c = 0; c < this.certifikatListe.length; c++) {
             const element = { cStatus: dataC[c].cStatus };
             if (element.cStatus == "Godkendt") {
@@ -103,27 +104,27 @@ export class ProfilComponent implements OnInit {
             }
           }
       this.restApi.getDatas(this.endpointB).subscribe((data) => {
-        console.log('brygeri....', data);
+        //console.log('brygeri....', data);
         this.bryggeriListe = data.find((x: any) => x.kontaktoplysningerId === this.brugerListe.kontaktoplysningerId);
         if(this.bryggeriListe){
-          console.log('brygerilist....', this.bryggeriListe);
-          console.log("bryggeriId---",this.bryggeriListe.id);
+         // console.log('brygerilist....', this.bryggeriListe);
+         // console.log("bryggeriId---",this.bryggeriListe.id);
           if (this.bryggeriListe !== undefined) {
             localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
-            console.log("bryggeriId---",this.bryggeriListe.id);
+           // console.log("bryggeriId---",this.bryggeriListe.id);
             this.url = this.bryggeriListe.bryggeriLogo;
           }
           if (this.brugerListe) {
-            console.log(this.brugerId);
+           // console.log(this.brugerId);
                 if (this.bryggeriListe.id !== null) {
                   this.visOB = true;
                   this.visB = false;
-                  console.log("bryggeri---", this.bryggeriListe);
+                  //console.log("bryggeri---", this.bryggeriListe);
                 }
-  
+
           }
           else {
-            console.log("intet", this.certifikatListe)
+           // console.log("intet", this.certifikatListe)
             this.visOB = true;
           }
         }
@@ -206,6 +207,7 @@ export class ProfilComponent implements OnInit {
 
   onOpdaterProfil() {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    console.log('kontaktId1 .................:', this.kontaktoplysningerId);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -255,7 +257,7 @@ export class ProfilComponent implements OnInit {
           this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
              if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
                this.restApi.deleteData(this.brugerId, this.endpointBru).subscribe((data) => {
- 
+
                })
              }
            })
