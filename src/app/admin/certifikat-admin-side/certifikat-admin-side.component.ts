@@ -46,26 +46,8 @@ export class CertifikatAdminSideComponent implements OnInit {
       });
       this.restApi.getDatas(this.endpointB).subscribe((brugerData) => {
         this.brugerListe = brugerData;
-        // this.brugerListe
-        console.log(this.certifikatListe);
-
       })
-      // this.restApi.getDatas(this.endpointK).subscribe((kontaktOplysningerData) => {
-      //   this.kontaktOplysningsListe = kontaktOplysningerData;
-      //   this.kontaktOplysningsListe = kontaktOplysningerData.filter((a: any) => {
-      //     return a.id === this.certifikatListe.kontaktOplysningerId;
-      //   });
-      // })
     })
-    console.log(this.certifikatListe);
-    //   return this.restApi.getDatas(this.endpointB).subscribe((brugerCertifikat) => {
-    //   this.certifikatListe = brugerCertifikat.filter((a: Bruger) => {
-    //     a.certifikatStatus === 2;
-    //   })
-    //   // const b = this.certifikatListe.filter((a: any) => {
-    //   //   a.certifikatStatus === 2;
-    //   // })
-    // });
   }
 
   onFindBrugerCertifikat() {
@@ -103,25 +85,8 @@ export class CertifikatAdminSideComponent implements OnInit {
 
   onVisBrugerCertifikat(id: any) {
     this.clickButton = false;
-    console.log("visID",id);
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysninger = data.kontaktoplysninger;
-      console.log("Test Kontakt", data.kontaktoplysninger);
-      // this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
-      //   this.kontaktOplysninger = data;
-      // })
     })
   }
-
-  // onViCertifikat(id: any) {
-  //   this.clickButton = false;
-  //   return this.restApi.getData(id, this.endpointB).subscribe((data) => {
-  //     this.kontaktOplysningerId = data;
-  //     console.log("Test Kontakt", this.kontaktOplysningerId);
-  //     // this.certifikat = data;
-  //     // this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
-  //     //   this.kontaktOplysninger = data;
-  //     // })
-  //   })
-  // }
 }

@@ -18,6 +18,7 @@ import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 import { OlLagerComponent } from './ol-lager/ol-lager.component';
 import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
 import { OlOpskriftListeComponent } from './ol-opskrift-liste/ol-opskrift-liste.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -44,7 +45,8 @@ import { OlOpskriftListeComponent } from './ol-opskrift-liste/ol-opskrift-liste.
     MatDialogModule,
     MatSelectModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule
   ]
 })
 export class OlModule { }
