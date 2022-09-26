@@ -9,22 +9,18 @@
     <mat-grid-list cols="2" rowHeight="1:1" style="height: 100%; width: 100%;">
       <mat-grid-tile style="width: 50%;">
           <form [formGroup]="opskriftForm" class="example-form" style="justify-content: center;">
-  
+            <mat-form-field class="example-full-width centers" appearance="fill">
+                <input matInput type="text" [(ngModel)]="opskrift.stepTwo" formControlName="stepTwo" placeholder="trin 2" class="input-control">
+            </mat-form-field>
               <mat-form-field class="example-full-width centers" appearance="fill">
                   <input matInput type="text" [(ngModel)]="opskrift.stepOne" formControlName="stepOne" placeholder="trin 1" class="input-control">
-              </mat-form-field>
-              <mat-form-field class="example-full-width centers" appearance="fill">
-                  <input matInput type="text" [(ngModel)]="opskrift.stepTwo" formControlName="stepTwo" placeholder="trin 2" class="input-control">
-              </mat-form-field>
+              </mat-form-field>     
+                            <mat-form-field class="example-full-width centers" appearance="fill">
+                  <input matInput type="text" [(ngModel)]="opskrift.stepFour" formControlName="stepFour" placeholder="trin 4" class="input-control">
+              </mat-form-field>  
               <mat-form-field class="example-full-width centers" appearance="fill">
                   <input matInput type="text" [(ngModel)]="opskrift.stepThree" formControlName="stepThree" placeholder="trin 3" class="input-control">
-              </mat-form-field>
-              <mat-form-field class="example-full-width centers" appearance="fill">
-                  <input matInput type="text" [(ngModel)]="opskrift.stepFour" formControlName="stepFour" placeholder="trin 4" class="input-control">
-              </mat-form-field>
-              <mat-form-field class="example-full-width centers" appearance="fill">
-                  <input matInput type="text" [(ngModel)]="opskrift.stepFive" formControlName="stepFive" placeholder="trin 5" class="input-control">
-              </mat-form-field>
+              </mat-form-field>   
               <mat-form-field class="example-full-width centers" appearance="fill">
                 <select matNativeControl [(ngModel)]="opskrift.offentliggjort" formControlName="offentliggjort"
                     class="input-control">
@@ -36,6 +32,9 @@
                     </option>
                 </select>
               </mat-form-field>
+              <mat-form-field class="example-full-width centers" appearance="fill">
+                <input matInput type="text" [(ngModel)]="opskrift.stepFive" formControlName="stepFive" placeholder="trin 5" class="input-control">
+            </mat-form-field>
               <div>
                 <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#ec17d0, hsl(309, 85%, 51%));">Fortryd</button>
                 <button mat-raised-button type="submit" (click)="onOpretOpskrift()" class="login-btn" style="background: linear-gradient(#84ba77, #6bac7b);">Gem opskrift</button>
